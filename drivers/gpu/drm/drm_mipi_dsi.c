@@ -1054,7 +1054,6 @@ int mipi_dsi_dcs_set_display_brightness(struct mipi_dsi_device *dsi,
 					u16 brightness)
 {
 #ifndef VENDOR_EDIT
-//Ling.Guo@PSW.MM.Display.LCD.Stability,2019/09/18,modify for backlight issue
 	u8 payload[2] = { brightness & 0xff, brightness >> 8 };
 #else /*VENDOR_EDIT*/
 	u8 payload[2] = { brightness >> 8, brightness & 0xff};

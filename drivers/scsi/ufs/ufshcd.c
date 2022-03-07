@@ -9883,7 +9883,6 @@ void ufshcd_remove(struct ufs_hba *hba)
 #ifdef OPLUS_FEATURE_UFSPLUS
 #if defined(CONFIG_UFSFEATURE)
 	ufsf_remove(&hba->ufsf);
-	/* huangjianan@TECH.Storage.UFS, 2019/12/09, Add for UFS+ RUS */
 	remove_ufsplus_ctrl_proc();
 #endif
 #endif /* OPLUS_FEATURE_UFSPLUS */

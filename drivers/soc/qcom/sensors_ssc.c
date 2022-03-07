@@ -350,7 +350,6 @@ static int sensors_ssc_probe(struct platform_device *pdev)
 {
 	int ret = slpi_loader_init_sysfs(pdev);
 #ifdef OPLUS_BUG_STABILITY
-//ye.zhang@BSP.Sensor, 2019-03-09, add for bring up sensor power by LSM6DSM timing
 	struct regulator *vdd_2v8 = NULL;
 	struct regulator *vddio_1v8 = NULL;
 #endif
@@ -398,7 +397,6 @@ static int sensors_ssc_probe(struct platform_device *pdev)
 	INIT_WORK(&slpi_ldr_work, slpi_load_fw);
 
 #ifdef OPLUS_BUG_STABILITY
-//ye.zhang@BSP.Sensor, 2019-03-09, add for bring up sensor power by LSM6DSM timing
 	vdd_2v8 = regulator_get(&pdev->dev, "vdd");
 	vddio_1v8 = regulator_get(&pdev->dev, "vddio");
 

@@ -120,7 +120,6 @@ enum usb_property_id {
 	USB_MOISTURE_DET_STS,
 	USB_ADAP_SUBTYPE,//sjc add
 #ifdef VENDOR_EDIT
-/*lizhijie@BSP.CHG.Basic.2020/07/08 lzj add for warpphy status*/
 	USB_VBUS_COLLAPSE_STATUS,
 	USB_WARPPHY_STATUS,
 #endif /*VENDOR_EDIT*/
@@ -128,7 +127,6 @@ enum usb_property_id {
 };
 
 #ifdef VENDOR_EDIT
-/*lizhijie@BSP.CHG.Basic.2020/07/08 lzj add for warpphy status*/
 typedef enum _FASTCHG_STATUS
 {
 	FAST_NOTIFY_UNKNOW,

@@ -230,7 +230,6 @@ static char aw_ringtone_rtp_f0_170_name[][AW_RTP_NAME_MAX] = {
 };
 
 #ifdef OPLUS_FEATURE_CHG_BASIC
-/* Baoquan.Lai@PSW.BSP.CHG.Basic,2021/5/11, Modify for using different rtp files by f0 */
 static char aw_rtp_name_150Hz[][AW_RTP_NAME_MAX] = {
 	{"aw8697_rtp.bin"},
 	{"aw8697_Hearty_channel_RTP_1.bin"},
@@ -455,7 +454,6 @@ static char aw_rtp_name_150Hz[][AW_RTP_NAME_MAX] = {
 #endif /* OPLUS_FEATURE_CHG_BASIC */
 
 #ifdef OPLUS_FEATURE_CHG_BASIC
-/* Hang.Zhao@PSW.BSP.CHG.Basic,2020/2/5, Modify for using different rtp files by f0 */
 static char aw_rtp_name_165Hz[][AW_RTP_NAME_MAX] = {
 	{"aw8697_rtp.bin"},
 	{"aw8697_Hearty_channel_RTP_1.bin"},
@@ -856,7 +854,6 @@ static char aw_rtp_name[][AW_RTP_NAME_MAX] = {
 };
 
 #ifdef OPLUS_FEATURE_CHG_BASIC
-/* Hang.Zhao@PSW.BSP.CHG.Basic,2020/2/5, Modify for using different rtp files by f0 */
 static char aw_rtp_name_175Hz[][AW_RTP_NAME_MAX] = {
 	{"aw8697_rtp.bin"},
 	{"aw8697_Hearty_channel_RTP_1.bin"},
@@ -1046,7 +1043,6 @@ static char aw_ram_name_19161[5][30] = {
 };
 
 #ifdef OPLUS_FEATURE_CHG_BASIC
-/* Hang.Zhao@PSW.BSP.CHG.Basic,2020/2/5, Modify for using different rtp files by f0 */
 static char aw_rtp_name_19065_226Hz[][AW_RTP_NAME_MAX] = {
 	{"aw8697_rtp.bin"},
 	{"aw8697_Hearty_channel_RTP_1.bin"},
@@ -1242,7 +1238,6 @@ static char aw_rtp_name_19065_226Hz[][AW_RTP_NAME_MAX] = {
 #endif /* OPLUS_FEATURE_CHG_BASIC */
 
 #ifdef OPLUS_FEATURE_CHG_BASIC
-/* Hang.Zhao@PSW.BSP.CHG.Basic,2020/2/5, Modify for using different rtp files by f0 */
 static char aw_rtp_name_19065_230Hz[][AW_RTP_NAME_MAX] = {
 	{"aw8697_rtp.bin"},
 	{"aw8697_Hearty_channel_RTP_1.bin"},

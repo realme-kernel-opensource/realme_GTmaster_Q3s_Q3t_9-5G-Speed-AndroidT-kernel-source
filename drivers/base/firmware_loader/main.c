@@ -503,7 +503,6 @@ fw_get_filesystem_firmware(struct device *device, struct fw_priv *fw_priv,
 		}
 
 #if defined(OPLUS_FEATURE_PXLW_IRIS5)
-	// Pixelworks@MULTIMEDIA.DISPLAY, 2020/12/16, Iris5 Feature
                 if (!strcmp(fw_priv->fw_name, "iris5.fw")
                         || !strcmp(fw_priv->fw_name, "iris5_ccf1.fw")
                         || !strcmp(fw_priv->fw_name, "iris5_ccf2.fw")) {

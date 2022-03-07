@@ -287,7 +287,6 @@ module_param_named(
 #endif
 
 #ifdef VENDOR_EDIT
-/*Xing.Xiong@BSP.TP, 2017/11/17, Add for notify charger state to TP*/
 void __attribute__((weak)) switch_usb_state(int usb_state) {return;}
 #endif
 
@@ -593,7 +592,6 @@ static void smbchg_set_chargerid_switch_val(
 	
 	if(chip->pmic_spmi.not_support_1200ma && !value && !is_usb_present(chip)) {
 	/* BugID 879716 : Solve some situatuion ChargerID is not 0 mV when usb is not present */
-	// wenbin.liu@BSP.CHG.Basic, 2016/11/14
 		chip->chargerid_volt = 0;
 		chip->chargerid_volt_got = false;
 	}
@@ -1559,7 +1557,6 @@ static int smbchg_get_charge_enable(struct oplus_chg_chip *chip)
 }
 
 
-int qpnp_fg_set_charge_enble(bool enable)	// wenbin.liu@SW.Bsp.Driver, 2016/08/15  Add for qpnp_fg charge
 {	
 	if(!the_chip)
 		return -EINVAL;
@@ -6887,7 +6884,6 @@ static irqreturn_t src_detect_handler(int irq, void *_chip)
 	int rc;
 
 #ifdef VENDOR_EDIT
-/*Xing.Xiong@BSP.TP, 2017/11/17, Add for notify charger state to TP*/
 	switch_usb_state(usb_present);
 #endif /* VENDOR_EDIT */
 	if(chip->pmic_spmi.hvdcp_3_det_ignore_uv == false) {
@@ -8646,7 +8642,6 @@ static void rerun_hvdcp_det_if_necessary(struct oplus_chg_chip *chip)
 	int rc;
 
 #ifdef VENDOR_EDIT
-// wenbin.liu@BSP.CHG.Basic, 2016/12/06
 // Add for dead battery  charging if sometimes jump into kernel may lead APSD abnormal status
 	if(chip->pmic_spmi.hvdcp_not_supported)
 		return;
@@ -9030,7 +9025,6 @@ static int smbchg_probe(struct spmi_device *spmi)
 		return -EPROBE_DEFER;
 	}
 
-	// wenbin.liu@SW.Bsp.Driver, 2016/08/16  Add for check gauge probe finished
 	if(oplus_gauge_check_chip_is_null()) {
 		chg_err("gauge chip null, will do after bettery init.\n");
 		return -EPROBE_DEFER;

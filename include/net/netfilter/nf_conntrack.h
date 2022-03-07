@@ -111,7 +111,6 @@ struct nf_conn {
 	/* all members below initialized via memset */
 	struct { } __nfct_init_offset;
 #if IS_ENABLED(CONFIG_OPLUS_FEATURE_WIFI_SLA)
-//HuangJunyuan@CONNECTIVITY.WIFI.INTERNET.1197891, 2018/04/10,Add code for appo sla function
 	u32 oppo_game_skb_len;
 	u32 oppo_game_detect_status;
 	u32 oppo_game_time_interval;

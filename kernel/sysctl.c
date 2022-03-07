@@ -1959,7 +1959,6 @@ static struct ctl_table vm_table[] = {
 		.data		= &sysctl_compact_memory,
 		.maxlen		= sizeof(int),
 #ifdef OPLUS_FEATURE_PERFORMANCE
-/*Huacai.Zhou@PSW.kernel.mm, 2018-08-20, modify permission for coloros.athena*/
 		.mode		= 0222,
 #else
 		.mode		= 0200,

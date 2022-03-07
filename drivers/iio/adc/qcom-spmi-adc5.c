@@ -742,7 +742,6 @@ static const struct adc5_channels adc7_chans_pmic[ADC5_MAX_CHANNEL] = {
 	[ADC7_AMUX_THM4_100K_PU]	= ADC5_CHAN_TEMP("amux_thm4_pu2", 0,
 					SCALE_HW_CALIB_THERM_100K_PU_PM7)
 #ifndef OPLUS_FEATURE_CHG_BASIC
-/*lizhijie@BSP.CHG.Basic. 2020/08/25 lzj add for usbtemp*/
 	[ADC7_AMUX_THM5_100K_PU]	= ADC5_CHAN_TEMP("amux_thm5_pu2", 0,
 					SCALE_HW_CALIB_THERM_100K_PU_PM7)
 #else
@@ -754,7 +753,6 @@ static const struct adc5_channels adc7_chans_pmic[ADC5_MAX_CHANNEL] = {
 	[ADC7_GPIO1_100K_PU]    = ADC5_CHAN_TEMP("gpio1_pu2", 0,
 					SCALE_HW_CALIB_THERM_100K_PU_PM7)
 #ifdef OPLUS_FEATURE_CHG_BASIC
-/*Ping.Zhang@BSP.Kernel.Driver, 2020/08/05, Add for adc read for aboard*/
 	[ADC7_GPIO1]	= ADC5_CHAN_VOLT("pm8350_board_id", 0,
 					SCALE_HW_CALIB_DEFAULT)
 #endif /*OPLUS_FEATURE_CHG_BASIC*/
@@ -805,7 +803,6 @@ static const struct adc5_channels adc7_chans_pmic_walle[ADC5_MAX_CHANNEL] = {
 	[ADC7_AMUX_THM4_100K_PU]	= ADC5_CHAN_TEMP("amux_thm4_pu2", 0,
 					SCALE_HW_CALIB_THERM_100K_PU_PM7)
 #ifndef OPLUS_FEATURE_CHG_BASIC
-/*lizhijie@BSP.CHG.Basic. 2020/08/25 lzj add for usbtemp*/
 	[ADC7_AMUX_THM5_100K_PU]	= ADC5_CHAN_TEMP("amux_thm5_pu2", 0,
 					SCALE_HW_CALIB_THERM_100K_PU_PM7)
 #else
@@ -817,7 +814,6 @@ static const struct adc5_channels adc7_chans_pmic_walle[ADC5_MAX_CHANNEL] = {
 	[ADC7_GPIO1_100K_PU]    = ADC5_CHAN_TEMP("gpio1_pu2", 0,
 					SCALE_HW_CALIB_THERM_100K_PU_PM7)
 #ifdef OPLUS_FEATURE_CHG_BASIC
-/*Ping.Zhang@BSP.Kernel.Driver, 2020/08/05, Add for adc read for aboard*/
 	[ADC7_GPIO1]	= ADC5_CHAN_VOLT("pm8350_board_id", 0,
 					SCALE_HW_CALIB_DEFAULT)
 #endif /*OPLUS_FEATURE_CHG_BASIC*/

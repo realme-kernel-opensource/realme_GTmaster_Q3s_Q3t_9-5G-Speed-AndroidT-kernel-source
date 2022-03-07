@@ -417,7 +417,6 @@ int pil_do_ramdump(struct pil_desc *desc,
 
 	if (desc->minidump_ss) {
 #if defined(OPLUS_FEATURE_MODEM_MINIDUMP) && defined(CONFIG_OPLUS_FEATURE_MODEM_MINIDUMP)
-	//Wentiam.Mai@PSW.NW.EM.1248599, 2018/01/25
 	//Add for customized subsystem ramdump to skip generate dump cause by SAU
 	if (SKIP_GENERATE_RAMDUMP) {
 		pil_err(desc, "%s: Skip ramdump cuase by ap normal trigger.\n %s",
@@ -446,7 +445,6 @@ int pil_do_ramdump(struct pil_desc *desc,
 			(desc->minidump_ss->md_ss_enable_status ==
 				MD_SS_ENABLED)) {
 			#if !defined(OPLUS_FEATURE_MODEM_MINIDUMP) || !defined(CONFIG_OPLUS_FEATURE_MODEM_MINIDUMP)
-			//Wentiam.Mai@PSW.NW.EM.1389836, 2018/05/22
 			//Add for skip mini dump encryption
 			if (desc->minidump_ss->encryption_status ==
 			    MD_SS_ENCR_DONE) {

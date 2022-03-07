@@ -45,7 +45,6 @@ static uint disable_restart_work;
 module_param(disable_restart_work, uint, 0644);
 
 #if defined(OPLUS_FEATURE_MODEM_MINIDUMP) && defined(CONFIG_OPLUS_FEATURE_MODEM_MINIDUMP)
-/* Liu.Wei@NETWORK.RF.10384, 2020/12/31, Add for report modem crash uevent */
 static struct workqueue_struct *crash_report_workqueue = NULL;
 #endif
 
@@ -267,7 +266,6 @@ static ssize_t restart_level_store(struct device *dev,
 	for (i = 0; i < ARRAY_SIZE(restart_levels); i++)
 		if (!strncasecmp(buf, restart_levels[i], count)) {
 #ifndef VENDOR_EDIT
-/*zhangchangan@BSP.Kernel.stablity, 2020/07/14, open subsys crash to dump*/
 			subsys->restart_level = RESET_SUBSYS_COUPLED; //i;
 #else
                        subsys->restart_level = i;
@@ -649,7 +647,6 @@ static void notify_each_subsys_device(struct subsys_device **list,
 }
 
 #ifdef OPLUS_FEATURE_CHG_BASIC
-/*lizhijie@BSP.CHG.basic. 2020/10/21 lzj add for charger*/
 #if IS_BUILTIN(CONFIG_OPLUS_CHG)
 extern void oplus_turn_off_power_when_adsp_crash(void);
 #endif
@@ -661,7 +658,6 @@ static int subsystem_shutdown(struct subsys_device *dev, void *data)
 
 #ifdef OPLUS_FEATURE_CHG_BASIC
 #if IS_BUILTIN(CONFIG_OPLUS_CHG)
-	/*lizhijie@BSP.CHG.basic. 2020/10/21 lzj add for charger*/
 	if (!strcmp(name, "adsp")) {
 		oplus_turn_off_power_when_adsp_crash();
 	}
@@ -950,7 +946,6 @@ err_out:
 EXPORT_SYMBOL(subsystem_put);
 
 #ifdef OPLUS_FEATURE_CHG_BASIC
-/*lizhijie@BSP.CHG.Basic. 2020/10/02 lzj add for charger*/
 #if IS_BUILTIN(CONFIG_OPLUS_CHG)
 extern void oplus_adsp_crash_recover_work(void);
 #endif
@@ -1037,7 +1032,6 @@ static void subsystem_restart_wq_func(struct work_struct *work)
 	notify_each_subsys_device(list, count, SUBSYS_AFTER_POWERUP, NULL);
 #ifdef OPLUS_FEATURE_CHG_BASIC
 #if IS_BUILTIN(CONFIG_OPLUS_CHG)
-/*lizhijie@BSP.CHG.Basic. 2020/10/02 lzj add for charger*/
 	oplus_adsp_crash_recover_work();
 #endif
 #endif
@@ -1105,7 +1099,6 @@ static void device_restart_work_hdlr(struct work_struct *work)
 }
 
 #if defined(OPLUS_FEATURE_MODEM_MINIDUMP) && defined(CONFIG_OPLUS_FEATURE_MODEM_MINIDUMP)
-/* Liu.Wei@NETWORK.RF.10384, 2020/03/27, Add for report modem crash uevent */
 static void __modem_send_uevent(struct device *dev, char *reason)
 {
 	int ret_val;
@@ -1228,7 +1221,6 @@ int subsystem_restart_dev(struct subsys_device *dev)
 	name = dev->desc->name;
 
 #ifdef OPLUS_FEATURE_SWITCH_CHECK
-//HuiTAO@CONNECTIVITY.WIFI.HARDWARE.SWITCH.1162003, 2020/02/24
 	__wlan_subsystem_send_uevent(&(dev->dev), "",dev->desc->name);
 	if (name && !strcmp(name, "wpss") && (get_eng_version() == AGING)) {
 		dev->restart_level = RESET_SUBSYS_COUPLED;
@@ -1614,9 +1606,6 @@ struct subsys_device *subsys_register(struct subsys_desc *desc)
 	subsys->dev.release = subsys_device_release;
 	subsys->notif_state = -1;
 #if IS_ENABLED(CONFIG_OPLUS_BUG_STABILITY_EFFECTON_QGKI)
-	/*YiXue.Ge@PSW.BSP.Kernel.Driver,2017/05/15,
-	 * Add for init subsyst restart level as RESET_SUBSYS_COUPLED at mp build
-	 */
 	#ifndef CONFIG_OPPO_DAILY_BUILD
 		#ifndef CONFIG_OPPO_SPECIAL_BUILD
 		subsys->restart_level = RESET_SUBSYS_COUPLED;
@@ -1779,7 +1768,6 @@ static int __init subsys_restart_init(void)
 	int ret;
 
 	#if defined(OPLUS_FEATURE_MODEM_MINIDUMP) && defined(CONFIG_OPLUS_FEATURE_MODEM_MINIDUMP)
-	/* Liu.Wei@NETWORK.RF.10384, 2020/12/31, Add for report modem crash uevent by workqueue */
 	crash_report_workqueue = create_singlethread_workqueue("crash_report_workqueue");
 	if (crash_report_workqueue == NULL) {
 		pr_err("crash_report_workqueue alloc fail\n");
@@ -1824,7 +1812,6 @@ static void __exit subsys_restart_exit(void)
 	bus_unregister(&subsys_bus_type);
 	destroy_workqueue(ssr_wq);
 	#if defined(OPLUS_FEATURE_MODEM_MINIDUMP) && defined(CONFIG_OPLUS_FEATURE_MODEM_MINIDUMP)
-	/* Liu.Wei@NETWORK.RF.10384, 2020/12/31, Add for report modem crash uevent by workqueue */
 	destroy_workqueue(crash_report_workqueue);
 	#endif
 }

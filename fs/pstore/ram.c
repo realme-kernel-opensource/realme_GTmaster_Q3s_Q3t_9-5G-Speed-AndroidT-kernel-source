@@ -73,7 +73,6 @@ MODULE_PARM_DESC(ramoops_ecc,
 		"ECC buffer size in bytes (1 is a special value, means 16 "
 		"bytes ECC)");
 #if IS_ENABLED(CONFIG_OPLUS_FEATURE_DUMP_DEVICE_INFO)
-//martin.li@system.core,2020/11/25 add enable pstore to get KMSG and device_info
 static ulong ramoops_device_info_size = MIN_MEM_SIZE;
 module_param_named(device_info_size, ramoops_device_info_size, ulong, 0400);
 MODULE_PARM_DESC(device_info_size, "size of device info");
@@ -190,7 +189,6 @@ static int ramoops_pstore_open(struct pstore_info *psi)
 	cxt->ftrace_read_cnt = 0;
 	cxt->pmsg_read_cnt = 0;
 #if IS_ENABLED(CONFIG_OPLUS_FEATURE_DUMP_DEVICE_INFO)
-//martin.li@system.core,2020/11/25 add enable pstore to get KMSG and device_info
 	cxt->dev_info_cnt = 0;
 	cxt->dump_cnt = 0;
 	cxt->rsv01_cnt = 0;
@@ -354,7 +352,6 @@ static ssize_t ramoops_pstore_read(struct pstore_record *record)
 	if (!prz_ok(prz) && !cxt->pmsg_read_cnt++)
 		prz = ramoops_get_next_prz(&cxt->mprz, 0 /* single */, record);
 #if IS_ENABLED(CONFIG_OPLUS_FEATURE_DUMP_DEVICE_INFO)
-//martin.li@system.core,2020/11/25 add enable pstore to get KMSG and device_info
 	if (!prz_ok(prz) && !cxt->dev_info_cnt++)
 		prz = ramoops_get_next_prz(&cxt->devprz, 0, record);
 
@@ -494,7 +491,6 @@ static int notrace ramoops_pstore_write(struct pstore_record *record)
 		pr_warn_ratelimited("PMSG shouldn't call %s\n", __func__);
 		return -EINVAL;
 #if IS_ENABLED(CONFIG_OPLUS_FEATURE_DUMP_DEVICE_INFO)
-//martin.li@system.core,2020/11/25 add enable pstore to get KMSG and device_info
 	} else if (record->type == PSTORE_TYPE_DEVICE_INFO) {
 		if (!cxt->devprz)
 			return -ENOMEM;
@@ -625,7 +621,6 @@ static int ramoops_pstore_erase(struct pstore_record *record)
 		prz = cxt->mprz;
 		break;
 #if IS_ENABLED(CONFIG_OPLUS_FEATURE_DUMP_DEVICE_INFO)
-//martin.li@system.core,2020/11/25 add enable pstore to get KMSG and device_info
 	case PSTORE_TYPE_DEVICE_INFO:
 		prz = cxt->devprz;
 		break;
@@ -883,7 +878,6 @@ static int ramoops_parse_dt(struct platform_device *pdev,
 	parse_size("ecc-size", pdata->ecc_info.ecc_size);
 	parse_size("flags", pdata->flags);
 #if IS_ENABLED(CONFIG_OPLUS_FEATURE_DUMP_DEVICE_INFO)
-//martin.li@system.core,2020/11/25 add enable pstore to get KMSG and device_info
 	parse_size("devinfo-size", pdata->device_info_size);
 	parse_size("dumpinfo-size", pdata->dump_size);
 	parse_size("rsv01info-size", pdata->rsv01_size);
@@ -953,7 +947,6 @@ static int ramoops_probe(struct platform_device *pdev)
 
 	if (!pdata->mem_size || (!pdata->record_size && !pdata->console_size &&
 #if IS_ENABLED(CONFIG_OPLUS_FEATURE_DUMP_DEVICE_INFO)
-//martin.li@system.core,2020/11/25 add enable pstore to get KMSG and device_info
 			!pdata->device_info_size && !pdata->dump_size &&
 			!pdata->rsv01_size && !pdata->rsv02_size &&
 		    !pdata->rsv03_size && !pdata->rsv04_size &&
@@ -974,7 +967,6 @@ static int ramoops_probe(struct platform_device *pdev)
 	if (pdata->pmsg_size && !is_power_of_2(pdata->pmsg_size))
 		pdata->pmsg_size = rounddown_pow_of_two(pdata->pmsg_size);
 #if IS_ENABLED(CONFIG_OPLUS_FEATURE_DUMP_DEVICE_INFO)
-//martin.li@system.core,2020/11/25 add enable pstore to get KMSG and device_info
 	if (pdata->device_info_size && !is_power_of_2(pdata->device_info_size))
 		pdata->device_info_size =
 				rounddown_pow_of_two(pdata->device_info_size);
@@ -1002,7 +994,6 @@ static int ramoops_probe(struct platform_device *pdev)
 	cxt->flags = pdata->flags;
 	cxt->ecc_info = pdata->ecc_info;
 #if IS_ENABLED(CONFIG_OPLUS_FEATURE_DUMP_DEVICE_INFO)
-//martin.li@system.core,2020/11/25 add enable pstore to get KMSG and device_info
 	cxt->device_info_size = pdata->device_info_size;
 	cxt->dump_size = pdata->dump_size;
 	cxt->rsv01_size = pdata->rsv01_size;
@@ -1015,7 +1006,6 @@ static int ramoops_probe(struct platform_device *pdev)
 
 	dump_mem_sz = cxt->size - cxt->console_size - cxt->ftrace_size
 #if IS_ENABLED(CONFIG_OPLUS_FEATURE_DUMP_DEVICE_INFO)
-//martin.li@system.core,2020/11/25 add enable pstore to get KMSG and device_info
 			- cxt->device_info_size - cxt->dump_size
 			- cxt->rsv01_size - cxt->rsv02_size
 			- cxt->rsv03_size - cxt->rsv04_size
@@ -1049,7 +1039,6 @@ static int ramoops_probe(struct platform_device *pdev)
 	if (err)
 		goto fail_init_mprz;
 #if IS_ENABLED(CONFIG_OPLUS_FEATURE_DUMP_DEVICE_INFO)
-//martin.li@system.core,2020/11/25 add enable pstore to get KMSG and device_info
 	err = ramoops_init_prz("devinfo", dev, cxt, &cxt->devprz, &paddr,
 				cxt->device_info_size, 0);
 	if (err)
@@ -1135,7 +1124,6 @@ static int ramoops_probe(struct platform_device *pdev)
 	ramoops_pmsg_size = pdata->pmsg_size;
 	ramoops_ftrace_size = pdata->ftrace_size;
 #if IS_ENABLED(CONFIG_OPLUS_FEATURE_DUMP_DEVICE_INFO)
-//martin.li@system.core,2020/11/25 add enable pstore to get KMSG and device_info
 	ramoops_device_info_size = pdata->device_info_size;
 	ramoops_dump_info_size = pdata->dump_size;
 	ramoops_rsv01_info_size = pdata->rsv01_size;
@@ -1148,7 +1136,6 @@ static int ramoops_probe(struct platform_device *pdev)
 		cxt->size, (unsigned long long)cxt->phys_addr,
 		cxt->ecc_info.ecc_size);
 #if IS_ENABLED(CONFIG_OPLUS_FEATURE_DUMP_DEVICE_INFO)
-//martin.li@system.core,2020/11/25 add enable pstore to get KMSG and device_info
 	pr_err("dprzs=0X%llX dprzss=0X%lX consprz=0X%llX cons=0X%lX mprz=0x%llX ps=0X%lX ft=0X%lX\n",
 			cxt->dprzs[0]->paddr, cxt->record_size,
 			cxt->cprz->paddr, cxt->console_size,

@@ -125,7 +125,6 @@ static void backlight_generate_event(struct backlight_device *bd,
 	}
 	envp[1] = NULL;
 #ifdef OPLUS_BUG_STABILITY
-/* YongPeng.Yi@PSW.MM.Display.LCD, 2020/11/26. add for delete bl uevent upload */
 	//kobject_uevent_env(&bd->dev.kobj, KOBJ_CHANGE, envp);
 #endif /*OPLUS_BUG_STABILITY*/
 	sysfs_notify(&bd->dev.kobj, NULL, "actual_brightness");

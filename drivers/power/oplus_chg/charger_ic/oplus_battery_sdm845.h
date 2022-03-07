@@ -26,7 +26,7 @@ enum print_reason {
 	PR_OTG		= BIT(4),
 };
 
-#ifdef OPLUS_FEATURE_CHG_BASIC/*Fanhong.Kong@ProDrv.CHG,add 2018/06/02 for SWARP OTG*/
+#ifdef OPLUS_FEATURE_CHG_BASIC
 #define SWARP_OTG_VOTER		"SWARP_OTG_VOTER"
 #endif/*OPLUS_FEATURE_CHG_BASIC*/
 
@@ -72,11 +72,9 @@ enum print_reason {
 #define WBC_VOTER			"WBC_VOTER"
 #define MOISTURE_VOTER			"MOISTURE_VOTER"
 #ifdef OPLUS_FEATURE_CHG_BASIC
-/* Jianchao.Shi@BSP.CHG.Basic, 2018/01/30, sjc Add for using gpio as CC detect */
 #define CCDETECT_VOTER			"CCDETECT_VOTER"
 #endif
 #ifdef OPLUS_FEATURE_CHG_BASIC
-/* Jianchao.Shi@BSP.CHG.Basic, 2018/02/13, sjc Add for charging */
 #define PD_DIS_VOTER			"PD_DIS_VOTER"
 #endif
 
@@ -272,7 +270,6 @@ struct smb_charger {
 	struct power_supply_desc	usb_psy_desc;
 	struct power_supply		*usb_main_psy;
 #ifdef OPLUS_FEATURE_CHG_BASIC
-/* Jianchao.Shi@BSP.CHG.Basic, 2017/03/07, sjc Add for charging*/
 	struct power_supply		*ac_psy;
 #endif
 	struct power_supply		*usb_port_psy;
@@ -325,11 +322,9 @@ struct smb_charger {
 	struct delayed_work	uusb_otg_work;
 	struct delayed_work	bb_removal_work;
 #ifdef OPLUS_FEATURE_CHG_BASIC
-/* Jianchao.Shi@BSP.CHG.Basic, 2017/03/25, sjc Add for charging */
 	struct delayed_work	chg_monitor_work;
 #endif
 #ifdef OPLUS_FEATURE_CHG_BASIC
-/* Jianchao.Shi@BSP.CHG.Basic, 2018/04/13, sjc Add for charging */
 	struct delayed_work	typec_disable_cmd_work;
 #endif
 
@@ -381,7 +376,6 @@ struct smb_charger {
 	int			temp_speed_reading_count;
 	bool			fake_usb_insertion;
 #ifdef OPLUS_FEATURE_CHG_BASIC
-/* Jianchao.Shi@BSP.CHG.Basic, 2018/07/13, sjc Add for fake typec */
 	bool			fake_typec_insertion;
 #endif
 
@@ -398,11 +392,9 @@ struct smb_charger {
 
 	int			die_health;
 #ifdef OPLUS_FEATURE_CHG_BASIC
-/* Jianchao.Shi@BSP.CHG.Basic, 2017/08/10, sjc Add for charging */
 	int			pre_current_ma;
 #endif
 #ifdef OPLUS_FEATURE_CHG_BASIC
-/* Jianchao.Shi@BSP.CHG.Basic, 2018/01/30, sjc Add for using gpio as CC detect */
 	int			ccdetect_gpio;
 	int			ccdetect_irq;
 	struct pinctrl		*ccdetect_pinctrl;

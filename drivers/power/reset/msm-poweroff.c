@@ -483,7 +483,6 @@ static void msm_restart_prepare(const char *cmd)
 			enable_emergency_dload_mode();
 		}
 #ifdef VENDOR_EDIT
-/*zhangchangan@BSP.Bootloader.Bootflow, 2020/05/12, Add for oppo boot mode*/
 		/*xiaofan.yang,2019/01/07,Add for factory agingtest*/
 		//#ifdef OPLUS_FEATURE_AGINGTEST
 		else if(!strcmp(cmd, "sbllowmemtest")){

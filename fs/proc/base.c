@@ -117,11 +117,9 @@ extern bool is_special_entry(struct dentry *dentry, const char* special_proc);
 #endif /* defined(OPLUS_FEATURE_SCHED_ASSIST) && defined(CONFIG_OPLUS_FEATURE_SCHED_ASSIST) */
 
 //#ifdef OPLUS_FEATURE_HEALTHINFO
-/* Huacai.Zhou@PSW.BSP.Kernel.MM, 2018-06-26, add ion total used account*/
 #include <linux/healthinfo/ion.h>
 //#endif /* OPLUS_FEATURE_HEALTHINFO */
 #ifdef OPLUS_FEATURE_HEALTHINFO
-//Jiheng.Xie@TECH.BSP.Performance, 2019-07-22, add for  gpu total used account
 #ifdef CONFIG_OPLUS_HEALTHINFO
 extern unsigned long gpu_total(void);
 #endif

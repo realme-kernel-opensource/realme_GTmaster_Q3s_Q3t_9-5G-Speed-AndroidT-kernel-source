@@ -786,7 +786,6 @@ source "kernel/sched_assist/Kconfig"
 #endif /* OPLUS_FEATURE_SCHED_ASSIST */
 
 #ifdef OPLUS_FEATURE_SCHED_ASSIST
-#Yupeng.shan@TECH.Kernel.Sched, 2020/09/29, add for heavy load task
 source "kernel/special_opt/Kconfig"
 #endif /* OPLUS_FEATURE_SCHED_ASSIST */
 

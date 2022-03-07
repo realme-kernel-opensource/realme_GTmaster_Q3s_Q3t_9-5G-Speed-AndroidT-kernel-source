@@ -1,7 +1,6 @@
 # oplus kernel whitelist
 [abi_whitelist]
 #ifdef OPLUS_FEATURE_TP_BASIC
-#Qicai.Gu@BSP.TP.Function, 2019/06/15, Add for tp use samsung driver
   int_sqrt
   __kfifo_alloc
   remove_proc_subtree

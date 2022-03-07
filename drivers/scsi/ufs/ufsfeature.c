@@ -302,7 +302,6 @@ void ufsf_device_check(struct ufs_hba *hba)
 	seq_scan_lu(lun)
 		ufsf_read_unit_desc(ufsf, lun, UFSFEATURE_SELECTOR);
 		
-	/* huangjianan@TECH.Storage.UFS, 2019/12/09, Add for UFS+ RUS */
 	create_ufsplus_ctrl_proc(ufsf);
 }
 
@@ -758,7 +757,6 @@ inline void ufsf_hpb_noti_rb(struct ufsf_feature *ufsf,
 			     struct ufshcd_lrb *lrbp) {}
 #endif
 
-/* huangjianan@TECH.Storage.UFS, 2019/12/09, Add for UFS+ RUS */
 int create_ufsplus_ctrl_proc(struct ufsf_feature *ufsf)
 {
 	ufsf_para.ctrl_dir = NULL;

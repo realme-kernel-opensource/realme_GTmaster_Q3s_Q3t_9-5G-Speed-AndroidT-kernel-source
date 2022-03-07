@@ -53,7 +53,6 @@ typedef struct _phx_keyinfo {
 extern int hang_oplus_recovery_method;
 extern int hang_oplus_main_on;
 
-// Kun.Hu@PSW.TECH.RELIABILTY.1890222, 2019/03/20, remove all fs opreration in kernel, fix extfs crash
 extern int phx_is_system_boot_completed(void);
 extern int phx_is_filesystem_ready(void);
 extern void phx_get_base_info(phx_baseinfo **);

@@ -544,7 +544,6 @@ struct dwc3_msm {
 #define USB_SSPHY_1P8_HPM_LOAD		23000	/* uA */
 
 #ifdef OPLUS_FEATURE_CHG_BASIC
-/*lizhijie@BSP.CHG.Basic. 2021/03/23. lzj add for chg*/
 struct device	*oplus_dev = NULL;
 #endif
 static void dwc3_pwr_event_handler(struct dwc3_msm *mdwc);
@@ -4163,7 +4162,6 @@ static enum usb_role dwc3_msm_usb_get_role(struct device *dev)
 }
 
 #ifdef OPLUS_FEATURE_CHG_BASIC
-/*lizhijie@BSP.CHG.Basic. 2021/01/12 lzj add for chg*/
 bool __attribute__((weak)) oplus_is_pd_svooc(void)
 {
 	return false;
@@ -4178,7 +4176,6 @@ static int dwc3_msm_usb_set_role(struct device *dev, enum usb_role role)
 
 	cur_role = dwc3_msm_usb_get_role(dev);
 #ifdef OPLUS_FEATURE_CHG_BASIC
-/*lizhijie@BSP.CHG.Basic. 2021/01/12 lzj add for chg*/
 	pr_err("!!!rele:%d\n", role);
 	if (oplus_is_pd_svooc() == true && role != USB_ROLE_NONE) {
 		pr_err("!!!ignore the notify to start USB device mode");
@@ -4236,7 +4233,6 @@ static struct usb_role_switch_desc role_desc = {
 };
 
 #ifdef OPLUS_FEATURE_CHG_BASIC
-/*lizhijie@BSP.CHG.Basic. 2021/03/23. lzj add for chg*/
 void oplus_usb_set_none_role(void)
 {
 	if (oplus_dev)
@@ -5045,7 +5041,6 @@ static int dwc3_msm_probe(struct platform_device *pdev)
 	}
 
 #ifdef OPLUS_FEATURE_CHG_BASIC
-/*lizhijie@BSP.CHG.Basic. 2021/03/23. lzj add for chg*/
 	oplus_dev = mdwc->dev;
 	printk(KERN_ERR "%s, init oplus_dev\n", __func__);
 #endif

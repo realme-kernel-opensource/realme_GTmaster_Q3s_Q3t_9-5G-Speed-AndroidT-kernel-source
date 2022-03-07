@@ -76,7 +76,6 @@ enum {
     REBOOT_ANDROID      = 0x29,
 //Liang.Zhang@TECH.BSP.Storage.OPPO_DOCTOR, 2019/9/13, Modify for PHOENIX_PROJECT and OPPO_DOCTOR use
 //#if defined(PHOENIX_PROJECT) || defined(OPPO_DOCTOR)
-    REBOOT_SBL_DDRTEST  = 0x2B,  //xiaofan.yang@PSW.TECH.AgingTest, 2019/03/1,Add for agingtest
     REBOOT_SBL_DDR_CUS  = 0x2C,
     REBOOT_AGINGTEST    = 0x2D,
     REBOOT_SBLTEST_FAIL = 0x2E,

@@ -967,7 +967,6 @@ static int st21nfc_probe(struct i2c_client *client,
 	struct device *dev = &client->dev;
 
         //#ifdef OPLUS_FEATURE_CONNFCSOFT
-        //#Longzuming@Connectivity.NFC.BASIC, 2021/04/23, add for CON_NFC_SOFT
         CHECK_NFC_CHIP(ST21H);
         //#endif /* OPLUS_FEATURE_CONNFCSOFT */
 

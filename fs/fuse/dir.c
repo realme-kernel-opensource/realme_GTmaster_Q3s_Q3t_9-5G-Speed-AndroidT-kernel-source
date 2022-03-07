@@ -578,7 +578,6 @@ static int fuse_create_open(struct inode *dir, struct dentry *entry,
 		fuse_finish_open(inode, file);
 	}
 #ifdef CONFIG_OPLUS_FEATURE_ACM
-//Yuwei.Guan@BSP.Kernel.FS,2020/07/08, Add for acm
 	monitor_acm2(entry, NULL, args.opcode);
 #endif
 	return err;
@@ -689,7 +688,6 @@ static int create_new_entry(struct fuse_conn *fc, struct fuse_args *args,
 	}
 	fuse_dir_changed(dir);
 #ifdef CONFIG_OPLUS_FEATURE_ACM
-//Yuwei.Guan@BSP.Kernel.FS,2020/07/08, Add for acm
 	if ((args->opcode == FUSE_MKNOD) ||
 		(args->opcode == FUSE_MKDIR))
 		monitor_acm2(entry, NULL, args->opcode);
@@ -787,7 +785,6 @@ static int fuse_unlink(struct inode *dir, struct dentry *entry)
 	args.in_args[0].size = entry->d_name.len + 1;
 	args.in_args[0].value = entry->d_name.name;
 #ifdef CONFIG_OPLUS_FEATURE_ACM
-//Yuwei.Guan@BSP.Kernel.FS,2020/07/08, Add for acm
 	err = monitor_acm2(entry, NULL, args.opcode);
 	if (err) {
 		err = ACM_DELETE_ERR;
@@ -831,7 +828,6 @@ static int fuse_rmdir(struct inode *dir, struct dentry *entry)
 	args.in_args[0].size = entry->d_name.len + 1;
 	args.in_args[0].value = entry->d_name.name;
 #ifdef CONFIG_OPLUS_FEATURE_ACM
-//Yuwei.Guan@BSP.Kernel.FS,2020/07/08, Add for acm
 	err = monitor_acm2(entry, NULL, args.opcode);
 	if (err) {
 		err = ACM_DELETE_ERR;
@@ -901,7 +897,6 @@ static int fuse_rename_common(struct inode *olddir, struct dentry *oldent,
 			fuse_invalidate_entry(newent);
 	}
 #ifdef CONFIG_OPLUS_FEATURE_ACM
-//Yuwei.Guan@BSP.Kernel.FS,2020/07/08, Add for acm
 	monitor_acm2(oldent, newent, args.opcode);
 #endif
 	return err;

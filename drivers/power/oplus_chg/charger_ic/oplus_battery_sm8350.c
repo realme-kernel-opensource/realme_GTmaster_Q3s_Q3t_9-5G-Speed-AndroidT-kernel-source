@@ -18,7 +18,6 @@
 #define pr_fmt(fmt)	"BATTERY_CHG: %s: " fmt, __func__
 
 #ifdef VENDOR_EDIT
-/* Jianchao.Shi@BSP.CHG.Basic, 2020/05/20, sjc Add for charging */
 #include <linux/delay.h>
 #include "oplus_battery_sm8350.h"
 #include "../oplus_charger.h"
@@ -512,7 +511,6 @@ static const struct power_supply_desc wls_psy_desc = {
 };
 
 #ifdef VENDOR_EDIT
-/* Jianchao.Shi@BSP.CHG.Basic, 2020/05/20, sjc Add for charging*/
 static int ac_psy_get_prop(struct power_supply *psy,
 		enum power_supply_property prop,
 		union power_supply_propval *pval)
@@ -553,7 +551,6 @@ static const struct power_supply_desc ac_psy_desc = {
 #endif /*VENDOR_EDIT*/
 
 #ifndef VENDOR_EDIT
-/*lizhijie@BSP.CHG.Basic. 2020/08/12 lzj delete for icl*/
 static int usb_psy_set_icl(struct battery_chg_dev *bcdev, u32 prop_id, int val)
 {
 	struct psy_state *pst = &bcdev->psy_list[PSY_TYPE_USB];
@@ -588,7 +585,6 @@ static int usb_psy_set_icl(struct battery_chg_dev *bcdev, u32 prop_id, int val)
 #endif /*VENDOR_EDIT*/
 
 #ifdef VENDOR_EDIT
-/* lizhijie@BSP.CHG.Basic, 2020/07/22, lzj Add for charging*/
 static void oplus_chg_set_curr_level_to_warpphy(void)
 {
 	int rc = 0;
@@ -614,7 +610,6 @@ static void oplus_chg_set_curr_level_to_warpphy(void)
 #endif /*VENDOR_EDIT*/
 
 #ifdef VENDOR_EDIT
-/*lizhijie@BSP.CHG.Basic. 2020/07/08 lzj add for warpphy*/
 static void oplus_warp_handle_warpphy_status(void)
 {
 	struct oplus_chg_chip *chip = g_oplus_chip;
@@ -698,7 +693,6 @@ static int usb_psy_get_prop(struct power_supply *psy,
 	struct psy_state *pst = &bcdev->psy_list[PSY_TYPE_USB];
 	int prop_id, rc;
 #ifdef VENDOR_EDIT
-/* Jianchao.Shi@BSP.CHG.Basic, 2020/05/20, sjc Add for charging*/
 	static int online = 0;
 	static int adap_type = 0;
 #endif
@@ -716,7 +710,6 @@ static int usb_psy_get_prop(struct power_supply *psy,
 	pval->intval = pst->prop[prop_id];
 
 #ifdef VENDOR_EDIT
-/* Jianchao.Shi@BSP.CHG.Basic, 2020/05/20, sjc Add for charging*/
 	if (prop_id == USB_ONLINE) {
 		if (online ^ pval->intval) {
 			online = pval->intval;
@@ -733,7 +726,6 @@ static int usb_psy_get_prop(struct power_supply *psy,
 	}
 #endif
 #ifdef VENDOR_EDIT
-	/*lizhijie@BSP.CHG.Basic. 2020/07/14 add for warpphy*/
 	if (prop_id == USB_ONLINE) {
 		oplus_warp_handle_warpphy_status();
 	}
@@ -757,7 +749,6 @@ static int usb_psy_set_prop(struct power_supply *psy,
 	switch (prop) {
 	case POWER_SUPPLY_PROP_INPUT_CURRENT_LIMIT:
 #ifndef VENDOR_EDIT
-/*lizhijie@BSP.CHG.Basic. 2020/08/12 lzj delete for icl*/
 		rc = usb_psy_set_icl(bcdev, prop_id, pval->intval);
 #endif
 		break;
@@ -854,7 +845,6 @@ static int battery_psy_get_prop(struct power_supply *psy,
 	int prop_id, rc;
 
 #ifdef VENDOR_EDIT
-/* Jianchao.Shi@BSP.CHG.Basic, 2020/05/20, sjc Modify for charging*/
 	rc = oplus_battery_get_property(psy, prop, pval);
 	if (rc == 0)
 		return rc;
@@ -904,7 +894,6 @@ static int battery_psy_set_prop(struct power_supply *psy,
 	struct battery_chg_dev *bcdev = power_supply_get_drvdata(psy);
 
 #ifndef VENDOR_EDIT
-/* Jianchao.Shi@BSP.CHG.Basic, 2020/05/20, sjc Modify for charging*/
 	switch (prop) {
 	case POWER_SUPPLY_PROP_CHARGE_CONTROL_LIMIT:
 		return battery_psy_set_charge_current(bcdev, pval->intval);
@@ -931,7 +920,6 @@ static int battery_psy_prop_is_writeable(struct power_supply *psy,
 		enum power_supply_property prop)
 {
 #ifndef VENDOR_EDIT
-/* Jianchao.Shi@BSP.CHG.Basic, 2020/05/20, sjc Modify for charging*/
 	switch (prop) {
 	case POWER_SUPPLY_PROP_CHARGE_CONTROL_LIMIT:
 		return 1;
@@ -1015,7 +1003,6 @@ static int battery_chg_init_psy(struct battery_chg_dev *bcdev)
 	}
 
 #ifndef VENDOR_EDIT
-/* Jianchao.Shi@BSP.CHG.Basic, 2020/05/20, sjc Delete for charging*/
 	bcdev->psy_list[PSY_TYPE_WLS].psy =
 		devm_power_supply_register(bcdev->dev, &wls_psy_desc, &psy_cfg);
 	if (IS_ERR(bcdev->psy_list[PSY_TYPE_WLS].psy)) {
@@ -1026,7 +1013,6 @@ static int battery_chg_init_psy(struct battery_chg_dev *bcdev)
 #endif
 
 #ifdef VENDOR_EDIT
-/* Jianchao.Shi@BSP.CHG.Basic, 2020/05/20, sjc Add for charging*/
 	bcdev->psy_list[PSY_TYPE_AC].psy =
 		devm_power_supply_register(bcdev->dev, &ac_psy_desc, &psy_cfg);
 	if (IS_ERR(bcdev->psy_list[PSY_TYPE_AC].psy)) {
@@ -1578,7 +1564,6 @@ static int battery_chg_ship_mode(struct notifier_block *nb, unsigned long code,
  * battery charge ops *
  **********************************************************************/
 #ifdef VENDOR_EDIT
-/* Jianchao.Shi@BSP.CHG.Basic, 2020/05/20, sjc Add for charging*/
 static void dump_regs(void)
 {
 	return;
@@ -2612,7 +2597,6 @@ static int oplus_input_current_limit_ctrl_by_warp_write(int current_ma)
 #endif
 
 #ifdef VENDOR_EDIT
-/* Jianchao.Shi@BSP.CHG.Basic, 2020/05/20, sjc Add for charging*/
 struct oplus_chg_operations  battery_chg_ops = {
 	.dump_registers = dump_regs,
 	.kick_wdt = smbchg_kick_wdt,
@@ -2674,7 +2658,6 @@ struct oplus_chg_operations  battery_chg_ops = {
  * battery gauge ops *
  **********************************************************************/
 #ifdef VENDOR_EDIT
-/* Jianchao.Shi@BSP.CHG.Basic, 2020/05/20, sjc Add for charging*/
 static int fg_bq27541_get_battery_mvolts(void)
 {
 	int rc = 0;
@@ -2934,7 +2917,6 @@ static struct oplus_gauge_operations battery_gauge_ops = {
 static int battery_chg_probe(struct platform_device *pdev)
 {
 #ifdef VENDOR_EDIT
-/* Jianchao.Shi@BSP.CHG.Basic, 2020/05/20, sjc Add for charging*/
 	struct oplus_gauge_chip *gauge_chip;
 	struct oplus_chg_chip *oplus_chip;
 #endif
@@ -2944,7 +2926,6 @@ static int battery_chg_probe(struct platform_device *pdev)
 	int rc, i;
 
 #ifdef VENDOR_EDIT
-/* Jianchao.Shi@BSP.CHG.Basic, 2020/05/20, sjc Add for charging*/
 	pr_info("battery_chg_probe start...\n");
 	gauge_chip = devm_kzalloc(&pdev->dev, sizeof(*gauge_chip), GFP_KERNEL);
 	if (!gauge_chip) {
@@ -2977,7 +2958,6 @@ static int battery_chg_probe(struct platform_device *pdev)
 		return -ENOMEM;
 
 #ifdef VENDOR_EDIT
-/* Jianchao.Shi@BSP.CHG.Basic, 2020/05/20, sjc Add for charging*/
 	oplus_chip->pmic_spmi.bcdev_chip = bcdev;
 #endif
 
@@ -3053,7 +3033,6 @@ static int battery_chg_probe(struct platform_device *pdev)
 	}
 
 #ifdef VENDOR_EDIT
-/* Jianchao.Shi@BSP.CHG.Basic, 2020/05/20, sjc Add for charging*/
 	//oplus_chg_parse_custom_dt(oplus_chip);
 	oplus_chg_parse_charger_dt(oplus_chip);
 	oplus_chg_init(oplus_chip);
@@ -3078,7 +3057,6 @@ static int battery_chg_probe(struct platform_device *pdev)
 	device_init_wakeup(bcdev->dev, true);
 
 #ifdef VENDOR_EDIT
-/* Jianchao.Shi@BSP.CHG.Basic, 2020/05/20, sjc Add for charging*/
 	pr_info("battery_chg_probe end...\n");
 #endif
 
@@ -3108,7 +3086,6 @@ static int battery_chg_remove(struct platform_device *pdev)
 }
 
 #ifdef VENDOR_EDIT
-/* Jianchao.Shi@BSP.CHG.Basic, 2020/05/20, sjc Add for charging*/
 static void smbchg_enter_shipmode(struct oplus_chg_chip *chip)
 {
 	int rc = 0;
@@ -3153,7 +3130,6 @@ static struct platform_driver battery_chg_driver = {
 	.probe = battery_chg_probe,
 	.remove = battery_chg_remove,
 #ifdef VENDOR_EDIT
-/* Jianchao.Shi@BSP.CHG.Basic, 2020/05/20, sjc Add for charging*/
 	.shutdown = battery_chg_shutdown,
 #endif
 };

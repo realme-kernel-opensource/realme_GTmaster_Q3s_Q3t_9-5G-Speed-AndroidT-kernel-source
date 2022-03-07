@@ -273,7 +273,6 @@ config UFSHID_POC
 	3. set flag bDefragOperation
 	4. debug msg enable (default : disable)
 
-#Tianwen@Bsp.Storage.Ufs,2020-08-13,add for oplus ufs
 config OPLUS_FEATURE_UFS
 	tristate "Vendor specific UFS common modify"
 	depends on SCSI_UFSHCD

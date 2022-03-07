@@ -33,7 +33,6 @@ static struct poweroff_reason reasons[] = {
 	{ "dm-verity enforcing",	0x05 },
 	{ "keys clear",			0x06 },
 #if defined(CONFIG_QGKI)
-	/* yanghao@BSP.Bootloader.Bootflow, 2020/09/10, Add for oppo boot mode*/
 	{ "silence",			0x21 },//PON_RESTART_REASON_SILENCE= 0x21,
  	{ "sau",			0x22 },//PON_RESTART_REASON_SAU= 0x22,
         { "rf",	        		0x23 },//PON_RESTART_REASON_RF= 0x23,

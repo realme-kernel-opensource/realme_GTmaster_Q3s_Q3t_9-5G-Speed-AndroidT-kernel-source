@@ -5,7 +5,6 @@
 /*
  * drivers/param_read_write/param_read_write.c
  *
- * hefaxi@filesystems,2015/04/30
  *
  * This program is used to read/write param partition in kernel
  */

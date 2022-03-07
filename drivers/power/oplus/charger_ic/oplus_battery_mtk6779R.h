@@ -220,7 +220,6 @@ struct charger_custom_data {
 	int min_charger_voltage_2;
 	int max_dmivr_charger_current;
 #ifdef OPLUS_FEATURE_CHG_BASIC
-/* lizhijie@BSP.CHG.Basic, 2020/05/08, Add for step charging */
 	int step1_time;
 	int step1_current_ma;
 	int step2_time;
@@ -254,7 +253,6 @@ struct mtk_charger {
 	struct notifier_block chg1_nb;
 	struct charger_device *chg2_dev;
 #ifdef OPLUS_FEATURE_CHG_BASIC
-/* lizhijie@BSP.CHG.Basic, 2020/05/08, Add for charging */
 	struct charger_device *dvchg1_dev;
 	struct notifier_block dvchg1_nb;
 	struct charger_data dvchg1_data;
@@ -279,7 +277,6 @@ struct mtk_charger {
 	struct notifier_block pd_nb;
 	struct mutex pd_lock;
 #ifdef OPLUS_FEATURE_CHG_BASIC
-/* lizhijie@BSP.CHG.Basic, 2020/05/08, lzj Add for charging */
 	struct iio_channel      *charger_id_chan;
 	struct iio_channel      *usb_temp_v_l_chan;
 	struct iio_channel      *usb_temp_v_r_chan;
@@ -291,7 +288,6 @@ struct mtk_charger {
 #endif
 
 #ifdef OPLUS_FEATURE_CHG_BASIC
-/* YanGang@BSP.CHG.Basic, 2019/12/30, Add for ccdetect */
 	int ccdetect_gpio;
 	int ccdetect_irq;
 	struct pinctrl_state *ccdetect_active;
@@ -302,7 +298,6 @@ struct mtk_charger {
 	int pd_type;
 	bool pd_reset;
 #ifdef OPLUS_FEATURE_CHG_BASIC
-/*lizhijie@BSP.CHG.Basic. 2020/05/08 add for charger*/
 	struct tcpc_device *tcpc;
 #endif
 
@@ -374,12 +369,10 @@ struct mtk_charger {
 	struct notifier_block chg_alg_nb;
 	bool enable_hv_charging;
 #ifdef OPLUS_FEATURE_CHG_BASIC
-/*Boyu.Wen@BSP.CHG.Basic, 2020/09/03, Add for the difference of chargerid between 537&538  */
 		bool chargerid_disable;
 		bool chargerid_vol_disable;
 #endif
 #ifdef OPLUS_FEATURE_CHG_BASIC
-/* wangdengwen@BSP.CHG.Basic, 2020/09/05, Add for the tchg get  */
 	struct iio_channel *chg_temp_chan;
 	int chargeric_temp_volt;
 	int chargeric_temp;
@@ -423,7 +416,6 @@ typedef enum {
 } OPLUS_STEP_CHG_STATUS;
 
 #ifdef OPLUS_FEATURE_CHG_BASIC
-/* Jianchao.Shi@BSP.CHG.Basic, 2018/11/09, sjc Add for charging */
 struct mtk_pmic {
 	struct mtk_charger* oplus_info;
 };

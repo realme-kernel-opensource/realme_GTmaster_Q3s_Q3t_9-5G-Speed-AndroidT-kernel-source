@@ -45,7 +45,6 @@
 #include <linux/android_vendor.h>
 
 #if IS_ENABLED(CONFIG_OPLUS_FEATURE_WIFI_LIMMITBGSPEED)
-//HuangJunyuan@CONNECTIVITY.WIFI.INTERNET, 2018/06/26, Add for limit speed function
 #include <linux/imq.h>
 #endif /* CONFIG_OPLUS_FEATURE_WIFI_LIMMITBGSPEED */
 
@@ -732,7 +731,6 @@ struct sk_buff {
 	 */
 	char			cb[48] __aligned(8);
 #if IS_ENABLED(CONFIG_OPLUS_FEATURE_WIFI_LIMMITBGSPEED)
-//HuangJunyuan@CONNECTIVITY.WIFI.INTERNET, 2018/06/26, Add for limit speed function
 	void			*cb_next;
 #endif /* CONFIG_OPLUS_FEATURE_WIFI_LIMMITBGSPEED */
 
@@ -749,7 +747,6 @@ struct sk_buff {
 #endif
 
 #if IS_ENABLED(CONFIG_OPLUS_FEATURE_WIFI_LIMMITBGSPEED)
-//HuangJunyuan@CONNECTIVITY.WIFI.INTERNET, 2018/06/26, Add for limit speed function
 	struct nf_queue_entry   *nf_queue_entry;
 #endif /* CONFIG_OPLUS_FEATURE_WIFI_LIMMITBGSPEED */
 
@@ -842,7 +839,6 @@ struct sk_buff {
 #endif
 
 #if IS_ENABLED(CONFIG_OPLUS_FEATURE_WIFI_LIMMITBGSPEED)
-//HuangJunyuan@CONNECTIVITY.WIFI.INTERNET, 2018/06/26, Add for limit speed function
 	__u8			imq_flags:IMQ_F_BITS;
 #endif /* CONFIG_OPLUS_FEATURE_WIFI_LIMMITBGSPEED */
 
@@ -1063,7 +1059,6 @@ void __consume_stateless_skb(struct sk_buff *skb);
 void  __kfree_skb(struct sk_buff *skb);
 
 #if IS_ENABLED(CONFIG_OPLUS_FEATURE_WIFI_LIMMITBGSPEED)
-//HuangJunyuan@CONNECTIVITY.WIFI.INTERNET, 2018/06/26, Add for limit speed function
 int skb_save_cb(struct sk_buff *skb);
 int skb_restore_cb(struct sk_buff *skb);
 #endif /* CONFIG_OPLUS_FEATURE_WIFI_LIMMITBGSPEED */
@@ -4279,7 +4274,6 @@ static inline void __nf_copy(struct sk_buff *dst, const struct sk_buff *src,
 
 
 #if IS_ENABLED(CONFIG_OPLUS_FEATURE_WIFI_LIMMITBGSPEED)
-//HuangJunyuan@CONNECTIVITY.WIFI.INTERNET, 2018/06/26, Add for limit speed function
 	dst->imq_flags = src->imq_flags;
 	dst->nf_queue_entry = src->nf_queue_entry;
 #endif /* CONFIG_OPLUS_FEATURE_WIFI_LIMMITBGSPEED */

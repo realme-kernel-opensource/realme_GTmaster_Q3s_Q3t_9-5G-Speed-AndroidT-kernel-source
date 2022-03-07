@@ -51,7 +51,6 @@ static const struct of_device_id msm_match_table[] = {
 MODULE_DEVICE_TABLE(of, msm_match_table);
 
 #ifdef OPLUS_BUG_STABILITY
-//ZhangNan@CONNECTIVITY.NFC.BASIC.1209105, 2019/04/25,Modify for: send get firmware version
 #define NCI_GET_FW_CMD_LEN       8
 #define NCI_GET_FW_RSP_LEN       14
 #endif /* OPLUS_BUG_STABILITY */
@@ -62,7 +61,6 @@ struct nqx_dev {
 	wait_queue_head_t	cold_reset_read_wq;
 	struct	mutex		read_mutex;
 	#ifdef OPLUS_BUG_STABILITY
-	//ZhangNan@CONNECTIVITY.NFC.BASIC.2084619, 2019/04/25,Modify for: add spi ven flag and protect the access to it
 	/* protect the access to spi_ven_enabled flag */
 	struct  mutex        spi_mutex;
 	#endif /* OPLUS_BUG_STABILITY */
@@ -82,7 +80,6 @@ struct nqx_dev {
 	/* NFC VEN pin state powered by Nfc */
 	bool			nfc_ven_enabled;
 	#ifdef OPLUS_BUG_STABILITY
-	//ZhangNan@CONNECTIVITY.NFC.BASIC.2084619, 2019/04/25,Modify for: add spi ven flag and protect the access to it
 	/* stores the VEN pin state powered by Spi */
 	bool            spi_ven_enabled;
 	#endif /* OPLUS_BUG_STABILITY */
@@ -184,7 +181,6 @@ static irqreturn_t nqx_dev_irq_handler(int irq, void *dev_id)
 }
 
 #ifdef OPLUS_BUG_STABILITY
-//ZhangNan@CONNECTIVITY.NFC.BASIC.2084619, 2019/04/25,Modify for: add spi ven flag and protect the access to it
 static void sn100_access_lock(struct nqx_dev *nqx_dev)
 {
     pr_info("%s: Enter\n", __func__);
@@ -483,7 +479,6 @@ static int sn100_ese_pwr(struct nqx_dev *nqx_dev, unsigned long arg)
 	int r = -1;
 
 	#ifdef OPLUS_BUG_STABILITY
-	//ZhangNan@CONNECTIVITY.NFC.BASIC.2084619, 2019/04/25,Modify for: add spi ven flag and protect the access to it
 	dev_err(&nqx_dev->client->dev,"%s:%d arg=%ld\n", __func__, __LINE__, arg);
 	sn100_access_lock(nqx_dev);
 	#endif /* OPLUS_BUG_STABILITY */
@@ -499,7 +494,6 @@ static int sn100_ese_pwr(struct nqx_dev *nqx_dev, unsigned long arg)
 		nqx_dev->nfc_ven_enabled =
 			gpio_get_value(nqx_dev->en_gpio);
 		#ifdef OPLUS_BUG_STABILITY
-		//ZhangNan@CONNECTIVITY.NFC.BASIC.2084619, 2019/04/25,Modify for: add spi ven flag and protect the access to it
 		nqx_dev->spi_ven_enabled = true;
 		#endif /* OPLUS_BUG_STABILITY */
 		if (!nqx_dev->nfc_ven_enabled) {
@@ -514,7 +508,6 @@ static int sn100_ese_pwr(struct nqx_dev *nqx_dev, unsigned long arg)
 		r = 0;
 	} else if (arg == ESE_POWER_OFF) {
 		#ifdef OPLUS_BUG_STABILITY
-		//ZhangNan@CONNECTIVITY.NFC.BASIC.2084619, 2019/04/25,Modify for: add spi ven flag and protect the access to it
 		nqx_dev->spi_ven_enabled = false;
 		#endif /* OPLUS_BUG_STABILITY */
 		if (!nqx_dev->nfc_ven_enabled) {
@@ -564,7 +557,6 @@ static int sn100_ese_pwr(struct nqx_dev *nqx_dev, unsigned long arg)
 		// eSE power state
 		r = gpio_get_value(nqx_dev->en_gpio);
 		#ifdef OPLUS_BUG_STABILITY
-		//ZhangNan@CONNECTIVITY.NFC.BASIC.2084619, 2019/04/25,Modify for: add spi ven flag and protect the access to it
 		/* If NFC is enable, the VEN is hign, must  set spi_ven_enabled to true because esehal will not ESE_SET_PWR=1 below such situation */
 		nqx_dev->spi_ven_enabled = !!r;
 		dev_err(&nqx_dev->client->dev, "ven state r=%d,spi_ven_enabled=%d\n", r, nqx_dev->spi_ven_enabled);
@@ -572,7 +564,6 @@ static int sn100_ese_pwr(struct nqx_dev *nqx_dev, unsigned long arg)
 	}
 
 	#ifdef OPLUS_BUG_STABILITY
-	//ZhangNan@CONNECTIVITY.NFC.BASIC.2084619, 2019/04/25,Modify for: add spi ven flag and protect the access to it
 	sn100_access_unlock(nqx_dev);
 	#endif /* OPLUS_BUG_STABILITY */
 	return r;
@@ -880,7 +871,6 @@ int nfc_ioctl_power_states(struct file *filp, unsigned long arg)
 	struct nqx_dev *nqx_dev = filp->private_data;
 
 	#ifdef OPLUS_BUG_STABILITY
-	//ZhangNan@CONNECTIVITY.NFC.BASIC.2084619, 2019/04/25,Modify for: add spi ven flag and protect the access to it
 	dev_err(&nqx_dev->client->dev,"%s:%d arg=%ld\n", __func__, __LINE__, arg);
 	sn100_access_lock(nqx_dev);
 	#endif /* OPLUS_BUG_STABILITY */
@@ -909,7 +899,6 @@ int nfc_ioctl_power_states(struct file *filp, unsigned long arg)
 				dev_dbg(&nqx_dev->client->dev, "keeping en_gpio high\n");
 			}
 		#ifndef OPLUS_BUG_STABILITY
-		//ZhangNan@CONNECTIVITY.NFC.BASIC.2084619, 2019/04/25,Modify for: add spi ven flag and protect the access to it
 		} else {
 			dev_dbg(&nqx_dev->client->dev, "ese_gpio invalid, set en_gpio to low\n");
 			gpio_set_value(nqx_dev->en_gpio, 0);
@@ -942,7 +931,6 @@ int nfc_ioctl_power_states(struct file *filp, unsigned long arg)
 		}
 
 		#ifndef OPLUS_BUG_STABILITY
-		//ZhangNan@CONNECTIVITY.NFC.BASIC.2084619, 2019/04/25,Modify for: add spi ven flag and protect the access to it
 		gpio_set_value(nqx_dev->en_gpio, 1);
 		usleep_range(10000, 10100);
 		#else /* OPLUS_BUG_STABILITY */
@@ -962,7 +950,6 @@ int nfc_ioctl_power_states(struct file *filp, unsigned long arg)
 		nqx_dev->nfc_ven_enabled = true;
 	} else if (arg == NFC_FW_DWL_VEN_TOGGLE) {
 		#ifdef OPLUS_BUG_STABILITY
-		//ZhangNan@CONNECTIVITY.NFC.BASIC.2084619, 2019/04/25,Modify for: add spi ven flag and protect the access to it
 		if(nqx_dev->spi_ven_enabled){
 			/* NFCC fw/download should not be allowed if ese is used
 			* by SPI
@@ -1008,7 +995,6 @@ int nfc_ioctl_power_states(struct file *filp, unsigned long arg)
 				"firm_gpio is invalid\n");
 	}
 	#ifdef OPLUS_BUG_STABILITY
-	//ZhangNan@CONNECTIVITY.NFC.BASIC.1209105, 2019/04/25,Modify for: send get firmware version
 	else if (arg == 5) {
 		if(nqx_dev->spi_ven_enabled == false){
 			dev_err(&nqx_dev->client->dev, "spi_ven_enabled is false, VEN reset START\n");
@@ -1049,7 +1035,6 @@ int nfc_ioctl_power_states(struct file *filp, unsigned long arg)
 	}
 
 	#ifdef OPLUS_BUG_STABILITY
-	//ZhangNan@CONNECTIVITY.NFC.BASIC.2084619, 2019/04/25,Modify for: add spi ven flag and protect the access to it
 	sn100_access_unlock(nqx_dev);
 	#endif /* OPLUS_BUG_STABILITY */
 	return r;
@@ -1061,7 +1046,6 @@ static long nfc_compat_ioctl(struct file *pfile, unsigned int cmd,
 {
 	long r = 0;
 	#ifdef OPLUS_BUG_STABILITY
-	//ZhangNan@CONNECTIVITY.NFC.BASIC.2084619, 2019/04/25,Modify for: add spi ven flag and protect the access to it
 	struct nqx_dev *nqx_dev = pfile->private_data;
 	#endif /* OPLUS_BUG_STABILITY */
 
@@ -1072,7 +1056,6 @@ static long nfc_compat_ioctl(struct file *pfile, unsigned int cmd,
 		break;
 	case ESE_SET_PWR:
 		#ifndef OPLUS_BUG_STABILITY
-		//ZhangNan@CONNECTIVITY.NFC.BASIC.2084619, 2019/04/25,Modify for: add spi ven flag and protect the access to it
 		nqx_ese_pwr(pfile->private_data, arg);
 		#else /* OPLUS_BUG_STABILITY */
 		if ((nqx_dev->nqx_info.info.chip_type == NFCC_SN100_A) ||
@@ -1085,7 +1068,6 @@ static long nfc_compat_ioctl(struct file *pfile, unsigned int cmd,
 		break;
 	case ESE_GET_PWR:
 		#ifndef OPLUS_BUG_STABILITY
-		//ZhangNan@CONNECTIVITY.NFC.BASIC.2084619, 2019/04/25,Modify for: add spi ven flag and protect the access to it
 		nqx_ese_pwr(pfile->private_data, 3);
 		#else /* OPLUS_BUG_STABILITY */
 		if ((nqx_dev->nqx_info.info.chip_type == NFCC_SN100_A) ||
@@ -1206,7 +1188,6 @@ static int nfcc_hw_check(struct i2c_client *client, struct nqx_dev *nqx_dev)
 
 	int gpio_retry_count = 0;
 #ifndef OPLUS_BUG_STABILITY
-//ZhangNan@CONNECTIVITY.NFC.BASIC.1209105, 2019/04/25,Modify for: send get firmware version
 	unsigned char reset_ntf_len = 0;
 	unsigned int enable_gpio = nqx_dev->en_gpio;
 	char *nci_reset_cmd = NULL;
@@ -1623,7 +1604,6 @@ static int nqx_probe(struct i2c_client *client,
 	struct nqx_dev *nqx_dev;
 
 	//#ifdef OPLUS_FEATURE_CONNFCSOFT
-	//#Zhangnan@Connectivity.NFC.BASIC.8126, 2019/09/09, Modify for : RTCID:2896930 CON_NFC_SOFT
 	CHECK_NFC_CHIP(SN100T);
 	//#endif /* OPLUS_FEATURE_CONNFCSOFT */
 
@@ -1805,7 +1785,6 @@ static int nqx_probe(struct i2c_client *client,
 	mutex_init(&nqx_dev->dev_ref_mutex);
 	spin_lock_init(&nqx_dev->irq_enabled_lock);
 	#ifdef OPLUS_BUG_STABILITY
-	//ZhangNan@CONNECTIVITY.NFC.BASIC.2084619, 2019/04/25,Modify for: add spi ven flag and protect the access to it
 	mutex_init(&nqx_dev->spi_mutex);	/* init spi_ven_enabled to false */
 	nqx_dev->spi_ven_enabled = false;
 	#endif /* OPLUS_BUG_STABILITY */
@@ -1863,7 +1842,6 @@ static int nqx_probe(struct i2c_client *client,
 	r = nfcc_hw_check(client, nqx_dev);
 	if (r) {
 		#ifndef OPLUS_BUG_STABILITY
-		//ZhangNan@CONNECTIVITY.NFC.BASIC.2108731, 2019/06/21,Modify for: Modify for HW check fail
 		/* make sure NFCC is not enabled */
 		gpio_set_value(platform_data->en_gpio, 0);
 		/* We don't think there is hardware switch NFC OFF */
@@ -1872,7 +1850,6 @@ static int nqx_probe(struct i2c_client *client,
 	}
 
 		#ifdef OPLUS_BUG_STABILITY
-		//ZhangNan@CONNECTIVITY.NFC.BASIC.2108731, 2019/06/21,Modify for: Modify for HW check fail
 		nqx_dev->nqx_info.info.chip_type = NFCC_SN100_B;
 		#endif /* OPLUS_BUG_STABILITY */
 
@@ -1933,7 +1910,6 @@ err_class_create:
 err_char_dev_register:
 	mutex_destroy(&nqx_dev->read_mutex);
 	#ifdef OPLUS_BUG_STABILITY
-	//ZhangNan@CONNECTIVITY.NFC.BASIC.2084619, 2019/04/25,Modify for: add spi ven flag and protect the access to it
 	mutex_destroy(&nqx_dev->spi_mutex);
 	#endif /* OPLUS_BUG_STABILITY */
 err_clkreq_gpio:
@@ -1990,7 +1966,6 @@ static int nqx_remove(struct i2c_client *client)
 	unregister_chrdev_region(nqx_dev->devno, DEV_COUNT);
 	mutex_destroy(&nqx_dev->read_mutex);
 	#ifdef OPLUS_BUG_STABILITY
-	//ZhangNan@CONNECTIVITY.NFC.BASIC.2084619, 2019/04/25,Modify for: add spi ven flag and protect the access to it
 	mutex_destroy(&nqx_dev->spi_mutex);
 	nqx_dev->nfc_ven_enabled = false;
 	nqx_dev->spi_ven_enabled = false;

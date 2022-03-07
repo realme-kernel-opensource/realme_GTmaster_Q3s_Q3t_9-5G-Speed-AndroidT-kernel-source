@@ -155,7 +155,6 @@ struct sd_ssr {
 	unsigned int		erase_timeout;		/* In milliseconds */
 	unsigned int		erase_offset;		/* In milliseconds */
 #ifdef CONFIG_EMMC_SDCARD_OPTIMIZE
-//Chunyi.Mei@PSW.BSP.Storage.Sdcard, 2018-12-10, Add for SD Card device information
 	unsigned int		speed_class;		/* speed_class */
 #endif /* CONFIG_EMMC_SDCARD_OPTIMIZE */
 };

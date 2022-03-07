@@ -62,7 +62,6 @@
 #include "braille.h"
 #include "internal.h"
 #ifdef OPLUS_BUG_STABILITY
-//martin.li@system.core,2020/12/10,add system timestamp for kernel log
 #include <linux/rtc.h>
 #include <linux/time.h>
 #endif
@@ -1376,7 +1375,6 @@ static inline void boot_delay_msec(int level)
 static bool printk_time = IS_ENABLED(CONFIG_PRINTK_TIME);
 module_param_named(time, printk_time, bool, S_IRUGO | S_IWUSR);
 #ifdef OPLUS_BUG_STABILITY
-//martin.li@system.core,2020/12/10,add system timestamp for kernel log
 static bool print_wall_time = 1;
 module_param_named(print_wall_time, print_wall_time, bool, 0644);
 #endif
@@ -1387,7 +1385,6 @@ static size_t print_syslog(unsigned int level, char *buf)
 }
 
 #ifndef OPLUS_BUG_STABILITY
-//martin.li@system.core,2020/12/10,add system timestamp for kernel log
 static size_t print_time(u64 ts, char *buf)
 {
 	unsigned long rem_nsec = do_div(ts, 1000000000);
@@ -1419,7 +1416,6 @@ static size_t print_prefix(const struct printk_log *msg, bool syslog,
 		len = print_syslog((msg->facility << 3) | msg->level, buf);
 
 #ifndef OPLUS_BUG_STABILITY
-//martin.li@system.core,2020/12/10,add system timestamp for kernel log
 	if (time)
 		len += print_time(msg->ts_nsec, buf + len);
 #endif
@@ -1905,7 +1901,6 @@ static void call_console_drivers(const char *ext_text, size_t ext_len,
 
 	for_each_console(con) {
 		#if defined(OPLUS_FEATURE_POWERINFO_FTM) && defined(CONFIG_OPLUS_POWERINFO_FTM)
-		/* Yunqing.Zeng@BSP.Power.Basic, 2020/08/31, Modify for disable uart log in ftm mode*/
 		if ((con->flags & CON_CONSDEV) && (!ftm_log_enable()))
 			continue;
 		#endif
@@ -2043,7 +2038,6 @@ int vprintk_store(int facility, int level,
 	size_t text_len;
 	enum log_flags lflags = 0;
 #ifdef OPLUS_BUG_STABILITY
-//martin.li@system.core,2020/12/10,add system timestamp for kernel log
 	static char texttmp[LOG_LINE_MAX];
 	static bool last_new_line = true;
 	u64 ts_sec = local_clock();
@@ -2082,9 +2076,7 @@ int vprintk_store(int facility, int level,
 		}
 	}
 #ifdef OPLUS_BUG_STABILITY
-//martin.li@system.core,2020/12/10,add system timestamp for kernel log
 	if (last_new_line) {
-		//yanghao@kernel.stability,2021/1/13,when time suspend print kernel time avoid warning
 		if (print_wall_time && ts_sec >= 20 && !console_suspended) {
 			struct timespec64 tspec;
 			struct rtc_time tm;
@@ -3515,7 +3507,6 @@ out:
 EXPORT_SYMBOL_GPL(kmsg_dump_get_buffer);
 
 #if IS_ENABLED(CONFIG_OPLUS_FEATURE_UBOOT_LOG)
-//wen.luo@BSP.kernel.stability, 2020/03/06, Add for get kernel boot log
 #include <soc/oplus/system/uboot_utils.h>
 bool back_kmsg_dump_get_buffer(struct kmsg_dumper *dumper, bool syslog,
 			  char *buf, size_t size, size_t *len)

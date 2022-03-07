@@ -51,7 +51,6 @@
 
 
 #if IS_ENABLED(CONFIG_OPLUS_FEATURE_NWPOWER)
-//Asiga@PSW.NW.DATA.2120730, 2019/06/26, add for classify glink wakeup services and count IPA wakeup.
 void (*match_tcp_output)(struct sock *sk) = NULL;
 EXPORT_SYMBOL(match_tcp_output);
 void (*match_tcp_output_retrans)(struct sock *sk) = NULL;
@@ -1204,7 +1203,6 @@ static int __tcp_transmit_skb(struct sock *sk, struct sk_buff *skb,
 	err = icsk->icsk_af_ops->queue_xmit(sk, skb, &inet->cork.fl);
 
 	#if IS_ENABLED(CONFIG_OPLUS_FEATURE_NWPOWER)
-	//Asiga@PSW.NW.DATA.2120730, 2019/06/26, add for classify glink wakeup services and count IPA wakeup.
 	if (match_tcp_output != NULL) {
 		match_tcp_output(sk);
 	}
@@ -3059,7 +3057,6 @@ int __tcp_retransmit_skb(struct sock *sk, struct sk_buff *skb, int segs)
 
 		trace_tcp_retransmit_skb(sk, skb);
 		#if IS_ENABLED(CONFIG_OPLUS_FEATURE_NWPOWER)
-		//Asiga@PSW.NW.DATA.2120730, 2019/06/26, add for classify glink wakeup services and count IPA wakeup.
 		if (match_tcp_output_retrans != NULL) {
 			match_tcp_output_retrans(sk);
 		}

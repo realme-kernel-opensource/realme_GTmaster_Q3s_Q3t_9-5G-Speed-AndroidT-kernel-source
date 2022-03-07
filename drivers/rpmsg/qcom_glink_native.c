@@ -30,7 +30,6 @@
 #include "qcom_glink_native.h"
 
 #if defined(OPLUS_FEATURE_POWERINFO_STANDBY) && defined(CONFIG_OPLUS_WAKELOCK_PROFILER)
-//Asiga@NETWORK.POWER.1897927, 2021/07/28, add for classify glink wakeup in qcom SM7325 platform.
 #include "../../drivers/soc/oplus/oplus_wakelock/oplus_wakelock_profiler_qcom.h"
 #endif
 
@@ -1271,7 +1270,6 @@ static irqreturn_t qcom_glink_native_intr(int irq, void *data)
 	if (should_wake) {
 		pr_info("%s: %d triggered %s\n", __func__, irq, glink->irqname);
 		#if defined(OPLUS_FEATURE_POWERINFO_STANDBY) && defined(CONFIG_OPLUS_WAKELOCK_PROFILER) && IS_ENABLED(CONFIG_OPLUS_FEATURE_NWPOWER)
-		//Asiga@NETWORK.POWER.1897927, 2021/07/28, add for classify glink wakeup in qcom SM7325 platform.
 		if (is_first_ipcc_msg == 1) {
 			do {
 				wakeup_reasons_statics(glink->irqname, WS_CNT_MODEM|WS_CNT_WLAN|WS_CNT_ADSP|WS_CNT_CDSP|WS_CNT_SLPI);

@@ -22,14 +22,12 @@
 #include <linux/soc/qcom/battery_charger.h>
 
 #ifdef OPLUS_FEATURE_CHG_BASIC
-/*lizhijie@BSP.CHG.Basic. 2020/11/19 lzj add for charger*/
 #ifndef CONFIG_FB
 #define CONFIG_FB
 #endif
 #endif
 
 #ifdef OPLUS_FEATURE_CHG_BASIC
-/*lizhijie@BSP.CHG.Basic. 2020/11/19 lzj add for charger*/
 #define OEM_OPCODE_READ_BUFFER    0x10000
 #define OEM_OPCODE_DEBUG_BUFFER    0x10002
 #define OEM_READ_WAIT_TIME_MS    500
@@ -58,7 +56,6 @@
 #define BC_GENERIC_NOTIFY		0x80
 
 #ifdef OPLUS_FEATURE_CHG_BASIC
-/*lizhijie@BSP.CHG.Basic. 2020/08/27 lzj add for vooc*/
 #define BC_VOOC_STATUS_GET			0X47
 #define BC_VOOC_STATUS_SET			0X48
 #define BC_OTG_ENABLE					0x49
@@ -73,7 +70,6 @@
 #endif
 
 #ifdef OPLUS_FEATURE_CHG_BASIC
-/* Jianchao.Shi@BSP.CHG.Basic, 2018/02/13, sjc Add for charging */
 #define USB_TEMP_HIGH		0x01
 #define USB_WATER_DETECT	0x02
 #define USB_RESERVE2		0x04
@@ -91,7 +87,6 @@
 #define DEFAULT_RESTRICT_FCC_UA		1000000
 
 #ifdef OPLUS_FEATURE_CHG_BASIC
-/*lizhijie@BSP.CHG.Basic. 2020/11/19 lzj add for charger*/
 struct oem_read_buffer_req_msg {
     struct pmic_glink_hdr hdr;
     u32 data_size;
@@ -105,7 +100,6 @@ struct oem_read_buffer_resp_msg {
 #endif
 
 #ifdef OPLUS_FEATURE_CHG_BASIC
-/*lizhijie@BSP.CHG.Basic. 2020/11/19 lzj add for charger*/
 typedef enum _PM_TYPEC_PORT_ROLE_TYPE
 {
     TYPEC_PORT_ROLE_DRP,
@@ -186,7 +180,6 @@ enum usb_property_id {
 	USB_MOISTURE_DET_STS,
 	USB_ADAP_SUBTYPE,//sjc add
 #ifdef OPLUS_FEATURE_CHG_BASIC
-/*lizhijie@BSP.CHG.Basic.2020/07/08 lzj add for voocphy status*/
 	USB_VBUS_COLLAPSE_STATUS,
 	USB_VOOCPHY_STATUS,
 	USB_VOOCPHY_ENABLE,
@@ -202,7 +195,6 @@ enum usb_property_id {
 	USB_DEBUG_REG,
 	USB_VOOCPHY_RESET_AGAIN,
 	USB_SUSPEND_PMIC,
-	USB_OEM_MISC_CTL,/*yangmingjin@BSP.CHG.Basic. 2021/02/08, add for lcd  voltage ripple issue*/
 	USB_CCDETECT_HAPPENED,
 #endif /*OPLUS_FEATURE_CHG_BASIC*/
 	USB_TEMP,
@@ -236,7 +228,6 @@ enum OTG_SCHEME {
 	OTG_SCHEME_UNDEFINE,
 };
 
-/*yangmingjin@BSP.CHG.Basic. 2021/02/08, add for lcd  voltage ripple issue*/
 enum OEM_MISC_CTL_CMD {
 	OEM_MISC_CTL_CMD_LCM_EN = 0,
 	OEM_MISC_CTL_CMD_LCM_25K = 2,
@@ -329,7 +320,6 @@ struct psy_state {
 };
 
 #ifdef OPLUS_FEATURE_CHG_BASIC
-/* lizhijie@BSP.CHG.Basic. 2020/09/21, lzj add for charger*/
 struct oplus_custom_gpio_pinctrl {
 	int vchg_trig_gpio;
 	int ccdetect_gpio;
@@ -347,7 +337,6 @@ struct oplus_custom_gpio_pinctrl {
 #endif
 
 #ifdef OPLUS_FEATURE_CHG_BASIC
-/*lizhijie@BSP.CHG.Basic. 2020/08/24 lzj add for usbtemp*/
 struct oplus_chg_iio {
 	struct iio_channel	*usbtemp_v_chan;
 	struct iio_channel	*usbtemp_sup_v_chan;
@@ -374,7 +363,6 @@ struct battery_chg_dev {
 	struct work_struct		subsys_up_work;
 	struct work_struct		usb_type_work;
 #ifdef OPLUS_FEATURE_CHG_BASIC
-/*lizhijie@BSP.CHG.Basic. 2020/08/27 lzj add for vooc*/
 	int ccdetect_irq;
 	struct delayed_work	suspend_check_work;
 	struct delayed_work	adsp_voocphy_status_work;
@@ -389,7 +377,6 @@ struct battery_chg_dev {
 	struct delayed_work	otg_vbus_enable_work;
 	struct delayed_work	otg_status_check_work;
 	struct delayed_work	vbus_adc_enable_work;
-	/*yangmingjin@BSP.CHG.Basic. 2021/02/08, add for lcd  voltage ripple issue*/
 	struct delayed_work	oem_lcm_en_check_work;
 	struct delayed_work	check_charger_type_work;
 	u32			oem_misc_ctl_data;
@@ -408,7 +395,6 @@ struct battery_chg_dev {
 	bool					adsp_voocphy_err_check;
 #endif
 #ifdef OPLUS_FEATURE_CHG_BASIC
-/* Jianchao.Shi@BSP.CHG.Basic, 2020/11/02, sjc Add for charging */
 	int vchg_trig_irq;
 	struct delayed_work vchg_trig_work;
 	struct delayed_work wait_wired_charge_on;
@@ -426,11 +412,9 @@ struct battery_chg_dev {
 	u32				restrict_fcc_ua;
 	bool				restrict_chg_en;
 #ifdef OPLUS_FEATURE_CHG_BASIC
-/* lizhijie@BSP.CHG.Basic. 2020/09/21, lzj add for charger*/
 	struct oplus_custom_gpio_pinctrl oplus_custom_gpio;
 #endif
 #ifdef OPLUS_FEATURE_CHG_BASIC
-/*lizhijie@BSP.CHG.Basic. 2020/11/19 lzj add for charger*/
 	struct mutex    read_buffer_lock;
 	struct completion    oem_read_ack;
 	struct oem_read_buffer_resp_msg  read_buffer_dump;

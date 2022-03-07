@@ -207,7 +207,6 @@ struct ufsf_feature_para {
 	ktime_t hibern8_enter_ts;
 	struct timespec timestamp;
 
-	/* huangjianan@TECH.Storage.UFS, 2019/12/09, Add for UFS+ RUS */
 	struct proc_dir_entry *ctrl_dir;
 	struct ufsf_feature *ufsf;
 };
@@ -248,7 +247,6 @@ void ufsf_hpb_wakeup_worker_on_idle(struct ufsf_feature *ufsf);
 /* for monitor */
 extern struct ufsf_feature_para ufsf_para;
 
-/* huangjianan@TECH.Storage.UFS, 2019/12/09, Add for UFS+ RUS */
 int create_ufsplus_ctrl_proc(struct ufsf_feature *ufsf);
 void remove_ufsplus_ctrl_proc(void);
 #endif /* End of Header */

@@ -121,7 +121,6 @@ u32 secure_tcp_ts_off(const struct net *net, __be32 saddr, __be32 daddr)
 		return 0;
 
 #if IS_ENABLED(CONFIG_OPLUS_BUG_STABILITY)
-//PengHao@CONNECTIVITY.WIFI.INTERNET.1854960,2019/03/30,add for disable tcp random timestamp,some networks limit tcp syn before login
 	if (net->ipv4.sysctl_tcp_random_timestamp == 0)
 	{
 		return 0;

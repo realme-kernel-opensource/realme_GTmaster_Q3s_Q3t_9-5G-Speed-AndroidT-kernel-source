@@ -1,5 +1,4 @@
 #ifdef OPLUS_FEATURE_POWERINFO_STANDBY
-#SunFaliang@BSP.Power.Basic, 2020/05/01, add for wakelock profiler
 
 #code deprecated ... start (Todo : delete this code section)
 ifeq ($(CONFIG_OPPO_POWER_MTK),y)

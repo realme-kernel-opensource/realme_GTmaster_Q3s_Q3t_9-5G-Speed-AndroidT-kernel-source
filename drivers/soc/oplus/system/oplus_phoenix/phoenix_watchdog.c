@@ -66,9 +66,6 @@ static void reinitialze_pet_time_for_debug_build(void)
     }
 
 #ifdef CONFIG_MEMLEAK_DETECT_THREAD
-    /* Kui.Zhang@BSP.Kernel.MM, 2020/8/10, while enable malloc debug, first
-     * booting time need more.
-     */
     if (AGING != get_eng_version())
 	    phx_hlos_wd_pet_time += 60 * 5;
 #endif

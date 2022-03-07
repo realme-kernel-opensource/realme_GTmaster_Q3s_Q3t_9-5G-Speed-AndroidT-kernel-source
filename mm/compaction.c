@@ -1715,7 +1715,6 @@ static unsigned long fast_find_migrateblock(struct compact_control *cc)
 		spin_lock_irqsave(&cc->zone->lock, flags);
 		freelist = &area->free_list[MIGRATE_MOVABLE];
 #if defined(CONFIG_PHYSICAL_ANTI_FRAGMENTATION)
-//Peifeng.Li@PSW.Kernel.BSP.Memory, 2020/04/22, multi-freearea
 		if (list_empty(freelist)) {
 			spin_unlock_irqrestore(&cc->zone->lock, flags);
 			continue;

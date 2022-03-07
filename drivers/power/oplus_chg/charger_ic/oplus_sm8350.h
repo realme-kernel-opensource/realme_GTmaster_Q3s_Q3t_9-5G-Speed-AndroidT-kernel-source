@@ -145,7 +145,6 @@ enum usb_property_id {
 };
 
 #ifdef VENDOR_EDIT
-/*lizhijie@BSP.CHG.Basic.2020/07/08 lzj add for warpphy status*/
 typedef enum _FASTCHG_STATUS
 {
 	FAST_NOTIFY_UNKNOW,

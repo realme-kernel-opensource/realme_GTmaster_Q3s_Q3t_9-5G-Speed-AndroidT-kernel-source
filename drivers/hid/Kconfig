@@ -1210,7 +1210,6 @@ source "drivers/hid/i2c-hid/Kconfig"
 source "drivers/hid/intel-ish-hid/Kconfig"
 
 #ifdef OPLUS_BUG_STABILITY
-#YangChaotao@CONNECTIVITY.BT.Basic,2020/11/04,BT feature
 source "drivers/hid/oplus_bluetooth/Kconfig"
 #endif /* OPLUS_BUG_STABILITY */
 

@@ -52,38 +52,30 @@ source "drivers/soc/oplus/system/cmdline_parser/Kconfig"
 source "drivers/soc/oplus/system/dump_device_info/Kconfig"
 source "drivers/soc/oplus/system/mdmrst/Kconfig"
 #ifdef OPLUS_FEATURE_ESIM
-#ChenGuoyao@NETWORK.SIM,2020/06/10, Add for eSIM
 source "drivers/soc/oplus/system/oppo_gpio/Kconfig"
 #endif /* OPLUS_FEATURE_ESIM */
 #ifdef OPLUS_FEATURE_QCOM_PMICWD
-#ZhangFei@BSP.Kernel.Stability, 2020/04/03, Add for qcom pmic watchdog
 source "drivers/soc/oplus/system/qcom_pmicwd/Kconfig"
 #endif /* OPLUS_FEATURE_QCOM_PMICWD */
 
 #ifdef OPLUS_FEATURE_DUMP_REASON
-#terry.zhong@optimization.Stability, 2020/11/30, Add for dump reason
 source "drivers/soc/oplus/system/dump_reason/Kconfig"
 #endif /* OPLUS_FEATURE_DUMP_REASON */
 
 #ifdef OPLUS_FEATURE_MM_FEEDBACK
-#Zhao.Pan@MULTIMEDIA.AUDIODRIVER.KERNEL, 2020/08/08, Add for multimedia kevent feedback driver
 source "drivers/soc/oplus/system/oplus_mm_fb/Kconfig"
 #endif /* OPLUS_FEATURE_MM_FEEDBACK */
 
 #ifdef OPLUS_FEATURE_QCOM_WATCHDOG
-#yanghao@BSP.Kernel.Stability, 2020/04/03, Add for qcom pmic watchdog
 source "drivers/soc/oplus/system/qcom_watchdog/Kconfig"
 #endif /* OPLUS_FEATURE_QCOM_WATCHDOG */
 
 #ifdef OPLUS_FEATURE_ACM
-#Yuwei.Guan@BSP.Kernel.FS,2020/07/08, Add for acm
 source "drivers/soc/oplus/system/acm/Kconfig"
 #endif /* OPLUS_FEATURE_ACM */
 #ifdef OPLUS_FEATURE_THEIA
-#yanggang@BSP.Kernel.Stability,2020/07/08, Add for theia
 source "drivers/soc/oplus/system/theia/Kconfig"
 #endif /* OPLUS_FEATURE_THEIA */
 #ifdef OPLUS_FEATURE_MISC
-#terry.zhong@OPTI.Kernel.Stability, 2020/09/7, enable oplus misc feature
 source "drivers/soc/oplus/system/misc/Kconfig"
 #endif /* OPLUS_FEATURE_MISC */

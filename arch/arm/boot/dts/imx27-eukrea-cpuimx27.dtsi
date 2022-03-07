@@ -100,7 +100,6 @@
 		fsl,weim-cs-timing = <0x00008f03 0xa0330d01 0x002208c0>;
 	};
 
-	uart8250@3,200000 {
 		pinctrl-names = "default";
 		pinctrl-0 = <&pinctrl_uart8250_1>;
 		compatible = "ns8250";

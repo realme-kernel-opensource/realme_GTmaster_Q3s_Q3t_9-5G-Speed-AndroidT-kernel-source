@@ -17,14 +17,12 @@
 #include "ion_private.h"
 
 #ifdef OPLUS_FEATURE_HEALTHINFO
-//Jiheng.Xie@TECH.BSP.Performance, 2019/07/11, add for ion wait monitor
 #if defined(CONFIG_OPLUS_HEALTHINFO) && defined (CONFIG_OPLUS_MEM_MONITOR)
 #include <linux/healthinfo/memory_monitor.h>
 #endif
 #endif /* OPLUS_FEATURE_HEALTHINFO */
 
 #ifdef OPLUS_FEATURE_HEALTHINFO
-//Jiheng.Xie@TECH.BSP.Kernel.Performance, 2020/03/24, add for ion total used account
 #ifdef CONFIG_OPLUS_HEALTHINFO
 #include <linux/healthinfo/ion.h>
 #endif
@@ -100,16 +98,12 @@ static struct ion_buffer *ion_buffer_create(struct ion_heap *heap,
 	mutex_init(&buffer->lock);
 	track_buffer_created(buffer);
 #ifdef OPLUS_FEATURE_HEALTHINFO
-/* Huacai.Zhou@PSW.BSP.Kernel.MM, 2018-06-26, add ion total used account*/
 #ifdef CONFIG_OPLUS_HEALTHINFO
 	if (ion_cnt_enable)
 		atomic_long_add(buffer->size, &ion_total_size);
 #endif
 #endif /* OPLUS_FEATURE_HEALTHINFO */
 #if defined(OPLUS_FEATURE_MEMLEAK_DETECT) && defined(CONFIG_DUMP_TASKS_MEM)
-	/* Peifeng.Li@BSP.Kernel.MM, 2020-05-20 upate ion buffer informaction
-	 * of the task.
-	 */
 	buffer->tsk = current->group_leader;
 	get_task_struct(buffer->tsk);
 	atomic64_add(buffer->size, &buffer->tsk->ions);
@@ -182,7 +176,6 @@ struct ion_buffer *ion_buffer_alloc(struct ion_device *dev, size_t len,
 	unsigned int extra_flags = boost_pool_extra_flags(heap_id_mask);
 #endif /* CONFIG_OPLUS_ION_BOOSTPOOL */
 #ifdef OPLUS_FEATURE_HEALTHINFO
-//Jiheng.Xie@TECH.BSP.Performance, 2019/07/11, add for ion wait monitor
 #if defined(CONFIG_OPLUS_HEALTHINFO) && defined (CONFIG_OPLUS_MEM_MONITOR)
 	unsigned long ionwait_start = jiffies;
 #endif
@@ -230,7 +223,6 @@ struct ion_buffer *ion_buffer_alloc(struct ion_device *dev, size_t len,
 	if (IS_ERR(buffer))
 		return ERR_CAST(buffer);
 #ifdef OPLUS_FEATURE_HEALTHINFO
-//Jiheng.Xie@TECH.BSP.Performance, 2019/07/11, add for ion wait monitor
 #if defined(CONFIG_OPLUS_HEALTHINFO) && defined (CONFIG_OPLUS_MEM_MONITOR)
 	ionwait_monitor(jiffies_to_msecs(jiffies - ionwait_start));
 #endif
@@ -302,14 +294,12 @@ int ion_buffer_destroy(struct ion_device *dev, struct ion_buffer *buffer)
 		return -EINVAL;
 	}
 #ifdef OPLUS_FEATURE_HEALTHINFO
-/* Huacai.Zhou@PSW.BSP.Kernel.MM, 2018-06-26, add ion total used account*/
 #ifdef CONFIG_OPLUS_HEALTHINFO
 	if (ion_cnt_enable)
 		atomic_long_sub(buffer->size, &ion_total_size);
 #endif
 #endif /* OPLUS_FEATURE_HEALTHINFO */
 #if defined(OPLUS_FEATURE_MEMLEAK_DETECT) && defined(CONFIG_DUMP_TASKS_MEM)
-	/* Peifeng.Li@PSW.BSP.Kernel.MM, 2019-09-5, accounts process-real-phymem*/
 	if (buffer->tsk) {
 		atomic64_sub(buffer->size, &buffer->tsk->ions);
 		put_task_struct(buffer->tsk);

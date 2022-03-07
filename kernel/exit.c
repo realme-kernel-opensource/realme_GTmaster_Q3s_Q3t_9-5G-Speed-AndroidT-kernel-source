@@ -73,7 +73,6 @@
 #include <linux/reserve_area.h>
 #endif
 #ifdef CONFIG_QGKI
-//Weitao.Chen@ANDROID.STABILITY.NA.2021/01/04.add for dump android critical process log
 #include <soc/oplus/system/oppo_process.h>
 #endif
 

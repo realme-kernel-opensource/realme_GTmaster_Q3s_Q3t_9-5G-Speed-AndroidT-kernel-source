@@ -186,7 +186,6 @@ extern void reset_fastchg_after_usbout(struct oplus_warp_chip *chip);
 void oplus_warp_eint_register(struct oplus_warp_chip *chip);
 void oplus_warp_eint_unregister(struct oplus_warp_chip *chip);
 
-// wenbin.liu@BSP.CHG.Warp, 2016/10/20
 // Add for warp batt 4.40
 void oplus_warp_fw_type_dt(struct oplus_warp_chip *chip);
 

@@ -812,7 +812,6 @@ struct oplus_chg_chip {
 	bool vooc_show_ui_soc_decimal;
 	bool em_mode;
 	struct thermal_zone_device *shell_themal;
-	/* Zhangkun@BSP.CHG.Basic, 2020/08/17, Add for svooc detect and detach */
 	int svooc_disconnect_count;
 	int detect_detach_unexpeactly;
 	unsigned long long svooc_detect_time;
@@ -1049,7 +1048,6 @@ void oplus_chg_variables_reset(struct oplus_chg_chip *chip, bool in);
 void oplus_chg_external_power_changed(struct power_supply *psy);
 #endif
 int oplus_is_rf_ftm_mode(void);
-//huangtongfeng@BSP.CHG.Basic, 2017/01/13, add for kpoc charging param.
 int oplus_get_charger_chip_st(void);
 void oplus_chg_set_allow_switch_to_fastchg(bool allow);
 int oplus_tbatt_power_off_task_init(struct oplus_chg_chip *chip);

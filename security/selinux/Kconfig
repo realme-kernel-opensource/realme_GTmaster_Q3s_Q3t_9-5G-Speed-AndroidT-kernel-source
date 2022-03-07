@@ -48,7 +48,6 @@ config SECURITY_SELINUX_DEVELOP
 	bool "NSA SELinux Development Support"
 	depends on SECURITY_SELINUX
 	#ifndef OPLUS_FEATURE_FORCE_SELINUX
-	#Haoran.Zhang@ANDROID.BUILD, 2020/01/10, modify for unset SECURITY_SELINUX_DEVELOP
 	#default y
 	#else OPLUS_FEATURE_FORCE_SELINUX
 	default n

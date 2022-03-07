@@ -632,7 +632,6 @@ static void suspend_finish(void)
 }
 
 #if IS_ENABLED(CONFIG_OPLUS_BUG_STABILITY_EFFECTON_QGKI)
-//Bin.Xu@BSP.Kernel.Stability,2020/4/11,add check-list screen on too slowly when press pwrkey
 /**
  * Sync the filesystem in seperate workqueue.
  * Then check it finishing or not periodically and
@@ -721,7 +720,6 @@ static int enter_state(suspend_state_t state)
 		s2idle_begin();
 
 #if IS_ENABLED(CONFIG_OPLUS_BUG_STABILITY_EFFECTON_QGKI)
-//Bin.Xu@BSP.Kernel.Stability,2020/4/11,add check-list screen on too slowly when press pwrkey
 	if (sys_sync_queue())
 		goto Unlock;
 #else

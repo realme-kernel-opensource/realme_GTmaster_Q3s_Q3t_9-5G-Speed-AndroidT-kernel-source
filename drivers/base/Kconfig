@@ -159,7 +159,6 @@ config HMEM_REPORTING
 source "drivers/base/test/Kconfig"
 
 #ifdef OPLUS_FEATURE_TP_BASIC
-#Qicai.Gu@Bsp.Group.Tp,2020-07-24,Add interface to get proper fw for android R gki
 source "drivers/base/kernelFwUpdate/Kconfig"
 #endif /*OPLUS_FEATURE_TP_BASIC*/
 

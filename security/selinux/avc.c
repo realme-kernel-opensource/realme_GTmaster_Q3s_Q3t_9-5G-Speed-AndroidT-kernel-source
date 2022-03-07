@@ -31,7 +31,6 @@
 #include "avc_ss.h"
 #include "classmap.h"
 #ifdef OPLUS_FEATURE_SELINUX_CONTROL_LOG
-//sijiaquan@ANDROID.SELINUX, 2018/01/13, Add for disable selinux denied logs in MP version
 #include <soc/oplus/system/proc.h>
 #endif /* OPLUS_FEATURE_SELINUX_CONTROL_LOG */
 
@@ -767,7 +766,6 @@ noinline int slow_avc_audit(struct selinux_state *state,
 	struct selinux_audit_data sad;
 
 #ifdef OPLUS_FEATURE_SELINUX_CONTROL_LOG
-//sijiaquan@ANDROID.SELINUX, 2018/01/13, Add for disable selinux denied logs in MP version
 	if (!is_avc_audit_enable())
 		return 0;
 #endif /* OPLUS_FEATURE_SELINUX_CONTROL_LOG */

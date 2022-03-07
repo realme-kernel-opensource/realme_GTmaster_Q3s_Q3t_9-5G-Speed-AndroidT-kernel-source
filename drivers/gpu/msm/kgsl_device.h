@@ -322,7 +322,6 @@ struct kgsl_device {
 	bool gmu_fault;
 	/** @timelines: xarray for the timelines */
 	#if IS_ENABLED(CONFIG_DRM_MSM)
-	// MeiDongting@MULTIMEIDA.FEATURE.GPU.MINIDUMP, 2020/04/06, add for oplus gpu mini dump
 	bool snapshot_control;
 	int snapshotfault;
 	#endif
@@ -532,7 +531,6 @@ struct kgsl_snapshot {
 	struct kgsl_device *device;
 
 	#if IS_ENABLED(CONFIG_DRM_MSM)
-	// MeiDongting@MULTIMEIDA.FEATURE.GPU.MINIDUMP, 2020/04/06, add for oplus gpu mini dump
 	char snapshot_hashid[96];
 	#endif
 };

@@ -22,7 +22,6 @@ source "drivers/soc/versatile/Kconfig"
 source "drivers/soc/xilinx/Kconfig"
 source "drivers/soc/zte/Kconfig"
 #ifdef OPLUS_FEATURE_POWERINFO_STANDBY
-#Yunqing.Zeng@BSP.Power.Basic, 2020/09/10, add for feature powerinfo standby.
 source "drivers/soc/oplus/oplus_wakelock/Kconfig"
 #endif /* OPLUS_FEATURE_POWERINFO_STANDBY */
 #ifdef VENDOR_EDIT
@@ -32,7 +31,6 @@ source "drivers/soc/oplus/system/Kconfig"
 #endif /* VENDOR_EDIT */
 
 #ifdef OPLUS_FEATURE_TP_BASIC
-#Qicai.gu@BSP.TP.Init, 2020/08/05, Add for device_info for gki.
 source "drivers/soc/oplus/device_info/Kconfig"
 #endif /* OPLUS_FEATURE_TP_BASIC */
 

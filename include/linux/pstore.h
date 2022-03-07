@@ -39,7 +39,6 @@ enum pstore_type_id {
 	PSTORE_TYPE_PMSG	= 7,
 	PSTORE_TYPE_PPC_OPAL	= 8,
 #if IS_ENABLED(CONFIG_OPLUS_FEATURE_DUMP_DEVICE_INFO)
-//martin.li@system.core,2020/11/25 add enable pstore to get KMSG and device_info
 	PSTORE_TYPE_DEVICE_INFO	= 9,
 	PSTORE_TYPE_DUMP_INFO	= 10,
 	PSTORE_TYPE_RESERVE01	= 11,

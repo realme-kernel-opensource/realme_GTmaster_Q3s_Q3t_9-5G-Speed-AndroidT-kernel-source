@@ -28,7 +28,6 @@ MODULE_AUTHOR("Netfilter Core Team <coreteam@netfilter.org>");
 MODULE_DESCRIPTION("Xtables: packet \"rejection\" target for IPv4");
 
 #if IS_ENABLED(CONFIG_OPLUS_FEATURE_WIFI_SLA)
-//HuangJunyuan@CONNECTIVITY.WIFI.INTERNET.1197891, 2018/04/10,Add code for appo sla function
 void (*mark_streams_for_iptables_reject)(struct sk_buff *skb,enum ipt_reject_with reject_type) = NULL;
 EXPORT_SYMBOL(mark_streams_for_iptables_reject);
 #endif /* CONFIG_OPLUS_FEATURE_WIFI_SLA */
@@ -68,7 +67,6 @@ reject_tg(struct sk_buff *skb, const struct xt_action_param *par)
 		break;
 	}
 #if IS_ENABLED(CONFIG_OPLUS_FEATURE_WIFI_SLA)
-//HuangJunyuan@CONNECTIVITY.WIFI.INTERNET.1197891, 2018/04/10,Add code for appo sla function
  	if (mark_streams_for_iptables_reject) {
 	        mark_streams_for_iptables_reject(skb,reject->with);
 	}

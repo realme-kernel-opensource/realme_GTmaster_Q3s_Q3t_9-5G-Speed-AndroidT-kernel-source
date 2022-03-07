@@ -51,7 +51,6 @@
 #include "genl.h"
 
 #ifdef OPLUS_BUG_STABILITY
-//WuGuotian@CONNECTIVITY.WIFI.HARDWARE.FTM.1776184, 2021/02/08,Add for boot wlan mode not use NV mac
 #include <soc/oppo/boot_mode.h>
 #include <soc/oplus/system/oplus_project.h>
 #endif /* OPLUS_BUG_STABILITY */
@@ -560,7 +559,6 @@ static int icnss_setup_dms_mac(struct icnss_priv *priv)
 	 * Thus assert on failure to get MAC from DMS even after retries
 	 */
 #ifndef OPLUS_BUG_STABILITY
-//WuGuotian@CONNECTIVITY.WIFI.HARDWARE.FTM.1776184, 2021/02/08,Add for boot wlan mode not use NV mac
 	if (priv->use_nv_mac) {
 #else
 	if ((get_boot_mode() !=  MSM_BOOT_MODE__WLAN) && priv->use_nv_mac) {

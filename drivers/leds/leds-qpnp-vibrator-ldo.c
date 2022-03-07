@@ -463,7 +463,6 @@ static int qpnp_vibrator_ldo_probe(struct platform_device *pdev)
 		pr_err("couldn't get parent's regmap\n");
 		return -EINVAL;
 	}
-/* LiuChao@BSP.Sensors.Config,2021/04/27, Modify for haptic && vibrator comptatible */
 	ret = regmap_bulk_read(chip->regmap, 0xdf05, &temp,1);
 	if(ret < 0)
 		return -ENODEV;

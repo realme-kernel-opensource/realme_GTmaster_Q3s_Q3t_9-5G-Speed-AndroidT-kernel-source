@@ -1112,7 +1112,6 @@ static struct ctl_table ipv4_net_table[] = {
 		.proc_handler	= proc_dointvec
 	},
 #if IS_ENABLED(CONFIG_OPLUS_BUG_STABILITY)
-//PengHao@CONNECTIVITY.WIFI.INTERNET.1854960,2019/03/30,add for disable tcp random timestamp,some networks limit tcp syn before login
 	{
 		.procname	= "tcp_random_timestamp",
 		.data		= &init_net.ipv4.sysctl_tcp_random_timestamp,

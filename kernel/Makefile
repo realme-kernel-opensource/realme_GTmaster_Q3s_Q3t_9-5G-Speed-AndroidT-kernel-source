@@ -136,7 +136,6 @@ KASAN_SANITIZE_stackleak.o := n
 KCOV_INSTRUMENT_stackleak.o := n
 
 #ifdef OPLUS_FEATURE_SCHED_ASSIST
-#Yupeng.shan@TECH.Kernel.Sched, 2020/09/29, add for heavy load task
 obj-$(CONFIG_OPLUS_FEATURE_UIFRIST_HEAVYLOAD) += special_opt/
 #endif /* OPLUS_FEATURE_SCHED_ASSIST */
 

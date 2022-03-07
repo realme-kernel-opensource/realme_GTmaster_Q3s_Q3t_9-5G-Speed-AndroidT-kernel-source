@@ -21,7 +21,6 @@
 #include <linux/version.h>
 #include <net/tcp.h>
 #if defined(OPLUS_FEATURE_POWERINFO_STANDBY) && defined(CONFIG_OPLUS_WAKELOCK_PROFILER)
-//Nanwei.Deng@BSP.Power.Basic, 2020/07/27, add for wakelock profiler
 //#include "../../drivers/soc/oplus/oplus_wakelock/oplus_wakelock_profiler_qcom.h"
 #endif
 
@@ -753,7 +752,6 @@ static void tcp_input_hook_work_callback(struct work_struct *work) {
 	app_wakeup_monitor(&app_wakeup_monitor_list, false, true, tcp_input_list.pid, tcp_input_list.uid);
 	app_wakeup_monitor(&mdaci_app_wakeup_monitor_list, false, true, tcp_input_list.pid, tcp_input_list.uid);
 	#ifdef OPLUS_FEATURE_POWERINFO_STANDBY
-	/*xufeifei@Network.Power.181136, 2020/08/28, add for IPA profiler*/
 	//wakeup_reasons_statics(IRQ_NAME_MODEM_IPA, WS_CNT_MODEM);
 	#endif /* OPLUS_FEATURE_POWERINFO_STANDBY */
 	if (tcp_input_list.is_ipv6) {

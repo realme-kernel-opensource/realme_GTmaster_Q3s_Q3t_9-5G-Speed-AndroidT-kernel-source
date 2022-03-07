@@ -14,7 +14,6 @@ obj-$(CONFIG_EQUALIZER) += eql.o
 obj-$(CONFIG_IFB) += ifb.o
 obj-$(CONFIG_MACSEC) += macsec.o
 #ifdef OPLUS_FEATURE_WIFI_LIMMITBGSPEED
-#HuangJunyuan@CONNECTIVITY.WIFI.INTERNET, 2018/06/26, Add for limit speed function
 obj-$(CONFIG_OPLUS_FEATURE_WIFI_LIMMITBGSPEED) += imq.o
 #endif /* OPLUS_FEATURE_WIFI_LIMMITBGSPEED */
 obj-$(CONFIG_MACVLAN) += macvlan.o

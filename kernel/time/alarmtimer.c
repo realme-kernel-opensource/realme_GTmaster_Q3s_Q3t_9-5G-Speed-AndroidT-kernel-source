@@ -32,7 +32,6 @@
 #define CREATE_TRACE_POINTS
 #include <trace/events/alarmtimer.h>
 #if defined(OPLUS_FEATURE_POWERINFO_STANDBY) && defined(CONFIG_OPLUS_WAKELOCK_PROFILER)
-//Nanwei.Deng@BSP.Power.Basic, 2020/07/27, add for wakelock profiler
 #include "../../drivers/soc/oplus/oplus_wakelock/oplus_wakelock_profiler_qcom.h"
 #endif
 /**
@@ -198,7 +197,6 @@ static void alarmtimer_dequeue(struct alarm_base *base, struct alarm *alarm)
 
 
 #if defined(OPLUS_FEATURE_POWERINFO_STANDBY) && defined(CONFIG_OPLUS_WAKELOCK_PROFILER)
-//Nanwei.Deng@BSP.Power.Basic, 2020/07/27, add for wakelock profiler
 enum alarmtimer_restart (*net_alarm_func)(struct alarm *, ktime_t now) = NULL;
 #endif
 /**
@@ -273,7 +271,6 @@ static int alarmtimer_suspend(struct device *dev)
 	freezer_delta = 0;
 	spin_unlock_irqrestore(&freezer_delta_lock, flags);
 	#if defined(OPLUS_FEATURE_POWERINFO_STANDBY) && defined(CONFIG_OPLUS_WAKELOCK_PROFILER)
-	//Nanwei.Deng@Kernel.Driver, 2018/11/19, add for analysis power coumption. count alarm times
 	alarmtimer_suspend_flag_set();
 	#endif
 	rtc = alarmtimer_get_rtcdev();
@@ -331,7 +328,6 @@ static int alarmtimer_resume(struct device *dev)
 {
 	struct rtc_device *rtc;
 	#if defined(OPLUS_FEATURE_POWERINFO_STANDBY) && defined(CONFIG_OPLUS_WAKELOCK_PROFILER)
-	//Nanwei.Deng@Kernel.Driver, 2018/11/19, add for analysis power coumption. count alarm times
 	alarmtimer_suspend_flag_clear();
 	#endif
 	rtc = alarmtimer_get_rtcdev();

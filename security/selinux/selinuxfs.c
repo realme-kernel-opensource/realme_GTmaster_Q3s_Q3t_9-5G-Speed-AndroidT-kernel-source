@@ -42,7 +42,6 @@
 #include "conditional.h"
 
 #ifdef OPLUS_FEATURE_SELINUX_CONTROL_LOG
-//sijiaquan@ANDROID.SELINUX, 2017/01/13, Add for disable selinux denied in MP version
 #include <soc/oplus/system/proc.h>
 #endif /* OPLUS_FEATURE_SELINUX_CONTROL_LOG */
 
@@ -2143,7 +2142,6 @@ static int __init init_sel_fs(void)
 	}
 
 #ifdef OPLUS_FEATURE_SELINUX_CONTROL_LOG
-//sijiaquan@ANDROID.SELINUX, 2017/01/13, Add for disable selinux denied in MP version
 	init_denied_proc();
 #endif /* OPLUS_FEATURE_SELINUX_CONTROL_LOG */
 

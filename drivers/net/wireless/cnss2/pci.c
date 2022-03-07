@@ -5953,7 +5953,6 @@ static void cnss_pci_remove(struct pci_dev *pci_dev)
 }
 
 #ifdef OPLUS_BUG_STABILITY
-//WuGuotian@CONNECTIVITY.WIFI.HARDWARE.FTM.1776184, 2021/02/08,Add for boot wlan mode not use NV mac
 int cnss_pci_pa_en_rw(struct cnss_pci_data *pci_priv)
 {
 	u32 val;

@@ -233,7 +233,6 @@ static int silfp_parse_dts(struct silfp_data* fp_dev)
     struct platform_device *pdev = NULL;
     int  ret;
 //#ifdef OPLUS_FEATURE_FINGERPRINT
-//Zemin.Li@BSP.Fingerprint.Basic, 2019.11.29, fix failed to get irq
     node = of_find_compatible_node(NULL, NULL, FP_PINS_OF);
 
     if (node) {

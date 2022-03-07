@@ -77,7 +77,6 @@
 #include <trace/hooks/binder.h>
 
 #if defined(OPLUS_FEATURE_HANS_FREEZE) && defined(CONFIG_OPLUS_FEATURE_HANS)
-/*Kun.Zhou@ANDROID.RESCONTROL, 2019/09/23, add for hans freeze manager*/
 #include <linux/hans.h>
 #endif /*OPLUS_FEATURE_HANS_FREEZE*/
 

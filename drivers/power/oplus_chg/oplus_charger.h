@@ -885,7 +885,6 @@ struct oplus_chg_chip {
 	bool decimal_control;
 	bool warp_show_ui_soc_decimal;
 	struct thermal_zone_device *shell_themal;
-	/* Zhangkun@BSP.CHG.Basic, 2020/08/17, Add for swarp detect and detach */
 	int swarp_disconnect_count;
 	struct device_node *fast_node;
 	const struct oplus_chg_operations *sub_chg_ops;
@@ -1084,7 +1083,6 @@ void oplus_chg_variables_reset(struct oplus_chg_chip *chip, bool in);
 void oplus_chg_external_power_changed(struct power_supply *psy);
 #endif
 int oplus_is_rf_ftm_mode(void);
-//huangtongfeng@BSP.CHG.Basic, 2017/01/13, add for kpoc charging param.
 int oplus_get_charger_chip_st(void);
 void oplus_chg_set_allow_switch_to_fastchg(bool allow);
 int oplus_tbatt_power_off_task_init(struct oplus_chg_chip *chip);

@@ -393,7 +393,6 @@ static void ping_other_cpus(struct msm_watchdog_data *wdog_dd)
 {
 	int cpu;
 #if IS_ENABLED(CONFIG_OPLUS_FEATURE_QCOM_WATCHDOG)
-/* fanhui@PhoneSW.BSP, 2016/05/26, print more info on pet watchdog */
 	cpumask_t mask;
 
 	oplus_get_cpu_ping_mask(&mask, wdog_dd->cpu_idle_pc_state);
@@ -561,10 +560,8 @@ static irqreturn_t wdog_bark_handler(int irq, void *dev_id)
 	if (wdog_dd->do_ipi_ping)
 		dump_cpu_alive_mask(wdog_dd);
 #if IS_ENABLED(CONFIG_OPLUS_FEATURE_QCOM_WATCHDOG)
-/* fanhui@PhoneSW.BSP, 2016/04/22, print online cpu */
 	oplus_dump_cpu_online_smp_call();
 	oplus_dump_wdog_cpu(wdog_dd->watchdog_task);
-/* fanhui@PhoneSW.BSP, 2016/01/20, delete trigger wdog bite, panic will trigger wdog if in dload mode*/
 	panic("Handle a watchdog bite! - Falling back to kernel panic!");
 #else
 	msm_trigger_wdog_bite();

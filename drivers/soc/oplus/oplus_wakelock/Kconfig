@@ -1,6 +1,5 @@
 #code deprecated ... start (Todo : delete this code section)
 #ifdef OPLUS_FEATURE_POWERINFO_STANDBY
-#SunFaliang@BSP.Power.Basic, 2020/05/01, add for wakelock profiler
 config OPPO_WAKELOCK_PROFILER
 bool "config oppo wakelock profiler"
 help
@@ -8,7 +7,6 @@ help
 #endif /* OPLUS_FEATURE_POWERINFO_STANDBY */
 
 #ifdef OPLUS_FEATURE_POWERINFO_STANDBY
-#NanweiDeng@BSP.Power.Basic, 2020/08/08, add for wakelock profiler
 config OPPO_POWER_QCOM
 bool "QCOM Config"
 help
@@ -16,7 +14,6 @@ help
 #endif /* OPLUS_FEATURE_POWERINFO_STANDBY */
 
 #ifdef OPLUS_FEATURE_POWERINFO_STANDBY
-#WuWeiZhong@BSP.Power.Basic, 2020/06/12, add for wakelock profiler
 config OPPO_POWER_MTK
 bool "MTK Config"
 help
@@ -27,7 +24,6 @@ help
 
 
 #ifdef OPLUS_FEATURE_POWERINFO_STANDBY
-#SunFaliang@BSP.Power.Basic, 2020/05/01, add for wakelock profiler
 config OPLUS_WAKELOCK_PROFILER
 bool "config wakelock profiler"
 help
@@ -45,7 +41,6 @@ help
 #endif /* OPLUS_FEATURE_POWERINFO_STANDBY */
 
 #ifdef OPLUS_FEATURE_POWERINFO_STANDBY_DEBUG
-#yunqingzeng@BSP.Power.Basic, 2020/09/19, add for powerinfo standby debug
 config OPLUS_POWERINFO_STANDBY_DEBUG
 bool "powerinfo standby config"
 default n
@@ -54,7 +49,6 @@ help
 #endif /* OPLUS_FEATURE_POWERINFO_STANDBY_DEBUG */
 
 #ifdef OPLUS_FEATURE_POWERINFO_RPMH
-#yunqingzeng@BSP.Power.Basic, 2020/09/19, add for powerinfo rpmh
 config OPLUS_POWERINFO_RPMH
 bool "powerinfo rpmh config"
 default n
@@ -63,7 +57,6 @@ help
 #endif /* OPLUS_FEATURE_POWERINFO_RPMH */
 
 #ifdef OPLUS_FEATURE_POWERINFO_FTM
-#yunqingzeng@BSP.Power.Basic, 2020/09/19, add for powerinfo ftm
 config OPLUS_POWERINFO_FTM
 bool "powerinfo ftm config"
 default n

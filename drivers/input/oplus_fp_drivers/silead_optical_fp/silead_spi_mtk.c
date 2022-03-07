@@ -119,7 +119,6 @@ struct silfp_data {
     spinlock_t		irq_lock;
     int		int_port;
 //#ifdef OPLUS_FEATURE_FINGERPRINT
-//Zemin.Li@BSP.Fingerprint.Basic, 2019.11.29, fix failed to get irq
     int     irq_gpio;
 //#endif OPLUS_FEATURE_FINGERPRINT
     int		irq;

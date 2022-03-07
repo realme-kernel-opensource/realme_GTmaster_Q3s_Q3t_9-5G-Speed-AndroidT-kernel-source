@@ -85,7 +85,6 @@ unsigned int __attribute__((weak)) get_PCB_Version(void)
 #endif
 
 #ifdef OPLUS_FEATURE_CHG_BASIC
-/* Ping.Zhang@BSP.TP.Init, 2020/03/02, Add for notify touchpanel status */
 void __attribute__((weak)) switch_wireless_charger_state(int wireless_state) {return;}
 #endif
 
@@ -3973,7 +3972,6 @@ static void p922x_idt_connect_int_func(struct work_struct *work)
 
 			oplus_chg_restart_update_work();
 #ifdef OPLUS_FEATURE_CHG_BASIC
-/* Ping.Zhang@BSP.TP.Init, 2020/03/02, Add for notify touchpanel status */
 			switch_wireless_charger_state(1);
 #endif
 		}
@@ -4027,7 +4025,6 @@ static void p922x_idt_connect_int_func(struct work_struct *work)
 #endif
 			oplus_chg_restart_update_work();
 #ifdef OPLUS_FEATURE_CHG_BASIC
-/* Ping.Zhang@BSP.TP.Init, 2020/03/02, Add for notify touchpanel status */
 			switch_wireless_charger_state(0);
 #endif
 		}

@@ -20,5 +20,4 @@ obj-$(CONFIG_SCSI_UFS_MEDIATEK) += ufs-mediatek.o
 ufshcd-core-$(CONFIG_SCSI_UFS_CRYPTO) += ufshcd-crypto.o
 obj-$(CONFIG_SCSI_UFS_CRYPTO_QTI) += ufshcd-crypto-qti.o
 
-#Tianwen@Bsp.Storage.Ufs,2020-08-13,add for oplus ufs driver
 obj-$(CONFIG_OPLUS_FEATURE_UFS) += oplus_ufs/

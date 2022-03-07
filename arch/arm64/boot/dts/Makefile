@@ -1,6 +1,5 @@
 # SPDX-License-Identifier: GPL-2.0
 #ifndef VENDOR_EDIT
-#/*zhangchangan@BSP.Bootloader.Bootflow, 2020/05/20, Add for oppo devices tree*/
 #subdir-y += actions
 #subdir-y += al
 #subdir-y += allwinner

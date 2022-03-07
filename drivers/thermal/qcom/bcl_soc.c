@@ -141,7 +141,6 @@ static int bcl_soc_probe(struct platform_device *pdev)
 	bcl_perph->ops.set_trips = bcl_set_soc;
 	INIT_WORK(&bcl_perph->soc_eval_work, bcl_evaluate_soc);
 	#if IS_ENABLED(CONFIG_OPLUS_BUG_STABILITY_EFFECTON_QGKI)
-	//Nanwei.Deng@BSP.Power.Basic, 2018/08/06, Modify for 1+ patch
 	bcl_perph->tz_dev = thermal_zone_of_sensor_register(&pdev->dev,
 				0, bcl_perph, &bcl_perph->ops);
 	if (IS_ERR(bcl_perph->tz_dev)) {

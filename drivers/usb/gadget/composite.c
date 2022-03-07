@@ -24,7 +24,6 @@
 #include "u_os_desc.h"
 
 #ifdef OPLUS_FEATURE_CHG_BASIC
-/* hailong.Shen@BSP.CHG.Basic, 2020/12/18,  Add for usb2.1 LPM disable */
 static bool enable_l1_for_hs;
 module_param(enable_l1_for_hs, bool, S_IRUGO | S_IWUSR);
 MODULE_PARM_DESC(enable_l1_for_hs, "Enable support for L1 LPM for HS devices");
@@ -1735,7 +1734,6 @@ composite_setup(struct usb_gadget *gadget, const struct usb_ctrlrequest *ctrl)
 				cdev->gadget->ep0->maxpacket;
 			if (gadget_is_superspeed(gadget)) {
 #ifdef OPLUS_FEATURE_CHG_BASIC
-				/* hailong.Shen@BSP.CHG.Basic, 2020/12/18,  Add for usb2.1 LPM disable */
 				if (gadget->speed >= USB_SPEED_SUPER) {
 					cdev->desc.bcdUSB = cpu_to_le16(0x0320);
 					cdev->desc.bMaxPacketSize0 = 9;
@@ -1790,7 +1788,6 @@ composite_setup(struct usb_gadget *gadget, const struct usb_ctrlrequest *ctrl)
 			break;
 		case USB_DT_BOS:
 #ifdef OPLUS_FEATURE_CHG_BASIC
-			/* hailong.Shen@BSP.CHG.Basic, 2020/12/18,  Add for usb2.1 LPM disable */
 			if ((gadget_is_superspeed(gadget) && (gadget->speed >= USB_SPEED_SUPER)) ||
 #else
 			if (gadget_is_superspeed(gadget) ||

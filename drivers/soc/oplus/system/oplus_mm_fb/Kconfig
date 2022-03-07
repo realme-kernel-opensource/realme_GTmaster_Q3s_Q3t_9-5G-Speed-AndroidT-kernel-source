@@ -1,4 +1,3 @@
-#Zhao.Pan@MULTIMEDIA.AUDIODRIVER.KERNEL, 2020/08/08, Add for multimedia kevent feedback driver
 config OPLUS_FEATURE_MM_FEEDBACK
   bool "Oplus multimedia kevent feedback"
   default n

@@ -222,7 +222,6 @@ extern struct __kernel_old_timeval ns_to_kernel_old_timeval(s64 nsec);
 #define compat_put_timespec64	put_old_timespec32
 
 /*#ifdef VENDOR_EDIT*/
-/*lixin@Camera.Drv, 2020/5/19, modify for ois get timestamp */
 extern void set_normalized_timespec(struct timespec *ts, time_t sec, s64 nsec);
 static inline struct timespec timespec_sub(struct timespec lhs,
 						struct timespec rhs)

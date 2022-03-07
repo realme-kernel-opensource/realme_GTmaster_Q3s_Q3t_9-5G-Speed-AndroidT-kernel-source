@@ -69,7 +69,6 @@
 #include <trace/events/tcp.h>
 
 #if IS_ENABLED(CONFIG_OPLUS_FEATURE_NWPOWER)
-//Asiga@PSW.NW.DATA.2120730, 2019/06/26, add for classify glink wakeup services and count IPA wakeup.
 extern void (*match_ipa_ip_wakeup)(int type, struct sk_buff *skb);
 extern void (*match_ipa_tcp_wakeup)(int type, struct sock *sk);
 extern void (*ipa_schedule_work)(void);
@@ -1495,7 +1494,6 @@ INDIRECT_CALLABLE_SCOPE int tcp_v6_rcv(struct sk_buff *skb)
 	struct net *net = dev_net(skb->dev);
 
 	#if IS_ENABLED(CONFIG_OPLUS_FEATURE_NWPOWER)
-	//Asiga@PSW.NW.DATA.2120730, 2019/06/26, add for classify glink wakeup services and count IPA wakeup.
 	if (match_ipa_ip_wakeup != NULL) {
 		match_ipa_ip_wakeup(2, skb);
 	}
@@ -1533,7 +1531,6 @@ lookup:
 		goto no_tcp_socket;
 
 	#if IS_ENABLED(CONFIG_OPLUS_FEATURE_NWPOWER)
-	//Asiga@PSW.NW.DATA.2120730, 2019/06/26, add for classify glink wakeup services and count IPA wakeup.
 	if (match_ipa_tcp_wakeup != NULL) {
 		match_ipa_tcp_wakeup(2, sk);
 	}
@@ -1659,7 +1656,6 @@ bad_packet:
 
 discard_it:
 	#if IS_ENABLED(CONFIG_OPLUS_FEATURE_NWPOWER)
-	//Asiga@PSW.NW.DATA.2120730, 2019/06/26, add for classify glink wakeup services and count IPA wakeup.
 	if (ipa_schedule_work != NULL) {
 		ipa_schedule_work();
 	}

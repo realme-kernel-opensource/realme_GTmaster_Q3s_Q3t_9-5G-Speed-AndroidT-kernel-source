@@ -257,7 +257,6 @@ int cnss_pci_get_iova(struct cnss_pci_data *pci_priv, u64 *addr, u64 *size);
 int cnss_pci_get_iova_ipa(struct cnss_pci_data *pci_priv, u64 *addr,
 			  u64 *size);
 #ifdef OPLUS_BUG_STABILITY
-//WuGuotian@CONNECTIVITY.WIFI.HARDWARE.FTM.1776184, 2021/02/08,Add for boot wlan mode not use NV mac
 int cnss_pci_pa_en_rw(struct cnss_pci_data *pci_priv);
 int cnss_pci_pa_dis_rw(struct cnss_pci_data *pci_priv);
 #endif /* OPLUS_BUG_STABILITY */

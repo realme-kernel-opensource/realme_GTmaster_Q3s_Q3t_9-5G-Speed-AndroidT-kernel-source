@@ -44,7 +44,6 @@ static int ufshpb_create_sysfs(struct ufsf_feature *ufsf,
 			       struct ufshpb_lu *hpb);
 static void ufshpb_remove_sysfs(struct ufshpb_lu *hpb);
 
-/* huangjianan@TECH.Storage.UFS, 2019/12/09, Add for UFS+ RUS */
 static int create_hpbfn_enable_proc(void);
 static void remove_hpbfn_enable_proc(void);
 
@@ -3852,7 +3851,6 @@ static int ufshpb_init(struct ufsf_feature *ufsf)
 				schedule_work(&hpb->pinned_work);
 		}
 		
-	/* huangjianan@TECH.Storage.UFS, 2019/12/09, Add for UFS+ RUS */
 	create_hpbfn_enable_proc();
 
 	return 0;
@@ -3966,7 +3964,6 @@ void ufshpb_remove(struct ufsf_feature *ufsf, int state)
 	INFO_MSG("kref count (%d)",
 		 atomic_read(&ufsf->hpb_kref.refcount.refs));
 
-	/* huangjianan@TECH.Storage.UFS, 2019/12/09, Add for UFS+ RUS */
 	remove_hpbfn_enable_proc();
 
 	seq_scan_lu(lun) {
@@ -5374,7 +5371,6 @@ static inline void ufshpb_remove_sysfs(struct ufshpb_lu *hpb)
 	kobject_del(&hpb->kobj);
 }
 
-/* huangjianan@TECH.Storage.UFS, 2019/12/09, Add for UFS+ RUS */
 static inline void hpbfn_enable_ctrl(struct ufshpb_lu *hpb, long val)
 {
 	switch (val) {

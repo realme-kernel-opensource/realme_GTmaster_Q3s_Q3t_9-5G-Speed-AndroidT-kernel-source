@@ -20,7 +20,6 @@
 #include <linux/wakeup_reason.h>
 #include <trace/events/power.h>
 #ifdef OPLUS_FEATURE_LOGKIT
-//Yanzhen.Feng@ANDROID.DEBUG.702252, 2016/06/21, Add for Sync App and Kernel time
 #include <linux/rtc.h>
 #include <soc/oplus/system/oplus_sync_time.h>
 #endif
@@ -29,7 +28,6 @@
 #include <linux/irqdesc.h>
 
 #if defined(OPLUS_FEATURE_POWERINFO_STANDBY) && defined(CONFIG_OPLUS_WAKELOCK_PROFILER)
-//Nanwei.Deng@BSP.Power.Basic, 2020/07/27, add for wakelock profiler
 #include "../../drivers/soc/oplus/oplus_wakelock/oplus_wakelock_profiler_qcom.h"
 #endif
 
@@ -555,7 +553,6 @@ static void wakeup_source_activate(struct wakeup_source *ws)
 			"unregistered wakeup source\n"))
 		return;
 	#if defined(OPLUS_FEATURE_POWERINFO_STANDBY) && defined(CONFIG_OPLUS_WAKELOCK_PROFILER)
-	//Nanwei.Deng@BSP.Power.Basic, 2020/07/27, add for wakelock profiler
 	//wakeup_get_start_hold_time();
 	wakeup_get_start_time();
 	#endif
@@ -701,7 +698,6 @@ static void wakeup_source_deactivate(struct wakeup_source *ws)
 
 	split_counters(&cnt, &inpr);
 	#if defined(OPLUS_FEATURE_POWERINFO_STANDBY) && defined(CONFIG_OPLUS_WAKELOCK_PROFILER)
-	//Nanwei.Deng@BSP.Power.Basic, 2020/07/27, add for wakelock profiler
 	if (!inpr) {
 		wakeup_get_end_hold_time();
 	}
@@ -887,7 +883,6 @@ void pm_print_active_wakeup_sources(void)
 	list_for_each_entry_rcu(ws, &wakeup_sources, entry) {
 		if (ws->active) {
 			#if defined(OPLUS_FEATURE_POWERINFO_STANDBY_DEBUG) && defined(CONFIG_OPLUS_POWERINFO_STANDBY_DEBUG)
-			//Nanwei.Deng@BSP.Power.Basic, 2020/07/27, add for wakelock profiler
 			pr_info("active wakeup source: %s, %ld, %ld\n", ws->name, ws->active_count, ktime_to_ms(ws->total_time));
 			#else
 			pm_pr_dbg("active wakeup source: %s\n", ws->name);
@@ -903,7 +898,6 @@ void pm_print_active_wakeup_sources(void)
 
 	if (!active && last_activity_ws) {
 		#if defined(OPLUS_FEATURE_POWERINFO_STANDBY_DEBUG) && defined(CONFIG_OPLUS_POWERINFO_STANDBY_DEBUG)
-		//Nanwei.Deng@BSP.Power.Basic, 2020/07/27, add for wakelock profiler
 		pr_info("last active wakeup source: %s, %ld, %ld\n",
 			last_activity_ws->name, last_activity_ws->active_count, ktime_to_ms(last_activity_ws->total_time));
 		#else
@@ -916,7 +910,6 @@ void pm_print_active_wakeup_sources(void)
 EXPORT_SYMBOL_GPL(pm_print_active_wakeup_sources);
 
 #if defined(OPLUS_FEATURE_POWERINFO_STANDBY) && defined(CONFIG_OPLUS_WAKELOCK_PROFILER)
-//Nanwei.Deng@BSP.Power.Basic, 2020/07/27, add for wakelock profiler
 void get_ws_listhead(struct list_head **ws)
 {
 	if (ws)
@@ -969,7 +962,6 @@ bool pm_wakeup_pending(void)
 
 	if (ret) {
 		#if !defined(OPLUS_FEATURE_POWERINFO_STANDBY_DEBUG) || !defined(CONFIG_OPLUS_POWERINFO_STANDBY_DEBUG)
-		//Nanwei.Deng@BSP.Power.Basic, 2020/07/27, add for wakelock profiler
 		pr_debug("PM: Wakeup pending, aborting suspend\n");
 		#else
 		pr_info("PM: Wakeup pending, aborting suspend\n");
@@ -1023,7 +1015,6 @@ void pm_system_irq_wakeup(unsigned int irq_number)
 			pr_warn("%s: %d triggered %s\n", __func__,
 					irq_number, name);
 			#if defined(OPLUS_FEATURE_POWERINFO_STANDBY) && defined(CONFIG_OPLUS_WAKELOCK_PROFILER)
-			//Nanwei.Deng@BSP.Power.Basic, 2020/07/27, add for wakelock profiler
 			pr_info("%s: resume caused by irq=%d, name=%s\n", __func__, irq_number, name);
 			wakeup_reasons_statics(name,
 				WS_CNT_POWERKEY|WS_CNT_RTCALARM|WS_CNT_MODEM|WS_CNT_WLAN|WS_CNT_MODEM|WS_CNT_WLAN|WS_CNT_ADSP|WS_CNT_CDSP|WS_CNT_SLPI);
@@ -1254,7 +1245,6 @@ static const struct file_operations wakeup_sources_stats_fops = {
 	.llseek = seq_lseek,
 	.release = seq_release_private,
 #ifdef OPLUS_FEATURE_LOGKIT
-//Yanzhen.Feng@ANDROID.DEBUG.702252, 2016/06/21, Add for Sync App and Kernel time
 	.write          = watchdog_write,
 #endif
 };
@@ -1262,7 +1252,6 @@ static const struct file_operations wakeup_sources_stats_fops = {
 static int __init wakeup_sources_debugfs_init(void)
 {
 	#ifndef OPLUS_FEATURE_LOGKIT
-	//Yanzhen.Feng@ANDROID.DEBUG.702252, 2016/06/21,  Modify for Sync App and Kernel time
 	debugfs_create_file("wakeup_sources", S_IRUGO, NULL, NULL,
 			    &wakeup_sources_stats_fops);
 	#else

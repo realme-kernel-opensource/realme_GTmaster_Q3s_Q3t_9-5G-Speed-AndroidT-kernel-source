@@ -125,7 +125,6 @@ extern void statistics_monitor_apps_rtt_via_uid(int if_index, int rtt, struct so
 #define MAX_GAME_LATENCY   220
 /* OPLUS_SLA_GAME_LATENCY */
 
-/*lixin@Camera.Drv, 2020/09/09, modify for fix GKI KO compile failed*/
 static void do_gettimeofday(struct timeval *tv)
 {
 	struct timespec64 now;

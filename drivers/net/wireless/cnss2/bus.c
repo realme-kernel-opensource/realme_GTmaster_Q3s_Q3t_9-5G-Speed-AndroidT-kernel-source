@@ -165,7 +165,6 @@ int cnss_bus_alloc_fw_mem(struct cnss_plat_data *plat_priv)
 }
 
 #ifdef OPLUS_BUG_STABILITY
-//WuGuotian@CONNECTIVITY.WIFI.HARDWARE.FTM.1776184, 2021/02/08,Add for boot wlan mode not use NV mac
 void cnss_bus_pa_en_rw(struct cnss_plat_data *plat_priv, int en)
 {
 	if(en)

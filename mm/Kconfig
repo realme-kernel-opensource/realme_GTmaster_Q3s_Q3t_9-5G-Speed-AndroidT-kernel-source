@@ -871,7 +871,6 @@ config PROCESS_RECLAIM
 	 Any other value is ignored.
 	 
 #ifdef OPLUS_FEATURE_HEALTHINFO
-#/* Huacai.Zhou@PSW.BSP.Kernel.MM, 2018-07-07, add alloc wait monitor support*/
 source "mm/healthinfo/Kconfig"
 #endif /* OPLUS_FEATURE_HEALTHINFO */
 
@@ -926,7 +925,6 @@ config DYNAMIC_TUNNING_SWAPPINESS
 source "mm/zram_opt/Kconfig"
 source "mm/process_reclaim/Kconfig"
 #ifdef OPLUS_FEATURE_HEALTHINFO
-#/* Huacai.Zhou@PSW.BSP.Kernel.MM, 2018-07-07, add alloc wait monitor support*/
 source "mm/healthinfo/Kconfig"
 #endif /* OPLUS_FEATURE_HEALTHINFO */
 source "mm/malloc_track/Kconfig"

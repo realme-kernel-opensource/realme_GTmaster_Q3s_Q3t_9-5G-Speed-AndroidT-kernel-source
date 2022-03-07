@@ -260,7 +260,6 @@ extern struct percpu_counter tcp_sockets_allocated;
 extern unsigned long tcp_memory_pressure;
 
 #if IS_ENABLED(CONFIG_OPLUS_BUG_STABILITY)
-//ZhaoMengqing@CONNECTIVITY.WIFI.INTERNET.1394484, 2019/04/02,add for: When find TCP SYN-ACK Timestamp value error, just do not use Timestamp
 extern int sysctl_tcp_ts_control[2];
 #endif /* CONFIG_OPLUS_BUG_STABILITY */
 

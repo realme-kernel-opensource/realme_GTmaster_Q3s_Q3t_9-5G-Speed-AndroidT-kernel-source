@@ -2561,7 +2561,6 @@ static void cnss_wlfw_respond_get_info_ind_cb(struct qmi_handle *qmi_wlfw,
 		container_of(qmi_wlfw, struct cnss_plat_data, qmi_wlfw);
 	const struct wlfw_respond_get_info_ind_msg_v01 *ind_msg = data;
         #ifndef OPLUS_BUG_STABILITY
-        #LiJunlong@CONNECTIVITY.WIFI.INTERNET.188828.2020/08/13,delete for reduce cnss kernel log
 	cnss_pr_buf("Received QMI WLFW respond get info indication\n");
         #endif /*OPLUS_BUG_STABILITY*/
 
@@ -2570,7 +2569,6 @@ static void cnss_wlfw_respond_get_info_ind_cb(struct qmi_handle *qmi_wlfw,
 		return;
 	}
         #ifndef OPLUS_BUG_STABILITY
-        #LiJunlong@CONNECTIVITY.WIFI.INTERNET.188828.2020/08/13,delete for reduce cnss kernel log
 	cnss_pr_buf("Extract message with event length: %d, type: %d, is last: %d, seq no: %d\n",
 		    ind_msg->data_len, ind_msg->type,
 		    ind_msg->is_last, ind_msg->seq_no);

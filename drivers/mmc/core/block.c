@@ -2997,7 +2997,6 @@ static int mmc_blk_probe(struct mmc_card *card)
 	 * Check that the card supports the command class(es) we need.
 	 */
 #ifndef CONFIG_EMMC_SDCARD_OPTIMIZE
-//yh@bsp, 2015/08/03, remove for can not initialize specific sdcard(CSD info mismatch card real capability)
 	if (!(card->csd.cmdclass & CCC_BLOCK_READ))
 		return -ENODEV;
 #endif
@@ -3058,7 +3057,6 @@ static int mmc_blk_probe(struct mmc_card *card)
 }
 
 #ifdef CONFIG_EMMC_SDCARD_OPTIMIZE
-//Chunyi.Mei@PSW.BSP.Storage.Sdcard, 2018-12-10, Add for SD Card device information
 char *capacity_string(struct mmc_card *card){
 	static char cap_str[10] = "unknown";
 	struct mmc_blk_data *md = (struct mmc_blk_data *)card->dev.driver_data;

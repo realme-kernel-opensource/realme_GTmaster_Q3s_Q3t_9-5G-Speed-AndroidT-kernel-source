@@ -32,7 +32,6 @@ void cnss_bus_add_fw_prefix_name(struct cnss_plat_data *plat_priv,
 				 char *prefix_name, char *name);
 int cnss_bus_load_m3(struct cnss_plat_data *plat_priv);
 #ifdef OPLUS_BUG_STABILITY
-//WuGuotian@CONNECTIVITY.WIFI.HARDWARE.FTM.1776184, 2021/02/08,Add for boot wlan mode not use NV mac
 void cnss_bus_pa_en_rw(struct cnss_plat_data *plat_priv, int en);
 #endif /* OPLUS_BUG_STABILITY */
 int cnss_bus_alloc_fw_mem(struct cnss_plat_data *plat_priv);

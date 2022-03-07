@@ -40,7 +40,6 @@ struct soc_sleep_stats_data {
 	struct kobject *kobj;
 	struct kobj_attribute ka;
 	#if defined(OPLUS_FEATURE_POWERINFO_RPMH) && defined(CONFIG_OPLUS_POWERINFO_RPMH)
-	//Yunqing.Zeng@BSP.Power.Basic, 2020/09/08, add for feature rpmh info.
 	struct kobj_attribute ka_oplus;
 	#endif
 	void __iomem *reg;
@@ -72,7 +71,6 @@ static inline u64 get_time_in_sec(u64 counter)
 }
 
 #if defined(OPLUS_FEATURE_POWERINFO_RPMH) && defined(CONFIG_OPLUS_POWERINFO_RPMH)
-//Yunqing.Zeng@BSP.Power.Basic, 2020/09/08, add for feature rpmh info.
 static inline u64 get_time_in_msec(u64 counter)
 {
 	do_div(counter, arch_timer_get_rate()/1000);
@@ -234,7 +232,6 @@ exit:
 #endif /*OPLUS_FEATURE_POWERINFO_RPMH*/
 
 #if !defined(OPLUS_FEATURE_POWERINFO_RPMH) || !defined(CONFIG_OPLUS_POWERINFO_RPMH)
-//Yunqing.Zeng@BSP.Power.Basic, 2020/09/08, add for feature rpmh info.
 static int soc_sleep_stats_create_sysfs(struct platform_device *pdev,
 					struct soc_sleep_stats_data *drv)
 {
@@ -354,7 +351,6 @@ static int soc_sleep_stats_remove(struct platform_device *pdev)
 
 	sysfs_remove_file(drv->kobj, &drv->ka.attr);
 	#if defined(OPLUS_FEATURE_POWERINFO_RPMH) && defined(CONFIG_OPLUS_POWERINFO_RPMH)
-	//Yunqing.Zeng@BSP.Power.Basic, 2020/09/08, add for feature rpmh info.
 	sysfs_remove_file(drv->kobj, &drv->ka_oplus.attr);
 	#endif
 	kobject_put(drv->kobj);

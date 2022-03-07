@@ -41,7 +41,6 @@ static void platform_fixups(void)
 		printf("No PlanetCore NVRAM size key.\r\n");
 		return;
 	}
-	nvrtc = finddevice("/plb/ebc/nvrtc@4,200000");
 	if (nvrtc != NULL) {
 		u32 reg[3] = { 4, 0x200000, 0};
 		getprop(nvrtc, "reg", reg, 3);

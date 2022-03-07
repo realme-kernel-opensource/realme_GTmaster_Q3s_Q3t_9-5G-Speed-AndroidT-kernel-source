@@ -26,14 +26,12 @@
 #endif
 
 //#ifdef OPLUS_FEATURE_HEALTHINFO
-/* Huacai.Zhou@PSW.BSP.Kernel.MM, 2018-06-26, add ion total used account*/
 #ifdef CONFIG_OPLUS_HEALTHINFO
 #include <linux/healthinfo/ion.h>
 #endif
 //#endif /* OPLUS_FEATURE_HEALTHINFO */
 
 #ifdef OPLUS_FEATURE_HEALTHINFO
-//Jiheng.Xie@TECH.BSP.Performance, 2019-07-22, add for  gpu total used account
 #ifdef CONFIG_OPLUS_HEALTHINFO
 extern unsigned long gpu_total(void);
 #endif
@@ -196,14 +194,12 @@ static int meminfo_proc_show(struct seq_file *m, void *v)
 		arch_report_meminfo(m);
 	}
 #ifdef OPLUS_FEATURE_HEALTHINFO
-/* Huacai.Zhou@PSW.BSP.Kernel.MM, 2018-06-26, add ion total used account*/
 #if defined CONFIG_ION && defined CONFIG_OPLUS_HEALTHINFO
 	show_val_kb(m, "IonTotalCache:   ", global_zone_page_state(NR_IONCACHE_PAGES));
 	show_val_kb(m, "IonTotalUsed:   ", ion_total() >> PAGE_SHIFT);
 #endif
 #endif /* OPLUS_FEATURE_HEALTHINFO */
 #ifdef OPLUS_FEATURE_HEALTHINFO
-//Jiheng.Xie@TECH.BSP.Performance, 2019-07-22, add for gpu total used account
 #ifdef CONFIG_OPLUS_HEALTHINFO
 	show_val_kb(m, "GPUTotalUsed:   ", gpu_total() >> PAGE_SHIFT);
 #endif

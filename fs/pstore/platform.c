@@ -35,7 +35,6 @@
 
 #include "internal.h"
 #if IS_ENABLED(CONFIG_OPLUS_FEATURE_DUMP_DEVICE_INFO)
-//martin.li@system.core,2020/11/25 add enable pstore to get KMSG and device_info
 #include <linux/pstore_ram.h>
 #endif
 
@@ -63,7 +62,6 @@ static const char * const pstore_type_names[] = {
 	"pmsg",
 	"powerpc-opal",
 #if IS_ENABLED(CONFIG_OPLUS_FEATURE_DUMP_DEVICE_INFO)
-//martin.li@system.core,2020/11/25 add enable pstore to get KMSG and device_info
 	"devinfo",
 	"dumpinfo",
 	"rsv01",
@@ -520,7 +518,6 @@ static void pstore_console_write(struct console *con, const char *s, unsigned c)
 }
 
 #if IS_ENABLED(CONFIG_OPLUS_FEATURE_DUMP_DEVICE_INFO)
-//martin.li@system.core,2020/11/25 add enable pstore to get KMSG and device_info
 void  pstore_console_init(void)
 {
 	size_t oldsize;
@@ -561,7 +558,6 @@ static struct console pstore_console = {
 static void pstore_register_console(void)
 {
 #if IS_ENABLED(CONFIG_OPLUS_FEATURE_DUMP_DEVICE_INFO)
-	//martin.li@system.core,2020/11/25 add enable pstore to get KMSG and device_info
 	pstore_console_init();
 #endif
 	register_console(&pstore_console);

@@ -2751,7 +2751,6 @@ static void __ip6_rt_update_pmtu(struct dst_entry *dst, const struct sock *sk,
 		dst_confirm_neigh(dst, daddr);
 
 #if IS_ENABLED(CONFIG_OPLUS_BUG_STABILITY)
-//Huang.junyuan@PSW.CN.WiFi.Network.internet, 2020/06/08,
 //ipv6 RFC8201 test
         if (mtu < IPV6_MIN_MTU) {
                 return;

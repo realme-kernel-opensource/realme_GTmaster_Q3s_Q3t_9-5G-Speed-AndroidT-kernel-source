@@ -83,7 +83,6 @@
 #include <trace/events/tcp.h>
 
 #if IS_ENABLED(CONFIG_OPLUS_FEATURE_NWPOWER)
-//Asiga@PSW.NW.DATA.2120730, 2019/06/26, add for classify glink wakeup services and count IPA wakeup.
 void (*match_ipa_ip_wakeup)(int type, struct sk_buff *skb) = NULL;
 EXPORT_SYMBOL(match_ipa_ip_wakeup);
 void (*match_ipa_tcp_wakeup)(int type, struct sock *sk) = NULL;
@@ -1836,7 +1835,6 @@ int tcp_v4_rcv(struct sk_buff *skb)
 	int ret;
 
 	#if IS_ENABLED(CONFIG_OPLUS_FEATURE_NWPOWER)
-	//Asiga@PSW.NW.DATA.2120730, 2019/06/26, add for classify glink wakeup services and count IPA wakeup.
 	if (match_ipa_ip_wakeup != NULL) {
 		match_ipa_ip_wakeup(1, skb);
 	}
@@ -1875,7 +1873,6 @@ lookup:
 		goto no_tcp_socket;
 
 	#if IS_ENABLED(CONFIG_OPLUS_FEATURE_NWPOWER)
-	//Asiga@PSW.NW.DATA.2120730, 2019/06/26, add for classify glink wakeup services and count IPA wakeup.
 	if (match_ipa_tcp_wakeup != NULL) {
 		match_ipa_tcp_wakeup(1, sk);
 	}
@@ -2009,7 +2006,6 @@ bad_packet:
 discard_it:
 	/* Discard frame. */
 	#if IS_ENABLED(CONFIG_OPLUS_FEATURE_NWPOWER)
-	//Asiga@PSW.NW.DATA.2120730, 2019/06/26, add for classify glink wakeup services and count IPA wakeup.
 	if (ipa_schedule_work != NULL) {
 		ipa_schedule_work();
 	}
@@ -2731,7 +2727,6 @@ static int __net_init tcp_sk_init(struct net *net)
 	net->ipv4.sysctl_tcp_timestamps = 1;
 
 #if IS_ENABLED(CONFIG_OPLUS_BUG_STABILITY)
-//PengHao@CONNECTIVITY.WIFI.INTERNET.1854960,2019/03/30,add for disable tcp random timestamp,some networks limit tcp syn before login
 	net->ipv4.sysctl_tcp_random_timestamp = 1;
 #endif /* CONFIG_OPLUS_BUG_STABILITY */
 

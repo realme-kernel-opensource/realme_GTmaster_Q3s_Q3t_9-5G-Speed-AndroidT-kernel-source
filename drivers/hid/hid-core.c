@@ -912,7 +912,6 @@ static int hid_scan_report(struct hid_device *hid)
 		break;
 	}
 #if IS_ENABLED(CONFIG_OPLUS_BT_BUG_STABILITY)
-//GaoShangXiu@PSW.CONNECTIVITY.BT.HID.2492575, 2019/11/19
 //add for BLE-M1 uhid group change HID_GROUP_GENERIC
 	if (0x248a == hid->vendor && 2 == hid->group) {
 		hid_warn(hid, "scan_report change to GENERIC %u\n", hid->group);

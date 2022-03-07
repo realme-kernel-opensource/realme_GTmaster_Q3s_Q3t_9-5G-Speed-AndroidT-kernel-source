@@ -25,7 +25,6 @@
 #include <linux/qpnp/qpnp-pbs.h>
 
 #ifdef OPLUS_FEATURE_CHG_BASIC
-/*lizhijie@BSP.CHG.Basic. 2020/11/04 lzj add for haptics*/
 #undef dev_dbg
 #define dev_dbg dev_err
 #endif
@@ -35,7 +34,6 @@
 #define HAP_CFG_V2				0x2
 
 #ifdef OPLUS_FEATURE_CHG_BASIC
-/* Zengpeng.Chen@BSP.CHG.Misc,2020/11/25, add for haptic rewrite calibration data when boot up*/
 #define OPPO_RESERVE1_PATH   "/dev/block/by-name/opporeserve1"
 #define OPLUS_RESERVE1_PATH    "/dev/block/by-name/oplusreserve1"
 #define OPLUS_RESERVE1_UFS_LINEAR_VIBRATOR_CALIBRATION_DATA_OFFSET     (1150 * 4096)    //[1150-1151), 4k
@@ -84,7 +82,6 @@
 #define CLAMPED_VMAX_MV				5000
 #define DEFAULT_VMAX_MV				5000
 #ifdef VENDOR_EDIT
-/* Hang.Zhao@BSP.CHG.Misc,2020/6/22, Modify for haptic calibration */
 #define DEFAULT_CL_VMAX_MV			2000
 #define DEFAULT_FIFO_VMAX			9500
 #define DEFAULT_OLD_STEADY_VMAX		9700
@@ -141,7 +138,6 @@
 #define AUTORES_EN_DLY_MASK			GENMASK(5, 2)
 #define AUTORES_EN_DLY_1_CYCLE			0x2
 #ifdef VENDOR_EDIT
-/* Hang.Zhao@BSP.CHG.Misc,2020/10/12, Modify for haptic calibration */
 #define AUTORES_EN_DLY_6_CYCLE			0x0C
 #endif
 #define AUTORES_EN_DLY_SHIFT			2
@@ -451,7 +447,6 @@ struct haptics_hw_config {
 	struct brake_cfg	brake;
 	u32			vmax_mv;
 #ifdef VENDOR_EDIT
-/* Hang.Zhao@BSP.CHG.Misc,2020/6/22, Modify for haptic calibration */
 	u32			cl_vmax_mv;
 	u32			cali_time;
 	u32			fifo_vmax_mv;
@@ -477,7 +472,6 @@ struct custom_fifo_data {
 };
 
 #ifdef OPLUS_FEATURE_CHG_BASIC
-/* Zengpeng.Chen@BSP.CHG.Misc,2020/11/25, add for haptic rewrite calibration data when boot up*/
 struct haptics_calibration_data {
 	u32			cl_t_lra_us;
 	u16			rc_clk_cal_count;
@@ -496,7 +490,6 @@ struct haptics_chip {
 	struct regulator_dev		*swr_slave_rdev;
 	struct mutex			irq_lock;
 #ifdef OPLUS_FEATURE_CHG_BASIC
-/* Zengpeng.Chen@BSP.CHG.Misc,2020/11/25, add for haptic rewrite calibration data when boot up*/
 	struct haptics_calibration_data cal_data;
 	struct mutex			fd_lock;
 	bool				cal_data_restore;
@@ -569,7 +562,6 @@ static int haptics_masked_write(struct haptics_chip *chip,
 }
 
 #ifdef OPLUS_FEATURE_CHG_BASIC
-/* Zengpeng.Chen@BSP.CHG.Misc,2020/11/25, add for haptic rewrite calibration data when boot up*/
 static int haptics_save_calibration_data(struct haptics_chip *chip, const char * filepath,
 			size_t offset_of_start, struct haptics_calibration_data *cal_data)
 {
@@ -1919,7 +1911,6 @@ static int haptics_load_constant_effect(struct haptics_chip *chip, u8 amplitude)
 		goto unlock;
 
 #ifndef VENDOR_EDIT
-/* Hang.Zhao@BSP.CHG.Misc,2020/8/28, Modify for constant effect waveform abnormal */
 	/* Always enable LRA auto resonance for DIRECT_PLAY */
 	rc = haptics_enable_autores(chip, !chip->config.is_erm);
 #else
@@ -1957,7 +1948,6 @@ static int haptics_load_predefined_effect(struct haptics_chip *chip,
 		return rc;
 
 #ifndef VENDOR_EDIT
-/* Hang.Zhao@BSP.CHG.Misc,2020/8/28, Modify for constant effect waveform abnormal */
 	rc = haptics_enable_autores(chip, !play->effect->auto_res_disable);
 #else
 	rc = haptics_enable_autores(chip, false);
@@ -2021,7 +2011,6 @@ static int haptics_init_custom_effect(struct haptics_chip *chip)
 	chip->custom_effect->brake = NULL;
 	chip->custom_effect->id = UINT_MAX;
 #ifdef VENDOR_EDIT
-/* Hang.Zhao@BSP.CHG.Misc,2020/8/3, Modify for haptic calibration */
 	chip->custom_effect->vmax_mv = chip->config.fifo_vmax_mv;
 #else
 	chip->custom_effect->vmax_mv = chip->config.vmax_mv;
@@ -2096,7 +2085,6 @@ static int haptics_load_custom_effect(struct haptics_chip *chip,
 	if (copy_from_user(&custom_data, data, sizeof(custom_data)))
 		return -EFAULT;
 #ifndef VENDOR_EDIT
-/* Hang.Zhao@BSP.CHG.Misc,2020/6/9, Modify for haptic debug */
 	dev_dbg(chip->dev, "custom data length %d with play-rate %d Hz\n",
 			custom_data.length, custom_data.play_rate_hz);
 #else
@@ -2215,7 +2203,6 @@ static int haptics_load_periodic_effect(struct haptics_chip *chip,
 	mutex_lock(&chip->play.lock);
 
 #ifndef VENDOR_EDIT
-/* Hang.Zhao@BSP.CHG.Misc,2020/6/9, Modify for haptic debug */
 	dev_dbg(chip->dev, "upload effect %d, vmax_mv=%d\n",
 			chip->effects[i].id, play->vmax_mv);
 #else
@@ -2592,7 +2579,6 @@ static int haptics_hw_init(struct haptics_chip *chip)
 	/* get calibrated close loop period */
 	rc = haptics_get_closeloop_lra_period(chip, true);
 #ifndef OPLUS_FEATURE_CHG_BASIC
-/* Zengpeng.Chen@BSP.CHG.Misc,2021/02/19, Modify for haptic calibration */
 	if (rc < 0)
 		return rc;
 #endif
@@ -3878,7 +3864,6 @@ static int haptics_parse_dt(struct haptics_chip *chip)
 	}
 
 #ifdef OPLUS_FEATURE_CHG_BASIC
-/* Zengpeng.Chen@BSP.CHG.Misc,2020/11/25, add for haptic rewrite calibration data when boot up*/
 	chip->cal_data_restore =
 		of_property_read_bool(node, "qcom,cal-data-restore");
 	if (!chip->cal_data_restore) {
@@ -3896,7 +3881,6 @@ static int haptics_parse_dt(struct haptics_chip *chip)
 	}
 
 #ifdef VENDOR_EDIT
-/* Hang.Zhao@BSP.CHG.Misc,2020/6/22, Modify for haptic calibration */
 	rc = of_property_read_u32(node, "qcom,cl-vmax-mv", &config->cl_vmax_mv);
 	if (rc || config->cl_vmax_mv >= MAX_VMAX_MV) {
 		config->cl_vmax_mv = DEFAULT_CL_VMAX_MV;
@@ -4262,7 +4246,6 @@ static int haptics_detect_lra_frequency(struct haptics_chip *chip)
 			HAP_CFG_AUTORES_CFG_REG, AUTORES_EN_BIT |
 			AUTORES_EN_DLY_MASK | AUTORES_ERR_WINDOW_MASK,
 #ifndef VENDOR_EDIT
-/* Hang.Zhao@BSP.CHG.Misc,2020/10/12, Modify for haptic calibration */
 			AUTORES_EN_DLY_1_CYCLE << AUTORES_EN_DLY_SHIFT
 #else
 			AUTORES_EN_DLY_6_CYCLE << AUTORES_EN_DLY_SHIFT
@@ -4284,7 +4267,6 @@ static int haptics_detect_lra_frequency(struct haptics_chip *chip)
 		vmax_mv = chip->hpwr_voltage_mv - LRA_CALIBRATION_VMAX_HDRM_MV;
 
 #ifndef VENDOR_EDIT
-/* Hang.Zhao@BSP.CHG.Misc,2020/6/22, Modify for haptic calibration */
 	rc = haptics_set_vmax_mv(chip, vmax_mv);
 #else
 	rc = haptics_set_vmax_mv(chip, chip->config.cl_vmax_mv);
@@ -4373,7 +4355,6 @@ static int haptics_start_lra_calibrate(struct haptics_chip *chip)
 	}
 
 #ifdef OPLUS_FEATURE_CHG_BASIC
-/* Zengpeng.Chen@BSP.CHG.Misc,2020/11/25, add for haptic rewrite calibration data when boot up*/
 	if (chip->cal_data_restore) {
 		chip->cal_data.cl_t_lra_us = chip->config.cl_t_lra_us;
 		chip->cal_data.rc_clk_cal_count = chip->config.rc_clk_cal_count;
@@ -4439,7 +4420,6 @@ static ssize_t lra_frequency_hz_show(struct class *c,
 	cl_f_lra = USEC_PER_SEC / chip->config.cl_t_lra_us;
 
 #ifdef OPLUS_FEATURE_CHG_BASIC
-/* Zengpeng.Chen@BSP.CHG.Misc,2020/12/30, add for haptic check if calibration data have saved in reserve partition*/
 	if (chip->cal_data_restore) {
 		if (chip->cal_data.cl_t_lra_us != 0) {
 			cl_f_lra = USEC_PER_SEC / chip->cal_data.cl_t_lra_us;
@@ -4457,7 +4437,6 @@ static ssize_t lra_frequency_hz_show(struct class *c,
 }
 
 #ifdef OPLUS_FEATURE_CHG_BASIC
-/* Zengpeng.Chen@BSP.CHG.Misc,2020/11/25, add for haptic rewrite calibration data when boot up*/
 static ssize_t lra_frequency_hz_store(struct class *c,
 		struct class_attribute *attr, const char *buf, size_t count)
 {
@@ -4510,7 +4489,6 @@ static ssize_t lra_impedance_show(struct class *c,
 		return scnprintf(buf, PAGE_SIZE, "%s\n", "Open circuit");
 	else
 #ifndef OPLUS_FEATURE_CHG_BASIC
-/* Zengpeng.Chen@BSP.CHG.Misc,2020/11/18, Modify for haptic impedance calibration */
 		return scnprintf(buf, PAGE_SIZE, "%u ~ %u mohms\n",
 				chip->config.lra_min_mohms,
 				chip->config.lra_max_mohms);
@@ -4522,7 +4500,6 @@ static ssize_t lra_impedance_show(struct class *c,
 static CLASS_ATTR_RO(lra_impedance);
 
 #ifdef VENDOR_EDIT
-/* Hang.Zhao@BSP.CHG.Misc,2020/6/9, Modify for haptic debug */
 static ssize_t vmax_show(struct class *c,
 		struct class_attribute *attr, char *buf)
 {
@@ -4688,7 +4665,6 @@ static struct attribute *hap_class_attrs[] = {
 	&class_attr_lra_frequency_hz.attr,
 	&class_attr_lra_impedance.attr,
 #ifdef VENDOR_EDIT
-/* Hang.Zhao@BSP.CHG.Misc,2020/6/9, Modify for haptic debug */
 	&class_attr_vmax.attr,
 	&class_attr_cl_vmax.attr,
 	&class_attr_cali_time.attr,
@@ -4762,7 +4738,6 @@ static int haptics_probe(struct platform_device *pdev)
 	mutex_init(&chip->irq_lock);
 	mutex_init(&chip->play.lock);
 #ifdef OPLUS_FEATURE_CHG_BASIC
-/* Zengpeng.Chen@BSP.CHG.Misc,2020/11/25, add for haptic rewrite calibration data when boot up*/
 	mutex_init(&chip->fd_lock);
 #endif
 	disable_irq_nosync(chip->fifo_empty_irq);

@@ -38,7 +38,6 @@
 #define QPNP_PON_WD_RESET_PET_MASK		BIT(0)
 
 #define PMIC_WD_DEFAULT_TIMEOUT 254
-#define PMIC_WD_DEFAULT_ENABLE 0  /*wen.luo@BSP.Kernel.Stability, 2019-8-15 add for enable pmic, enable in criticallog_config.xml*/
 
 #define  OPLUS_KE_PROC_ENTRY(name, entry, mode)\
 	({if (!proc_create(#name, S_IFREG | mode, oplus_ke_proc_dir, \
@@ -424,7 +423,6 @@ static void pmicwd_debugfs_init(struct qpnp_pon *pon)
 
 void pmicwd_init(struct platform_device *pdev, struct qpnp_pon *pon, bool sys_reset)
 {
-/*xing.xiong@BSP.Kernel.Driver, 2019/07/31, Add for get pwr status when power on*/
 	u32 pon_rt_sts = 0;
 	int rc;
 
@@ -477,7 +475,6 @@ void pmicwd_init(struct platform_device *pdev, struct qpnp_pon *pon, bool sys_re
 		}
 	}
 
-	/*xing.xiong@BSP.Kernel.Driver, 2019/07/31, Add for get pwr status when power on*/
 	regmap_read(pon->regmap, QPNP_PON_RT_STS(pon), &pon_rt_sts);
 	dev_info(pon->dev, "probe keycode = 116, key_st = 0x%x\n", pon_rt_sts);
 

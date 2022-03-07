@@ -664,7 +664,6 @@ asmlinkage __visible void __init start_kernel(void)
 	mm_init();
 
 #if IS_ENABLED(CONFIG_OPLUS_FEATURE_PHOENIX)
-	// Kun.Hu@PSW.TECH.RELIABILTY, 2018/11/15, add for project phoenix(hang oppo)
 	if(phx_set_boot_stage)
 		phx_set_boot_stage(KERNEL_MM_INIT_DONE);
 #endif //OPLUS_FEATURE_PHOENIX
@@ -821,7 +820,6 @@ asmlinkage __visible void __init start_kernel(void)
 	delayacct_init();
 
 #if IS_ENABLED(CONFIG_OPLUS_FEATURE_PHOENIX)
-	// Kun.Hu@PSW.TECH.RELIABILTY, 2018/11/15, add for project phoenix(hang oppo)
 	if(phx_set_boot_stage)
 		phx_set_boot_stage(KERNEL_DELAYACCT_INIT_DONE);
 #endif

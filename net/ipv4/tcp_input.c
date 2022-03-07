@@ -113,14 +113,12 @@ int sysctl_tcp_max_orphans __read_mostly = NR_FILE;
 #define TCP_HP_BITS (~(TCP_RESERVED_BITS|TCP_FLAG_PSH))
 
 #if IS_ENABLED(CONFIG_OPLUS_FEATURE_NWPOWER)
-//Asiga@PSW.NW.DATA.2120730, 2019/06/26, add for classify glink wakeup services and count IPA wakeup.
 void (*match_tcp_input_retrans)(struct sock *sk) = NULL;
 EXPORT_SYMBOL(match_tcp_input_retrans);
 #endif /* CONFIG_OPLUS_FEATURE_NWPOWER */
 
 #if IS_ENABLED(CONFIG_OPLUS_FEATURE_WIFI_SLA)
 //#ifdef OPLUS_FEATURE_WIFI_SLA
-//HuangJunyuan@CONNECTIVITY.WIFI.INTERNET.1197891, 2018/04/10,Add code for appo sla function
 void (*statistic_dev_rtt)(struct sock *sk,long rtt) = NULL;
 EXPORT_SYMBOL(statistic_dev_rtt);
 #endif /* CONFIG_OPLUS_FEATURE_WIFI_SLA */
@@ -806,7 +804,6 @@ static void tcp_rtt_estimator(struct sock *sk, long mrtt_us)
 			tcp_bpf_rtt(sk);
 		}
 #if IS_ENABLED(CONFIG_OPLUS_FEATURE_WIFI_SLA)
-		//HuangJunyuan@CONNECTIVITY.WIFI.NETWORK.4502, 2018/04/10,
 		//Add code for appo sla function
 		if(TCP_ESTABLISHED == sk->sk_state && NULL != statistic_dev_rtt){
 				statistic_dev_rtt(sk,mrtt_us);
@@ -4855,7 +4852,6 @@ queue_and_out:
 		if (!RB_EMPTY_ROOT(&tp->out_of_order_queue)) {
 			tcp_ofo_queue(sk);
 			#ifdef OPLUS_BUG_STABILITY
-			//LiuZuofa@CONNECTIVITY.WIFI.Network, 2021/07/28,Add for set dsack to keep window size
 			tcp_dsack_set(sk, TCP_SKB_CB(skb)->seq, tp->rcv_nxt);
 			#endif /* OPLUS_BUG_STABILITY */
 			/* RFC5681. 4.2. SHOULD send immediate ACK, when
@@ -4880,7 +4876,6 @@ queue_and_out:
 	if (!after(TCP_SKB_CB(skb)->end_seq, tp->rcv_nxt)) {
 		tcp_rcv_spurious_retrans(sk, skb);
 		#if IS_ENABLED(CONFIG_OPLUS_FEATURE_NWPOWER)
-		//Asiga@PSW.NW.DATA.2120730, 2019/06/26, add for classify glink wakeup services and count IPA wakeup.
 		if (match_tcp_input_retrans != NULL) {
 			match_tcp_input_retrans(sk);
 		}
@@ -5940,7 +5935,6 @@ static int tcp_rcv_synsent_state_process(struct sock *sk, struct sk_buff *skb,
 	int saved_clamp = tp->rx_opt.mss_clamp;
 	bool fastopen_fail;
 #if IS_ENABLED(CONFIG_OPLUS_BUG_STABILITY)
-//ZhaoMengqing@CONNECTIVITY.WIFI.INTERNET.1394484, 2019/04/02,add for: When find TCP SYN-ACK Timestamp value error, just do not use Timestamp
         static int ts_error_count = 0;
         int ts_error_threshold = sysctl_tcp_ts_control[0];
 
@@ -5974,7 +5968,6 @@ static int tcp_rcv_synsent_state_process(struct sock *sk, struct sk_buff *skb,
 			NET_INC_STATS(sock_net(sk),
 					LINUX_MIB_PAWSACTIVEREJECTED);
 #if IS_ENABLED(CONFIG_OPLUS_BUG_STABILITY)
-//ZhaoMengqing@CONNECTIVITY.WiFi.Network.internet.1394484, 2019/04/02,add for: When find TCP SYN-ACK Timestamp value error, just do not use Timestamp
 //if count > threshold, disable TCP Timestamps
 			if (ts_error_threshold > 0) {
 				ts_error_count++;
@@ -5988,7 +5981,6 @@ static int tcp_rcv_synsent_state_process(struct sock *sk, struct sk_buff *skb,
 		}
 
 #if IS_ENABLED(CONFIG_OPLUS_BUG_STABILITY)
-//ZhaoMengqing@CONNECTIVITY.WiFi.Network.internet.1394484, 2019/04/02,add for: When find TCP SYN-ACK Timestamp value error, just do not use Timestamp
 //if other connection's Timestamp is correct, the network environment may be OK
                 if (tp->rx_opt.saw_tstamp && tp->rx_opt.rcv_tsecr &&
                     ts_error_threshold > 0 && ts_error_count > 0) {

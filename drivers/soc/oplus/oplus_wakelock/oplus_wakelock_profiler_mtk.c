@@ -18,7 +18,6 @@
 
 
 #if 0
-//Yongyao.Song@PSW.NW.PWR.1053636, 2017/08/01, add for modem wake up source
 #define MODEM_WAKEUP_SRC_NUM 10
 extern int data_wakeup_index;
 extern int modem_wakeup_src_count[MODEM_WAKEUP_SRC_NUM];
@@ -433,7 +432,6 @@ static ssize_t wakeup_stastisc_reset_store (
 static struct kobj_attribute ap_resume_reason_stastics = __ATTR_RO(ap_resume_reason_stastics);
 static struct kobj_attribute wakeup_stastisc_reset = __ATTR(wakeup_stastisc_reset, S_IWUSR|S_IRUGO, NULL, wakeup_stastisc_reset_store);
 #if 0
-//Yongyao.Song@PSW.NW.PWR.1053636, 2017/08/01, add for modem wake up source
 static ssize_t modem_resume_reason_stastics_show(struct kobject *kobj, struct kobj_attribute *attr,
         char *buf)
 {
@@ -717,7 +715,6 @@ static int ws_fb_notify_callback(struct notifier_block *nb, unsigned long val, v
 		blank = *(int *) (evdata->data);
 		switch (blank) {
 		case FB_BLANK_POWERDOWN: //screen off		
-		//wenxian.Zhen@PSW.BSP.POWER, 2019/01/15, removing for analysis power consumption,clear wakeup source stastatics action according to framework
 //			kernel_time_reset();
 //			active_max_reset();
 			break;

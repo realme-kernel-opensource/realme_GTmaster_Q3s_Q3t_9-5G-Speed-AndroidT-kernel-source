@@ -55,7 +55,6 @@ static phx_action_mapping errno_handle_action_mapping[] = {
 
 static int is_system_boot_completed = 0;
 static int is_phoenix_boot_completed = 0;
-// Kun.Hu@PSW.TECH.RELIABILTY.1890222, 2019/03/20, remove all fs opreration in kernel, fix extfs crash
 static int is_filesystem_prepared = 0;
 static phx_baseinfo *phx_curr_info = 0;
 
@@ -203,7 +202,6 @@ int phx_is_phoenix_boot_completed(void)
 
 EXPORT_SYMBOL(phx_is_phoenix_boot_completed);
 
-// Kun.Hu@PSW.TECH.RELIABILTY.1890222, 2019/03/20, remove all fs opreration in kernel, fix extfs crash
 int phx_is_filesystem_ready(void)
 {
     return is_filesystem_prepared;
@@ -224,7 +222,6 @@ void phx_set_boot_stage(const char *stage)
     if(!strcmp(stage, ANDROID_BOOT_COMPLETED))
         is_system_boot_completed = 1;
 
-    // Kun.Hu@PSW.TECH.RELIABILTY.1890222, 2019/03/20, remove all fs opreration in kernel, fix extfs crash
     if(!is_filesystem_prepared && !strcmp(stage, NATIVE_INIT_POST_FS))
     {
         is_filesystem_prepared = 1;

@@ -164,7 +164,6 @@ KBUILD_CFLAGS += -DOPLUS_DISALLOW_KEY_INTERFACES
 endif
 
 #ifdef OPLUS_FEATURE_POWERINFO_STANDBY
-#Yunqing.Zeng@BSP.Power.Basic, 2020/09/10, add for feature powerinfo standby.
 inner_mk_path := $(abspath $(lastword $(MAKEFILE_LIST)))
 inner_mk_dir := $(shell dirname $(inner_mk_path))
 inner_oplus_wakelock_dir1 := $(inner_mk_dir)/../vendor/oplus/kernel/wakelock_profiler

@@ -91,7 +91,6 @@ static int oplus_check_execveat_perm(struct file* filp)
 	retval = 0;
 	if (strncmp(absolute_path, "/data", 5))
 		goto out_free;
-	//ChenYong@Plt.Framework, 2018/11/30, add for vts test.
 	if (!strncmp(absolute_path, "/data/local/tmp", 15)) {
 		goto out_free;
 	}

@@ -543,7 +543,6 @@ int cnss_vreg_on_type(struct cnss_plat_data *plat_priv,
 int cnss_vreg_off_type(struct cnss_plat_data *plat_priv,
 		       enum cnss_vreg_type type);
 #ifdef OPLUS_BUG_STABILITY
-//WuGuotian@CONNECTIVITY.WIFI.HARDWARE.FTM.1776184, 2021/02/08,Add for boot wlan mode not use NV mac
 int cnss_l7e_vreg_on(struct cnss_plat_data *plat_priv,
 		     struct list_head *vreg_list);
 int cnss_l7e_vreg_off(struct cnss_plat_data *plat_priv,

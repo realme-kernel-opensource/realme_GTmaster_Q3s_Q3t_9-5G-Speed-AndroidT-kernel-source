@@ -200,7 +200,6 @@ void oplus_vooc_eint_unregister(struct oplus_vooc_chip *chip);
 void oplus_pps_eint_register(struct oplus_vooc_chip *chip);
 void oplus_pps_eint_unregister(struct oplus_vooc_chip *chip);
 
-// wenbin.liu@BSP.CHG.Vooc, 2016/10/20
 // Add for vooc batt 4.40
 void oplus_vooc_fw_type_dt(struct oplus_vooc_chip *chip);
 

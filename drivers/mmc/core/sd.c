@@ -31,7 +31,6 @@
 #include "../host/sdInfo/sdinfo.h"
 #endif
 
-//Chunyi.Mei@PSW.BSP.Storage.Sdcard, 2018-12-10, Add for SD Card device information
 struct menfinfo {
 	unsigned int manfid;
 	char *manfstring;
@@ -318,7 +317,6 @@ static int mmc_read_ssr(struct mmc_card *card)
 			es = UNSTUFF_BITS(card->raw_ssr, 408 - 384, 16);
 			et = UNSTUFF_BITS(card->raw_ssr, 402 - 384, 6);
 #ifdef CONFIG_EMMC_SDCARD_OPTIMIZE
-//Chunyi.Mei@PSW.BSP.Storage.Sdcard, 2018-12-10, Add for SD Card device information
 			card->ssr.speed_class = UNSTUFF_BITS(card->raw_ssr, 440 - 384, 8);
 #endif /* CONFIG_EMMC_SDCARD_OPTIMIZE */
 			if (es && et) {
@@ -769,7 +767,6 @@ out:
 }
 
 #ifdef CONFIG_EMMC_SDCARD_OPTIMIZE
-//Chunyi.Mei@PSW.BSP.Storage.Sdcard, 2018-12-10, Add for SD Card device information
 const char *manfinfo_string(struct mmc_card *card) {
 	int i = 0;
 	for (i = 0; i < MANFINFS_SIZE ; i++) {
@@ -852,7 +849,6 @@ static DEVICE_ATTR(dsr, S_IRUGO, mmc_dsr_show, NULL);
 
 static struct attribute *sd_std_attrs[] = {
 #ifdef CONFIG_EMMC_SDCARD_OPTIMIZE
-//Chunyi.Mei@PSW.BSP.Storage.Sdcard, 2018-12-10, Add for SD Card device information
 	&dev_attr_devinfo.attr,
 #endif /* CONFIG_EMMC_SDCARD_OPTIMIZE */
 	&dev_attr_cid.attr,
@@ -1493,7 +1489,6 @@ int mmc_attach_sd(struct mmc_host *host)
 	WARN_ON(!host->claimed);
 
 #ifdef CONFIG_EMMC_SDCARD_OPTIMIZE
-    //Lycan.Wang@Prd.BasicDrv, 2014-07-10 Add for retry 5 times when new sdcard init error
 	if (!host->detect_change_retry) {
         pr_err("%s have init error 5 times\n", __func__);
         return -ETIMEDOUT;
@@ -1570,8 +1565,6 @@ err:
 	mmc_detach_bus(host);
 
 #ifdef CONFIG_EMMC_SDCARD_OPTIMIZE
-    //Lycan.Wang@Prd.BasicDrv, 2014-07-10 Add for retry 5 times when new sdcard init error
-        if (err)//yh@bsp, 2016-03-17, this err could be caused by rescan disable, here reserve this aborted retry oppotunity.
     host->detect_change_retry--;
     pr_err("detect_change_retry = %d !!!,err = %d\n", host->detect_change_retry,err);
 #endif /* CONFIG_EMMC_SDCARD_OPTIMIZE */

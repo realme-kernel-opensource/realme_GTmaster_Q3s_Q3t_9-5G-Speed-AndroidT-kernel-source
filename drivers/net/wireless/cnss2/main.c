@@ -21,7 +21,6 @@
 #include "genl.h"
 
 #ifdef OPLUS_BUG_STABILITY
-//WuGuotian@CONNECTIVITY.WIFI.HARDWARE.FTM.1776184, 2021/02/08,Add for boot wlan mode not use NV mac
 #include <soc/oppo/boot_mode.h>
 #include <soc/oplus/system/oplus_project.h>
 #endif /* OPLUS_BUG_STABILITY */
@@ -1641,7 +1640,6 @@ static int cnss_cold_boot_cal_done_hdlr(struct cnss_plat_data *plat_priv,
 		cnss_pr_dbg("Calibration completed successfully\n");
 
 		#ifdef OPLUS_BUG_STABILITY
-		//WuGuotian@CONNECTIVITY.WIFI.HARDWARE.FTM.1776184, 2021/02/08,Add for boot wlan mode not use NV mac
 		if(get_Modem_Version() == 8){
 			cnss_pr_dbg("get_Modem_Version = %d\n", get_Modem_Version());
 			cnss_l7e_vreg_off(plat_priv, &plat_priv->vreg_list);   //pull low LDO7e

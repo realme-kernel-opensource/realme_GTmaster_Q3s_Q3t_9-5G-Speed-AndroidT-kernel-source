@@ -883,7 +883,6 @@ static int qti_flash_led_get_voltage_headroom(
 }
 
 #ifdef VENDOR_EDIT
-/*Jianchao.Shi@BSP.CHG.Basic, 2020/07/13, sjc Add for GKI*/
 int __attribute__((weak)) qti_battery_charger_get_prop(const char *name, enum battery_charger_prop prop_id, int *val)
 {
     return -EINVAL;

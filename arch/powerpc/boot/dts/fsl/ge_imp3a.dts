@@ -78,7 +78,6 @@
 			reg = <0x4 0x0 0x20>;
 		};
 
-		gef_pic: pic@4,20 {
 			#interrupt-cells = <1>;
 			interrupt-controller;
 			device_type = "interrupt-controller";

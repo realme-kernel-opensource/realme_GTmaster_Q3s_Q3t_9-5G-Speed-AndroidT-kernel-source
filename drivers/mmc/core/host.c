@@ -538,7 +538,6 @@ struct mmc_host *mmc_alloc_host(int extra, struct device *dev)
 	timer_setup(&host->retune_timer, mmc_retune_timer, 0);
 
 #ifdef CONFIG_EMMC_SDCARD_OPTIMIZE
-    //Lycan.Wang@Prd.BasicDrv, 2014-07-09 Add for retry 5 times when new sdcard init error
     host->detect_change_retry = 5;
 #endif /* CONFIG_EMMC_SDCARD_OPTIMIZE */
 	/*

@@ -92,7 +92,6 @@ struct msm_rpmh_profile_unit {
 struct rpmh_master_stats_prv_data {
 	struct kobj_attribute ka;
 	#if defined(OPLUS_FEATURE_POWERINFO_RPMH) && defined(CONFIG_OPLUS_POWERINFO_RPMH)
-	//Yunqing.Zeng@BSP.Power.Basic, 2020/09/08, add for feature rpmh info.
 	struct kobj_attribute oplus_ka;
 	#endif
 	struct kobject *kobj;
@@ -104,7 +103,6 @@ static void __iomem *rpmh_unit_base;
 static DEFINE_MUTEX(rpmh_stats_mutex);
 
 #if defined(OPLUS_FEATURE_POWERINFO_RPMH) && defined(CONFIG_OPLUS_POWERINFO_RPMH)
-//Yunqing.Zeng@BSP.Power.Basic, 2020/09/08, add for feature rpmh info.
 #define MSM_ARCH_TIMER_FREQ 19200000
 static inline u64 get_time_in_msec(u64 counter)
 {
@@ -191,7 +189,6 @@ static ssize_t msm_rpmh_master_stats_show(struct kobject *kobj,
 }
 
 #if defined(OPLUS_FEATURE_POWERINFO_RPMH) && defined(CONFIG_OPLUS_POWERINFO_RPMH)
-//Yunqing.Zeng@BSP.Power.Basic, 2020/09/08, add for feature rpmh info.
 int rpmh_modem_sleepinfo_buffer_clear(void)
 {
 	pr_info("%s: wr_offset restart\n", __func__);
@@ -327,7 +324,6 @@ static int msm_rpmh_master_stats_probe(struct platform_device *pdev)
 	}
 
 	#if defined(OPLUS_FEATURE_POWERINFO_RPMH) && defined(CONFIG_OPLUS_POWERINFO_RPMH)
-	//Yunqing.Zeng@BSP.Power.Basic, 2020/09/08, add for feature rpmh info.
 	sysfs_attr_init(&prvdata->oplus_ka.attr);
 	prvdata->oplus_ka.attr.mode = 0444;
 	prvdata->oplus_ka.attr.name = "oplus_rpmh_master_stats";
@@ -355,7 +351,6 @@ static int msm_rpmh_master_stats_probe(struct platform_device *pdev)
 fail_iomap:
 	sysfs_remove_file(prvdata->kobj, &prvdata->ka.attr);
 	#if defined(OPLUS_FEATURE_POWERINFO_RPMH) && defined(CONFIG_OPLUS_POWERINFO_RPMH)
-	//Yunqing.Zeng@BSP.Power.Basic, 2020/09/08, add for feature rpmh info.
 	sysfs_remove_file(prvdata->kobj, &prvdata->oplus_ka.attr);
 	#endif
 fail_sysfs:
@@ -372,7 +367,6 @@ static int msm_rpmh_master_stats_remove(struct platform_device *pdev)
 
 	sysfs_remove_file(prvdata->kobj, &prvdata->ka.attr);
 	#if defined(OPLUS_FEATURE_POWERINFO_RPMH) && defined(CONFIG_OPLUS_POWERINFO_RPMH)
-	//Yunqing.Zeng@BSP.Power.Basic, 2020/09/08, add for feature rpmh info.
 	sysfs_remove_file(prvdata->kobj, &prvdata->oplus_ka.attr);
 	#endif
 	kobject_put(prvdata->kobj);

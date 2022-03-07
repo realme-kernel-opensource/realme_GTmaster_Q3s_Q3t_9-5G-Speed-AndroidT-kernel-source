@@ -16,7 +16,6 @@
 #include <soc/oppo/device_info.h>
 #include <linux/proc_fs.h>
 
-//hank.liu@Tech.Storage.UFS, 2019-10-11 add for ufsplus status node in /proc/devinfo
 int ufsplus_tw_status = 0;
 EXPORT_SYMBOL(ufsplus_tw_status);
 int ufsplus_hpb_status = 1;
@@ -40,7 +39,6 @@ void ufs_gen_proc_devinfo_handle(void *data, struct ufs_hba *hba)
 	if (ret) {
 		printk("Fail register_device_proc ufs \n");
 	}
-	//hank.liu@Tech.Storage.UFS, 2019-10-11 add for ufsplus status node in /proc/devinfo
 	ret = register_device_proc_for_ufsplus("ufsplus_status", &ufsplus_hpb_status,&ufsplus_tw_status);
 	if (ret) {
 		printk("Fail register_device_proc_for_ufsplus\n");

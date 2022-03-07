@@ -90,37 +90,30 @@ obj-$(CONFIG_XDP_SOCKETS)	+= xdp/
 obj-$(CONFIG_NEURON)		+= neuron/
 
 #ifdef CONFIG_OPLUS_FEATURE_NWPOWER
-#Asiga@PSW.NW.DATA.2120730, 2019/06/26, add for classify glink wakeup services and count IPA wakeup.
 obj-$(CONFIG_OPLUS_FEATURE_NWPOWER) += oplus_nwpower/
 #endif /* CONFIG_OPLUS_FEATURE_NWPOWER */
 
 #ifdef OPLUS_FEATURE_WIFI_SLA
-#HuangJunyuan@CONNECTIVITY.WIFI.INTERNET.1197891, 2018/04/10,Add code for appo sla function
 obj-$(CONFIG_OPLUS_FEATURE_WIFI_SLA)                  	+= oppo_sla/
 #endif /* OPLUS_FEATURE_WIFI_SLA */
 
 #ifdef OPLUS_FEATURE_CONNECTIVITY_LUCKYMONEY
-#HuangYuan@CONNECTIVITY.WIFI.INTERNET, 2018/06/18, Add for WeChat lucky money recognition
 obj-$(CONFIG_OPLUS_FEATURE_WIFI_LUCKYMONEY) += oplus_connectivity_luckymoney/
 #endif /*OPLUS_FEATURE_CONNECTIVITY_LUCKYMONEY */
 
 #ifdef OPLUS_FEATURE_WIFI_DHCP
-#LiYi@CONNECTIVITY.WIFI.INTERNET, 2020/05/09, Add for Dhcp conflict
 obj-$(CONFIG_OPLUS_FEATURE_WIFI_DHCP) += oplus_connectivity_dhcp/
 #endif /* OPLUS_FEATURE_WIFI_DHCP */
 
 #ifdef OPLUS_FEATURE_DATA_EVAL
-#PengHao@NETWORK.DATA.8124, 2020/05/08, Add for network quality evaluation.
 obj-$(CONFIG_OPLUS_FEATURE_DATA_EVAL) += oplus_kernel2user/
 #endif /* OPLUS_FEATURE_DATA_EVAL */
 
 #ifdef OPLUS_FEATURE_APP_MONITOR
-#Xiong.Li@TECH.CN.WiFi.Network.2022890,2019/06/14,
 #Add for apps network monitors
 obj-$(CONFIG_OPLUS_FEATURE_APP_MONITOR) += oplus_apps_monitor/
 #endif /* OPLUS_FEATURE_APP_MONITOR */
 
 #ifdef OPLUS_FEATURE_WIFI_OPLUSWFD
-#XuFenghua@CONNECTIVITY.WIFI.BASIC.CAPCENTER.190453, 2020/7/6, Add for Oplus Wifi capability center
 obj-$(CONFIG_OPLUS_FEATURE_WIFI_OPLUSWFD) += oplus_wificapcenter/
 #endif /* OPLUS_FEATURE_WIFI_OPLUSWFD */

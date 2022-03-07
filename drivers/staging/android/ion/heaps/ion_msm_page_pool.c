@@ -32,7 +32,6 @@ static void ion_msm_page_pool_add(struct ion_msm_page_pool *pool,
 {
 	mutex_lock(&pool->mutex);
 #ifdef OPLUS_FEATURE_HEALTHINFO
-/*Huacai.Zhou@PSW.BSP.Kernel.MM, 2018-09-25, add ion cached account*/
 #ifdef CONFIG_OPLUS_HEALTHINFO
 	zone_page_state_add(1L << pool->order, page_zone(page),
 		NR_IONCACHE_PAGES);
@@ -128,7 +127,6 @@ static struct page *ion_msm_page_pool_remove(struct ion_msm_page_pool *pool,
 
 	atomic_dec(&pool->count);
 #ifdef OPLUS_FEATURE_HEALTHINFO
-/*Huacai.Zhou@PSW.BSP.Kernel.MM, 2018-09-25, add ion cached account*/
 #ifdef CONFIG_OPLUS_HEALTHINFO
 	zone_page_state_add(-(1L << pool->order), page_zone(page),
 			NR_IONCACHE_PAGES);

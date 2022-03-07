@@ -1293,7 +1293,6 @@ static int fuse_fill_super(struct super_block *sb, struct fs_context *fsc)
 	fuse_send_init(get_fuse_conn_super(sb));
 
 #ifdef CONFIG_OPLUS_FEATURE_ACM
-//Yuwei.Guan@BSP.Kernel.FS,2020/07/08, Add for acm
 	acm_fuse_init_cache();
 #endif
 
@@ -1365,7 +1364,6 @@ static void fuse_sb_destroy(struct super_block *sb)
 		if (fc->destroy)
 			fuse_send_destroy(fc);
 #ifdef CONFIG_OPLUS_FEATURE_ACM
-//Yuwei.Guan@BSP.Kernel.FS,2020/07/08, Add for acm
 		acm_fuse_free_cache();
 #endif
 		fuse_abort_conn(fc);

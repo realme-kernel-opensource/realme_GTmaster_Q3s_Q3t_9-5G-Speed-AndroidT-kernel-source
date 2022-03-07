@@ -15,7 +15,6 @@ enum{
         MSM_BOOT_MODE__CHARGE,
         MSM_BOOT_MODE__SILENCE,
         MSM_BOOT_MODE__SAU,
-        //xiaofan.yang@PSW.TECH.AgingTest, 2019/01/07,Add for factory agingtest
         MSM_BOOT_MODE__AGING = 998,
         MSM_BOOT_MODE__SAFE = 999,
 };

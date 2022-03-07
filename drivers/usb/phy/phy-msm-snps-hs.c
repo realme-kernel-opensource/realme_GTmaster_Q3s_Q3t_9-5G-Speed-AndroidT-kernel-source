@@ -135,7 +135,6 @@ struct msm_hsphy {
 };
 
 #ifdef OPLUS_FEATURE_CHG_BASIC
- /* Jianchao.Shi@BSP.CHG.Basic, 2020/09/28, sjc Add USB eye diagram debug */
 static int txvref_tune0 = 0;
 module_param(txvref_tune0, int, 0644);
 MODULE_PARM_DESC(txvref_tune0, "debug txvref_tune0");
@@ -444,7 +443,6 @@ static int msm_hsphy_init(struct usb_phy *uphy)
 #endif
 
 #ifdef OPLUS_FEATURE_CHG_BASIC
- /* Jianchao.Shi@BSP.CHG.Basic, 2020/09/28, sjc Add USB eye diagram debug */
 	if (pre_emphasis)
 		phy->pre_emphasis = pre_emphasis;
 #endif
@@ -458,7 +456,6 @@ static int msm_hsphy_init(struct usb_phy *uphy)
 	}
 
 #ifdef OPLUS_FEATURE_CHG_BASIC
- /* Jianchao.Shi@BSP.CHG.Basic, 2020/09/28, sjc Add USB eye diagram debug */
 	if (txvref_tune0)
 		phy->txvref_tune0 = txvref_tune0;
 #endif
@@ -471,7 +468,6 @@ static int msm_hsphy_init(struct usb_phy *uphy)
 	}
 
 #ifdef OPLUS_FEATURE_CHG_BASIC
- /* Jianchao.Shi@BSP.CHG.Basic, 2020/09/28, sjc Add USB eye diagram debug */
 	if (param_ovrd0)
 		phy->param_ovrd0 = param_ovrd0;
 #endif
@@ -482,7 +478,6 @@ static int msm_hsphy_init(struct usb_phy *uphy)
 	}
 
 #ifdef OPLUS_FEATURE_CHG_BASIC
- /* Jianchao.Shi@BSP.CHG.Basic, 2020/09/28, sjc Add USB eye diagram debug */
 	if (param_ovrd1)
 		phy->param_ovrd1 = param_ovrd1;
 #endif
@@ -493,7 +488,6 @@ static int msm_hsphy_init(struct usb_phy *uphy)
 	}
 
 #ifdef OPLUS_FEATURE_CHG_BASIC
- /* Jianchao.Shi@BSP.CHG.Basic, 2020/09/28, sjc Add USB eye diagram debug */
 	if (param_ovrd2)
 		phy->param_ovrd2 = param_ovrd2;
 #endif
@@ -504,7 +498,6 @@ static int msm_hsphy_init(struct usb_phy *uphy)
 	}
 
 #ifdef OPLUS_FEATURE_CHG_BASIC
- /* Jianchao.Shi@BSP.CHG.Basic, 2020/09/28, sjc Add USB eye diagram debug */
 	if (param_ovrd3)
 		phy->param_ovrd3 = param_ovrd3;
 #endif
@@ -514,7 +507,6 @@ static int msm_hsphy_init(struct usb_phy *uphy)
 			PARAM_OVRD_MASK, phy->param_ovrd3);
 	}
 #ifdef OPLUS_FEATURE_CHG_BASIC
- /* Jianchao.Shi@BSP.CHG.Basic, 2020/05/20, sjc Modify USB eye diagram */
 	dev_info(uphy->dev, "param ovrride x0:%02x x1:%02x x2:%02x x3:%02x\n",
 			phy->param_ovrd0, phy->param_ovrd1, phy->param_ovrd2, phy->param_ovrd3);
 	dev_info(uphy->dev, "x0:%08x x1:%08x x2:%08x x3:%08x\n",

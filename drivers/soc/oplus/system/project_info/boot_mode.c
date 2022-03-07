@@ -43,7 +43,6 @@ int __init  board_ftm_mode_init(void)
 			ftm_mode = MSM_BOOT_MODE__SILENCE;
 		} else if (strcmp(oppo_ftm_mode, "ftmsau") == 0) {
 			ftm_mode = MSM_BOOT_MODE__SAU;
-        //xiaofan.yang@PSW.TECH.AgingTest, 2019/01/07,Add for factory agingtest
         } else if (strcmp(oppo_ftm_mode, "ftmaging") == 0) {
             ftm_mode = MSM_BOOT_MODE__AGING;
 		} else if (strcmp(oppo_ftm_mode, "ftmsafe") == 0) {
@@ -72,7 +71,6 @@ int __init  board_ftm_mode_init(void)
 			ftm_mode = MSM_BOOT_MODE__SILENCE;
 		} else if (strncmp(substr, "ftmsau", 6) == 0) {
 			ftm_mode = MSM_BOOT_MODE__SAU;
-        //xiaofan.yang@PSW.TECH.AgingTest, 2019/01/07,Add for factory agingtest
         } else if (strncmp(substr, "ftmaging", 8) == 0) {
             ftm_mode = MSM_BOOT_MODE__AGING;
 		} else if (strncmp(substr, "ftmsafe", 7) == 0) {

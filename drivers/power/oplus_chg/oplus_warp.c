@@ -1079,7 +1079,6 @@ static void oplus_warp_fastchg_func(struct work_struct *work)
 			ret_info = 0x2;
 		}
 	} else if (data == WARP_NOTIFY_FAST_ABSENT) {
-	/* Zhangkun@BSP.CHG.Basic, 2020/08/17, Add for swarp detect and detach */
 		chip->detach_unexpectly = true;
 		chip->fastchg_started = false;
 		chip->fastchg_to_normal = false;
@@ -1195,7 +1194,6 @@ static void oplus_warp_fastchg_func(struct work_struct *work)
 	ret_info = 0x2;
 	} else if (data == WARP_NOTIFY_ALLOW_READING_IIC) {
 		if(chip->fastchg_allow) {
-	/* Zhangkun@BSP.CHG.Basic, 2020/08/17, Add for swarp detect and detach */
 			chip->detach_unexpectly = false;
 			chip->fastchg_ing = true;
 			chip->allow_reading = true;
@@ -2008,7 +2006,6 @@ void oplus_warp_init(struct oplus_warp_chip *chip)
 	int ret = 0;
 
 #ifndef OPLUS_CHG_OP_DEF
-	/* Zhangkun@BSP.CHG.Basic, 2020/08/17, Add for swarp detect and detach */
 	chip->detach_unexpectly = false;
 	chip->allow_reading = true;
 	chip->fastchg_started = false;
@@ -2676,7 +2673,6 @@ void oplus_warp_reset_temp_range(struct oplus_warp_chip *chip)
 }
 
 
-	/* Zhangkun@BSP.CHG.Basic, 2020/08/17, Add for swarp detect and detach */
 bool oplus_warp_get_detach_unexpectly(void)
 {
 	if (!g_warp_chip) {

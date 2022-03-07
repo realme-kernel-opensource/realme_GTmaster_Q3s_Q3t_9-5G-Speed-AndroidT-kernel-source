@@ -183,7 +183,6 @@ struct netns_ipv4 {
 	int sysctl_udp_rmem_min;
 
 #if IS_ENABLED(CONFIG_OPLUS_BUG_STABILITY)
-//PengHao@CONNECTIVITY.WIFI.INTERNET.1854960,2019/03/30,add for disable tcp random timestamp,some networks limit tcp syn before login
 	int sysctl_tcp_random_timestamp;
 #endif /* CONFIG_OPLUS_BUG_STABILITY */
 

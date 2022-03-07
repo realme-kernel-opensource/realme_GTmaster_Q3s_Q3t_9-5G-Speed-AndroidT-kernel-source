@@ -33,7 +33,6 @@ struct charger_manager;
 #include "../../../../kernel-4.14/drivers/power/supply/mediatek/charger/mtk_charger_intf.h"
 
 #ifdef OPLUS_FEATURE_CHG_BASIC
-/* Jianchao.Shi@BSP.CHG.Basic, 2018/11/09, sjc Add for charging */
 
 struct mtk_pmic {
 	struct charger_manager* oplus_info;

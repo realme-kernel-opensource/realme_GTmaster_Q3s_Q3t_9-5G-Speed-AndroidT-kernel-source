@@ -78,7 +78,6 @@
 #include "shuffle.h"
 
 #ifdef OPLUS_FEATURE_HEALTHINFO
-/* Huacai.Zhou@PSW.BSP.Kernel.MM, 2018-07-07, add alloc wait monitor support*/
 #if (defined CONFIG_OPLUS_MEM_MONITOR) && (defined CONFIG_OPLUS_HEALTHINFO)
 #include <linux/healthinfo/memory_monitor.h>
 #endif
@@ -4746,7 +4745,6 @@ __alloc_pages_slowpath(gfp_t gfp_mask, unsigned int order,
 	unsigned int cpuset_mems_cookie;
 	int reserve_flags;
 #ifdef OPLUS_FEATURE_HEALTHINFO
-/* Huacai.Zhou@PSW.BSP.Kernel.MM, 2018-07-07, add alloc wait monitor support*/
 #if (defined CONFIG_OPLUS_MEM_MONITOR) && (defined CONFIG_OPLUS_HEALTHINFO)
 	unsigned long alloc_start = jiffies;
 #endif
@@ -5011,7 +5009,6 @@ fail:
 			"page allocation failure: order:%u", order);
 got_pg:
 #ifdef OPLUS_FEATURE_HEALTHINFO
-/* Huacai.Zhou@PSW.BSP.Kernel.MM, 2018-07-07, add alloc wait monitor support*/
 #if (defined CONFIG_OPLUS_MEM_MONITOR) && (defined CONFIG_OPLUS_HEALTHINFO)
 	memory_alloc_monitor(gfp_mask, order, jiffies_to_msecs(jiffies - alloc_start));
 #endif

@@ -487,27 +487,19 @@ config HAVE_CBPF_JIT
 config HAVE_EBPF_JIT
 	bool
 
-# HuangJunyuan@CONNECTIVITY.WIFI.INTERNET.1197891, 2018/04/10,Add code for appo sla function
 source "net/oppo_sla/Kconfig"
 
-# HuangYuan@CONNECTIVITY.WIFI.INTERNET, 2018/06/18, Add for WeChat lucky money recognition
 source "net/oplus_connectivity_luckymoney/Kconfig"
 
-# PengHao@CONNECTIVITY.WIFI.INTERNET.1854960,2019/03/30,add for disable tcp random timestamp,some networks limit tcp syn before login
 config OPLUS_BUG_STABILITY
 	bool "add for disable tcp random timestamp,some networks limit tcp syn before login"
 
-# LiYi@CONNECTIVITY.WIFI.INTERNET, 2020/05/09, Add for Dhcp conflict
 source "net/oplus_connectivity_dhcp/Kconfig"
 
-# PengHao@NETWORK.DATA.EVAL, 2020/05/09, Add for data eval
 source "net/oplus_kernel2user/Kconfig"
 
-# LiuWei@NETWORK.POWER.510903, 2020/11/05, Add for app_monitor
 source "net/oplus_apps_monitor/Kconfig"
 
-#Asiga@NETWORK.POWER.26376, 2020/04/27, add for nwpower
 source "net/oplus_nwpower/Kconfig"
 
-#XuFenghua@CONNECTIVITY.WIFI.BASIC.CAPCENTER.190453, 2020/7/6, Add for Oplus Wifi capability center
 source "net/oplus_wificapcenter/Kconfig"

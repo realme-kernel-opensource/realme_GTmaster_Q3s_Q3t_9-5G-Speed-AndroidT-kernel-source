@@ -23,7 +23,6 @@ config ANDROID_VSOC
 	  a QEmu ivshmem device. If built as a module, it will be called vsoc.
 
 #ifdef OPLUS_FEATURE_HANS_FREEZE
-#Kun.Zhou@ANDROID.RESCONTROL, 2019/09/23, add for hans freeze manager
 config OPLUS_FEATURE_HANS
         bool "HANS kernel and HANS native communication channel"
         default n

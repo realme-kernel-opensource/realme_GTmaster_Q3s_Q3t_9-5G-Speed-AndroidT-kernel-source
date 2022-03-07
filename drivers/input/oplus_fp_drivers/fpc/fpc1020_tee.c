@@ -79,7 +79,6 @@ struct fpc1020_data {
         bool prepared;
 
 #ifdef OPLUS_FEATURE_FINGERPRINT
-        /*ziqing.guo@BasicDrv.Sensor, 2016/01/26, modify for enable/disable irq*/
         int irq_enabled;
 #endif
 
@@ -180,7 +179,6 @@ found:
 }
 
 #ifdef OPLUS_FEATURE_FINGERPRINT
-/* ziqing.guo@BasicDrv.Sensor, 2016/01/26, modify for enable/disable irq */
 static DEFINE_SPINLOCK(fpc1020_lock);
 
 static int fpc1020_enable_irq(struct fpc1020_data *fpc1020, bool enable)
@@ -263,7 +261,6 @@ static ssize_t regulator_enable_set(struct device *dev,
 }
 
 #ifdef OPLUS_FEATURE_FINGERPRINT
-/* ziqing.guo@BasicDrv.Sensor, 2016/01/26, modify for enable/disable irq */
 static ssize_t irq_enable_set(struct device *dev,
                 struct device_attribute *attribute, const char *buffer, size_t count)
 {
@@ -326,7 +323,6 @@ static DEVICE_ATTR(irq, S_IRUSR | S_IWUSR, irq_get, irq_ack);
 static DEVICE_ATTR(regulator_enable, S_IWUSR, NULL, regulator_enable_set);
 
 #ifdef OPLUS_FEATURE_FINGERPRINT
-/* ziqing.guo@BasicDrv.Sensor, 2016/01/26, modify for enable/disable irq */
 static DEVICE_ATTR(irq_enable, S_IWUSR, irq_enable_get, irq_enable_set);
 #endif
 
@@ -436,7 +432,6 @@ static int fpc1020_probe(struct platform_device *pdev)
         /*enable_irq_wake( gpio_to_irq( fpc1020->irq_gpio ) );*/
 
 #ifdef OPLUS_FEATURE_FINGERPRINT
-        /*ziqing.guo@BasicDrv.Sensor, 2016/01/26, modify for enable/disable irq*/
         disable_irq_nosync(gpio_to_irq(fpc1020->irq_gpio));
         fpc1020->irq_enabled = 0;
 #endif

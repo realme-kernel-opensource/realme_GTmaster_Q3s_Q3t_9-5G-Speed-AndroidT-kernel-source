@@ -1034,7 +1034,6 @@ static int st54spi_probe(struct spi_device *spi)
     unsigned long minor;
 
     //#ifdef OPLUS_FEATURE_CONNFCSOFT
-    //#Longzuming@Connectivity.NFC.BASIC, 2021/04/23, add for CON_NFC_SOFT
     CHECK_NFC_CHIP(ST54H);
     //#endif /* OPLUS_FEATURE_CONNFCSOFT */
 

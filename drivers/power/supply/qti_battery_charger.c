@@ -1985,7 +1985,6 @@ static int battery_chg_probe(struct platform_device *pdev)
 	int rc, i;
 
 #ifdef VENDOR_EDIT
-/* Jianchao.Shi@BSP.CHG.Basic, 2020/05/20, sjc Add for charging*/
 	pr_info("battery_chg_probe start...\n");
 #endif
 
@@ -2088,7 +2087,6 @@ static int battery_chg_probe(struct platform_device *pdev)
 	schedule_work(&bcdev->usb_type_work);
 
 #ifdef VENDOR_EDIT
-/* Jianchao.Shi@BSP.CHG.Basic, 2020/05/20, sjc Add for charging*/
 	pr_info("battery_chg_probe end...\n");
 #endif
 

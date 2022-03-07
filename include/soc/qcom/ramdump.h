@@ -20,7 +20,6 @@ struct ramdump_segment {
 };
 
 #if defined(OPLUS_FEATURE_MODEM_MINIDUMP) && defined(CONFIG_OPLUS_FEATURE_MODEM_MINIDUMP)
-//Wentiam.Mai@PSW.NW.EM.1248599, 2018/01/25
 //Add for customized subsystem ramdump to skip generate dump cause by SAU
 extern bool SKIP_GENERATE_RAMDUMP;
 #endif

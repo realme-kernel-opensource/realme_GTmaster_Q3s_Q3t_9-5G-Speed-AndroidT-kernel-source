@@ -6,7 +6,6 @@
 **
 ** Version: 1.0
 ** Date : 2020/07/22
-** Author: #Zhiming.Chen@ANDROID.DEBUG, 2020/08/06, Add for Sync App and Kernel time
 **
 ** ------------------ Revision History:------------------------
 ** <author>      <data>      <version >       <desc>

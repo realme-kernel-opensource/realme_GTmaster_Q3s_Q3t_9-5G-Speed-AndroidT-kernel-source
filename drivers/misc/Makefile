@@ -65,7 +65,6 @@ qseecom-mod-y			:= qseecom.o
 qseecom-mod-$(CONFIG_COMPAT)	+= compat_qseecom.o
 
 # ifdef VENDOR_EDIT
-#Ping.Zhang@PSW.BSP.TP, 2020/05/13, Add for support press sensor
 obj-$(CONFIG_CS_F61_NDT) 	+= cs_press/
 # endif /* VENDOR_EDIT */
 obj-$(CONFIG_PROFILER)			+= profiler.o
@@ -73,12 +72,10 @@ obj-$(CONFIG_WIGIG_SENSING_SPI)	+= wigig_sensing.o
 obj-$(CONFIG_HISI_HIKEY_USB)	+= hisi_hikey_usb.o
 
 #ifdef OPLUS_FEATURE_SIM_DETECT
-#Qicai.Gu@BSP.TP, 2020/08/10, modify for sim detect
 obj-$(CONFIG_SIM_DETECT)	+= sim_detect.o
 #endif
 
 #ifdef OPLUS_FEATURE_SIM_DETECT
-#ChenGuoyao@NETWORK.IMS, 2020/08/28, add for communicating with modem
 obj-$(CONFIG_OEM_QMI)	+= oem_qmi_client.o
 #endif
 

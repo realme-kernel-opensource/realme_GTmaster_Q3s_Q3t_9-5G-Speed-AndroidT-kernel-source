@@ -376,7 +376,6 @@ void kgsl_process_init_sysfs(struct kgsl_device *device,
 	}
 }
 #ifdef OPLUS_FEATURE_HEALTHINFO
-//Jiheng.Xie@TECH.BSP.Performance, 2019-07-22, add for  gpu total used account
 unsigned long gpu_total(void)
 {
 	return (unsigned long)atomic_long_read(&kgsl_driver.stats.page_alloc);

@@ -38,12 +38,10 @@
 
 #include "irq-gic-common.h"
 #if defined(OPLUS_FEATURE_POWERINFO_STANDBY) && defined(CONFIG_OPLUS_WAKELOCK_PROFILER)
-//Nanwei.Deng@BSP.Power.Basic, 2020/07/27, add for wakelock profiler
 #include "../../drivers/soc/oplus/oplus_wakelock/oplus_wakelock_profiler_qcom.h"
 #endif
 
 #if IS_ENABLED(CONFIG_OPLUS_FEATURE_NWPOWER)
-//Asiga@PSW.NW.DATA.2120730, 2019/06/26, add for classify glink wakeup services and count IPA wakeup.
 void (*match_modem_wakeup)(void) = NULL;
 EXPORT_SYMBOL(match_modem_wakeup);
 void (*match_wlan_wakeup)(void) = NULL;
@@ -629,7 +627,6 @@ static void gic_show_resume_irq(struct gic_chip_data *gic)
 	if (!msm_show_resume_irq_mask)
 		return;
 	#if defined(OPLUS_FEATURE_POWERINFO_STANDBY) && defined(CONFIG_OPLUS_WAKELOCK_PROFILER)
-	//Nanwei.Deng@BSP.Power.Basic, 2020/07/27, add for wakelock profiler
 	wakeup_reasons_statics(IRQ_NAME_WAKE_SUM, WS_CNT_SUM);
 	set_wlan_touch_flag();
 	#endif
@@ -664,7 +661,6 @@ static void gic_show_resume_irq(struct gic_chip_data *gic)
 		pr_warn("%s: irq:%d hwirq:%u triggered %s\n",
 			 __func__, irq, i, name);
 		#if IS_ENABLED(CONFIG_OPLUS_FEATURE_NWPOWER)
-		//Asiga@PSW.NW.DATA.2120730, 2019/06/26, add for classify glink wakeup services and count IPA wakeup.
 		if (strncmp(name, "ipcc_0", strlen("ipcc_0")) == 0) {
 			is_first_ipcc_msg = 1;
 			if (match_modem_wakeup != NULL) {
@@ -677,9 +673,7 @@ static void gic_show_resume_irq(struct gic_chip_data *gic)
 		}
 		#endif /* CONFIG_OPLUS_FEATURE_NWPOWER */
 		#if defined(OPLUS_FEATURE_POWERINFO_STANDBY) && defined(CONFIG_OPLUS_WAKELOCK_PROFILER)
-		//Nanwei.Deng@BSP.Power.Basic, 2020/07/27, add for wakelock profiler
 		#if IS_ENABLED(CONFIG_OPLUS_FEATURE_NWPOWER)
-		//Asiga@NETWORK.POWER.1897927, 2021/07/28, motify for solve IPA wakeup repeated statistics in qcom SM7325 platform.
 		do {
 			if (strncmp(name, "ipa", strlen("ipa")) != 0) {
 				wakeup_reasons_statics(name, WS_CNT_MODEM|WS_CNT_WLAN|WS_CNT_ADSP|WS_CNT_CDSP|WS_CNT_SLPI);

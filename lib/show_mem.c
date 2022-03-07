@@ -8,7 +8,6 @@
 #include <linux/mm.h>
 #include <linux/cma.h>
 #ifdef OPLUS_FEATURE_HEALTHINFO
-/* Huacai.Zhou@PSW.BSP.Kernel.MM, 2018-06-26, add ion total used account*/
 #ifdef CONFIG_OPLUS_HEALTHINFO
 #include <linux/healthinfo/ion.h>
 extern unsigned long gpu_total(void);
@@ -49,9 +48,7 @@ void show_mem(unsigned int filter, nodemask_t *nodemask)
 #endif
 #ifdef OPLUS_FEATURE_HEALTHINFO
 #ifdef CONFIG_OPLUS_HEALTHINFO
-/* Huacai.Zhou@PSW.BSP.Kernel.MM, 2018-06-26, add ion total used account*/
 	printk("%lu pages ion total used\n", ion_total()>> PAGE_SHIFT);
-//Jiheng.Xie@BSP.Kernel.MM, 2020-05-25, add gpu total used account
 	printk("%lu pages gpu total used\n", gpu_total()>> PAGE_SHIFT);
 #endif
 #endif /* OPLUS_FEATURE_HEALTHINFO */

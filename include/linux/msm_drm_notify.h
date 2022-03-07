@@ -13,14 +13,10 @@
 #define MSM_DRM_EARLY_EVENT_BLANK		0x02
 
 #ifdef OPLUS_FEATURE_TP_BASIC
-/*Qicai.Gu@BSP.TP, 2020/07/30, Add for GKI */
 #define MSM_DRM_EVENT_FOR_TOUCH 0x03
 #endif /* OPLUS_FEATURE_TP_BASIC */
 
 #ifdef VENDOR_EDIT
-/* Gou shengjun@PSW.MM.Display.LCD.Feature,2018-10-12
- * add for OnScreenFingerprint
-*/
 /* event for onscreenfingerprint scene */
 #define MSM_DRM_ONSCREENFINGERPRINT_EVENT	0x10
 #endif /* VENDOR_EDIT */

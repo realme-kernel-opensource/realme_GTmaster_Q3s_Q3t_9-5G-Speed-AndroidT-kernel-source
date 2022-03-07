@@ -6,7 +6,6 @@
 #define pr_fmt(fmt)	"BATTERY_CHG: %s: " fmt, __func__
 
 #ifdef OPLUS_FEATURE_CHG_BASIC
-/* Jianchao.Shi@BSP.CHG.Basic, 2020/05/20, sjc Add for charging */
 #include <linux/proc_fs.h>
 #include <linux/time.h>
 #include <linux/jiffies.h>
@@ -41,7 +40,6 @@
 
 #define OPLUS_HVDCP_DISABLE_INTERVAL round_jiffies_relative(msecs_to_jiffies(15000))
 #define OPLUS_HVDCP_DETECT_TO_DETACH_TIME 100
-/*yangmingjin@BSP.CHG.Basic. 2021/02/08, add for lcd  voltage ripple issue*/
 #define OEM_MISC_CTL_DATA_PAIR(cmd, enable) ((enable ? 0x3 : 0x1) << cmd)
 #define FLASH_SCREEN_CTRL_OTA		0X01
 #define FLASH_SCREEN_CTRL_DTSI	0X02
@@ -180,7 +178,6 @@ static const char * const qc_power_supply_usb_type_text[] = {
 };
 
 #ifdef OPLUS_FEATURE_CHG_BASIC
-/*lizhijie@BSP.CHG.Basic. 2020/11/19 lzj add for charger*/
 static bool is_ext_chg_ops(void)
 {
 	return (strncmp(oplus_chg_ops_name_get(), "plat-pmic", 64));
@@ -411,7 +408,6 @@ static void battery_chg_notify_enable(struct battery_chg_dev *bcdev)
 }
 
 #ifdef OPLUS_FEATURE_CHG_BASIC
-/* lizhijie@BSP.CHG.Basic, 2020/08/27, lzj Add for charging*/
 static void oplus_ccdetect_happened_to_adsp(void)
 {
 	int rc = 0;
@@ -900,7 +896,6 @@ static void oplus_adsp_voocphy_enable_check_func(struct work_struct *work)
 #endif /*OPLUS_FEATURE_CHG_BASIC*/
 
 #ifdef OPLUS_FEATURE_CHG_BASIC
-/* Jianchao.Shi@BSP.CHG.Basic, 2020/11/02, sjc Add for charging */
 static void oplus_wait_wired_charge_on_work(struct work_struct *work)
 {
 	printk(KERN_ERR "[OPLUS_CHG][%s]<~WPC~> wait_wired_charge_on\n", __func__);
@@ -1242,7 +1237,6 @@ static void battery_chg_update_usb_type_work(struct work_struct *work)
 		break;
 	default:
 #ifndef OPLUS_FEATURE_CHG_BASIC
-/*lizhijie@BSP.CHG.Basic. 2020/11/07 lzj add for charger*/
 		rc = read_property_id(bcdev, pst, USB_ONLINE);
 		if (rc < 0) {
 			pr_err("Failed to read USB_ONLINE rc=%d\n", rc);
@@ -1372,7 +1366,6 @@ static int battery_chg_callback(void *priv, void *data, size_t len)
 	if (hdr->opcode == BC_NOTIFY_IND)
 		handle_notification(bcdev, data, len);
 #ifdef OPLUS_FEATURE_CHG_BASIC
-/*lizhijie@BSP.CHG.Basic. 2020/11/19 lzj add for charger*/
 	else if (hdr->opcode == OEM_OPCODE_READ_BUFFER)
 		handle_oem_read_buffer(bcdev, data, len);
 #endif
@@ -1387,7 +1380,6 @@ static int wls_psy_get_prop(struct power_supply *psy,
 		union power_supply_propval *pval)
 {
 #ifndef OPLUS_FEATURE_CHG_BASIC
-/* Jianchao.Shi@BSP.CHG.Basic, 2021/05/29, sjc Modify for charging*/
 	struct battery_chg_dev *bcdev = power_supply_get_drvdata(psy);
 	struct psy_state *pst = &bcdev->psy_list[PSY_TYPE_WLS];
 	int prop_id, rc;
@@ -1483,7 +1475,6 @@ static enum power_supply_property wls_props[] = {
 	POWER_SUPPLY_PROP_CURRENT_NOW,
 	POWER_SUPPLY_PROP_CURRENT_MAX,
 #ifdef OPLUS_FEATURE_CHG_BASIC
-/* Jianchao.Shi@BSP.CHG.Basic,  2020/10/16, sjc Add for charging*/
 	POWER_SUPPLY_PROP_PRESENT,
 #endif
 };
@@ -1521,7 +1512,6 @@ static const char *get_usb_type_name(u32 usb_type)
 }
 
 #ifndef OPLUS_FEATURE_CHG_BASIC
-/*lizhijie@BSP.CHG.Basic. 2020/08/12 lzj delete for icl*/
 static int usb_psy_set_icl(struct battery_chg_dev *bcdev, u32 prop_id, int val)
 {
 	struct psy_state *pst = &bcdev->psy_list[PSY_TYPE_USB];
@@ -1563,7 +1553,6 @@ static int usb_psy_set_icl(struct battery_chg_dev *bcdev, u32 prop_id, int val)
 #endif /*OPLUS_FEATURE_CHG_BASIC*/
 
 #ifdef OPLUS_FEATURE_CHG_BASIC
-/* lizhijie@BSP.CHG.Basic, 2020/07/22, lzj Add for charging*/
 void oplus_adsp_voocphy_set_current_level(void)
 {
 	int rc = 0;
@@ -1623,7 +1612,6 @@ static int usb_psy_get_prop(struct power_supply *psy,
 	struct psy_state *pst = &bcdev->psy_list[PSY_TYPE_USB];
 	int prop_id, rc;
 #ifdef OPLUS_FEATURE_CHG_BASIC
-/* Jianchao.Shi@BSP.CHG.Basic, 2020/05/20, sjc Add for charging*/
 	static int online = 0;
 	static int adap_type = 0;
 #endif
@@ -1643,7 +1631,6 @@ static int usb_psy_get_prop(struct power_supply *psy,
 		pval->intval = DIV_ROUND_CLOSEST((int)pval->intval, 10);
 
 #ifdef OPLUS_FEATURE_CHG_BASIC
-/* Jianchao.Shi@BSP.CHG.Basic, 2020/05/20, sjc Add for charging*/
 	if (prop_id == USB_ONLINE) {
 		if (pval->intval == 2) {
 			pval->intval = 1;
@@ -1697,7 +1684,6 @@ static int usb_psy_get_prop(struct power_supply *psy,
 }
 
 #ifdef OPLUS_FEATURE_CHG_BASIC
-/* Jianchao.Shi@BSP.CHG.Basic, 2020/05/20, sjc Add for charging*/
 int oplus_get_typec_cc_orientation(void)
 {
 	struct battery_chg_dev *bcdev = NULL;
@@ -1801,7 +1787,6 @@ static int usb_psy_set_prop(struct power_supply *psy,
 	switch (prop) {
 	case POWER_SUPPLY_PROP_INPUT_CURRENT_LIMIT:
 #ifndef OPLUS_FEATURE_CHG_BASIC
-/*lizhijie@BSP.CHG.Basic. 2020/08/12 lzj delete for icl*/
 		rc = usb_psy_set_icl(bcdev, prop_id, pval->intval);
 #endif
 		break;
@@ -1918,7 +1903,6 @@ static int battery_psy_get_prop(struct power_supply *psy,
 	struct battery_chg_dev *bcdev = power_supply_get_drvdata(psy);
 	struct psy_state *pst = &bcdev->psy_list[PSY_TYPE_BATTERY];
 #ifndef OPLUS_FEATURE_CHG_BASIC
-/*lizhijie@BSP.CHG.Basic,  2020/11/11, lzj add for charging*/
 	int prop_id, rc;
 #else
 	union oplus_chg_mod_propval temp_val = {0, };
@@ -1928,12 +1912,10 @@ static int battery_psy_get_prop(struct power_supply *psy,
 #endif
 
 #ifdef OPLUS_FEATURE_CHG_BASIC
-/* Jianchao.Shi@BSP.CHG.Basic, 2020/10/16, sjc Add for charging*/
 	struct oplus_chg_chip *chip = g_oplus_chip;
 #endif
 
 #ifdef OPLUS_FEATURE_CHG_BASIC
-/*lizhijie@BSP.CHG.Basic,  2020/11/11, lzj add for charging*/
 	if (!chip) {
 		chg_err("chip is NULL\n");
 		return -EINVAL;
@@ -1943,7 +1925,6 @@ static int battery_psy_get_prop(struct power_supply *psy,
 	pval->intval = -ENODATA;
 
 #ifndef OPLUS_FEATURE_CHG_BASIC
-/* lizhijie@BSP.CHG.Basic, 2020/11/11, lzj detele for charging*/
 	/*
 	 * The prop id of TIME_TO_FULL_NOW and TIME_TO_FULL_AVG is same.
 	 * So, map the prop id of TIME_TO_FULL_AVG for TIME_TO_FULL_NOW.
@@ -2134,7 +2115,6 @@ static int battery_psy_set_prop(struct power_supply *psy,
 	case POWER_SUPPLY_PROP_CHARGE_CONTROL_LIMIT:
 		return battery_psy_set_charge_current(bcdev, pval->intval);
 #ifdef OPLUS_FEATURE_CHG_BASIC
-/*lizhijie@BSP.CHG.Basic. 2020/10/29 lzj add for charger*/
 	case POWER_SUPPLY_PROP_CURRENT_NOW:
 		if (g_oplus_chip && g_oplus_chip->smart_charging_screenoff) {
 			oplus_smart_charge_by_shell_temp(g_oplus_chip, pval->intval);
@@ -2157,7 +2137,6 @@ static int battery_psy_prop_is_writeable(struct power_supply *psy,
 	case POWER_SUPPLY_PROP_CHARGE_CONTROL_LIMIT:
 		return 1;
 #ifdef OPLUS_FEATURE_CHG_BASIC
-/*lizhijie@BSP.CHG.Basic. 2020/10/29 lzj add for charger*/
 	case POWER_SUPPLY_PROP_CURRENT_NOW:
 		if (g_oplus_chip && g_oplus_chip->smart_charging_screenoff) {
 			return 1;
@@ -2267,7 +2246,6 @@ static void battery_chg_subsys_up_work(struct work_struct *work)
 	}
 
 #ifndef OPLUS_FEATURE_CHG_BASIC
-/*lizhijie@BSP.CHG.Basic. 2020/08/12 lzj delete for icl*/
 	if (bcdev->usb_icl_ua) {
 		rc = usb_psy_set_icl(bcdev, USB_INPUT_CURR_LIMIT,
 				bcdev->usb_icl_ua);
@@ -2848,7 +2826,6 @@ static void battery_chg_add_debugfs(struct battery_chg_dev *bcdev) { }
 #endif
 
 #ifdef OPLUS_FEATURE_CHG_BASIC
-/* Jianchao.Shi@BSP.CHG.Basic, 2020/11/18, lzj Add for charger*/
 static int oplus_otg_boost_en_gpio_init(struct battery_chg_dev *bcdev)
 {
 	if (!bcdev) {
@@ -3177,7 +3154,6 @@ static int oplus_chg_2uart_pinctrl_init(struct oplus_chg_chip *chip)
 #endif
 
 #ifdef OPLUS_FEATURE_CHG_BASIC
-/* Jianchao.Shi@BSP.CHG.Basic, 2020/10/22, sjc Add for EVT wireless*/
 static bool oplus_vchg_trig_is_support(void)
 {
 #if 0
@@ -3354,7 +3330,6 @@ static void oplus_vchg_trig_irq_register(struct battery_chg_dev *bcdev)
 #endif /*OPLUS_FEATURE_CHG_BASIC*/
 
 #ifdef OPLUS_FEATURE_CHG_BASIC
-/* Jianchao.Shi@BSP.CHG.Basic, 2020/09/27, sjc Add for using gpio as shipmode stm6620 */
 static void smbchg_enter_shipmode_pmic(struct oplus_chg_chip *chip)
 {
 	int rc = 0;
@@ -3626,12 +3601,10 @@ static int battery_chg_parse_dt(struct battery_chg_dev *bcdev)
 	u32 prev, val;
 
 #ifdef OPLUS_FEATURE_CHG_BASIC
-/* lizhijie@BSP.CHG.Basic, 2020/09/08, lzj add for otg*/
 	bcdev->otg_online = false;
 	bcdev->pd_svooc = false;
 #endif
 #ifdef OPLUS_FEATURE_CHG_BASIC
-/* lizhijie@BSP.CHG.Basic. 2020/09/21, lzj add for charger*/
 	oplus_usbtemp_adc_gpio_dt(g_oplus_chip);
 #endif
 	of_property_read_string(node, "qcom,wireless-fw-name",
@@ -3732,7 +3705,6 @@ static int battery_chg_ship_mode(struct notifier_block *nb, unsigned long code,
  * battery charge ops *
  **********************************************************************/
 #ifdef OPLUS_FEATURE_CHG_BASIC
-/* Jianchao.Shi@BSP.CHG.Basic, 2020/05/20, sjc Add for charging*/
 static int oplus_usbtemp_iio_init(struct oplus_chg_chip *chip)
 {
 	int rc = 0;
@@ -6185,7 +6157,6 @@ static int oplus_input_current_limit_ctrl_by_vooc_write(int current_ma)
 #endif
 
 #ifdef OPLUS_FEATURE_CHG_BASIC
-/* Jianchao.Shi@BSP.CHG.Basic, 2020/05/20, sjc Add for charging*/
 struct oplus_chg_operations  battery_chg_ops = {
 	.get_charger_cycle = oplus_get_charger_cycle,
 	.dump_registers = dump_regs,
@@ -6251,7 +6222,6 @@ struct oplus_chg_operations  battery_chg_ops = {
  * battery gauge ops *
  **********************************************************************/
 #ifdef OPLUS_FEATURE_CHG_BASIC
-/* Jianchao.Shi@BSP.CHG.Basic, 2020/05/20, sjc Add for charging*/
 static int fg_bq27541_get_battery_mvolts(void)
 {
 	int rc = 0;
@@ -6630,7 +6600,6 @@ static struct oplus_gauge_operations battery_gauge_ops = {
 };
 #endif /* OPLUS_FEATURE_CHG_BASIC */
 
-/*Nick.Hu@BSP.CHG.Basic, 2021/05/24, Add for wireless charge*/
 #ifdef OPLUS_FEATURE_CHG_BASIC
 static int smbchg_wls_input_enable(struct oplus_chg_ic_dev *ic_dev, bool en)
 {
@@ -6946,7 +6915,6 @@ static struct oplus_chg_ic_buck_ops pm8350b_dev_ops = {
 #endif /* OPLUS_FEATURE_CHG_BASIC */
 
 #ifdef OPLUS_FEATURE_CHG_BASIC
-/*lizhijie@BSP.CHG.Basic. 2020/12/23 lzj add for chg*/
 void oplus_set_flash_screen_ctrl_by_pcb_version(struct oplus_chg_chip *chip)
 {
 	if (!chip)
@@ -6960,7 +6928,6 @@ void oplus_set_flash_screen_ctrl_by_pcb_version(struct oplus_chg_chip *chip)
 #endif
 
 #ifdef OPLUS_FEATURE_CHG_BASIC
-/*lizhijie@BSP.CHG.Basic. 2020/12/23 lzj add for chg*/
 
 static enum oplus_chg_mod_property oplus_chg_usb_props[] = {
 	OPLUS_CHG_PROP_ONLINE,
@@ -7211,7 +7178,6 @@ static const struct dev_pm_ops battery_chg_pm_ops = {
 static int battery_chg_probe(struct platform_device *pdev)
 {
 #ifdef OPLUS_FEATURE_CHG_BASIC
-/* Jianchao.Shi@BSP.CHG.Basic, 2020/05/20, sjc Add for charging*/
 	struct oplus_gauge_chip *gauge_chip;
 	struct oplus_chg_chip *oplus_chip;
 	enum oplus_chg_ic_type ic_type;
@@ -7223,7 +7189,6 @@ static int battery_chg_probe(struct platform_device *pdev)
 	int rc, i;
 
 #ifdef OPLUS_FEATURE_CHG_BASIC
-/* Jianchao.Shi@BSP.CHG.Basic, 2020/05/20, sjc Add for charging*/
 	pr_info("battery_chg_probe start...\n");
 	gauge_chip = devm_kzalloc(&pdev->dev, sizeof(*gauge_chip), GFP_KERNEL);
 	if (!gauge_chip) {
@@ -7261,7 +7226,6 @@ static int battery_chg_probe(struct platform_device *pdev)
 		return -ENOMEM;
 
 #ifdef OPLUS_FEATURE_CHG_BASIC
-/* Jianchao.Shi@BSP.CHG.Basic, 2020/05/20, sjc Add for charging*/
 	oplus_chip->pmic_spmi.bcdev_chip = bcdev;
 	oplus_chip->usbtemp_wq_init_finished = false;
 	bcdev->hvdcp_detect_time = 0;
@@ -7299,7 +7263,6 @@ static int battery_chg_probe(struct platform_device *pdev)
 
 	mutex_init(&bcdev->rw_lock);
 #ifdef OPLUS_FEATURE_CHG_BASIC
-/* Jianchao.Shi@BSP.CHG.Basic, 2020/09/27, sjc Add for charging */
 	mutex_init(&bcdev->oplus_custom_gpio.pinctrl_mutex);
 	mutex_init(&bcdev->read_buffer_lock);
 	init_completion(&bcdev->oem_read_ack);
@@ -7310,7 +7273,6 @@ static int battery_chg_probe(struct platform_device *pdev)
 	INIT_WORK(&bcdev->subsys_up_work, battery_chg_subsys_up_work);
 	INIT_WORK(&bcdev->usb_type_work, battery_chg_update_usb_type_work);
 #ifdef OPLUS_FEATURE_CHG_BASIC
-/* lizhijie@BSP.CHG.Basic, 2020/08/27, lzj Add for charging*/
 	INIT_DELAYED_WORK(&bcdev->adsp_voocphy_status_work, oplus_adsp_voocphy_status_func);
 	INIT_DELAYED_WORK(&bcdev->otg_init_work, oplus_otg_init_status_func);
 	INIT_DELAYED_WORK(&bcdev->ccdetect_work, oplus_ccdetect_work);
@@ -7327,7 +7289,6 @@ static int battery_chg_probe(struct platform_device *pdev)
 	INIT_DELAYED_WORK(&bcdev->adsp_voocphy_err_work, oplus_adsp_voocphy_err_work);
 #endif
 #ifdef OPLUS_FEATURE_CHG_BASIC
-/* Jianchao.Shi@BSP.CHG.Basic, 2020/11/02, sjc Add for charging */
 	INIT_DELAYED_WORK(&bcdev->vchg_trig_work, oplus_vchg_trig_work);
 	INIT_DELAYED_WORK(&bcdev->wait_wired_charge_on, oplus_wait_wired_charge_on_work);
 	INIT_DELAYED_WORK(&bcdev->wait_wired_charge_off, oplus_wait_wired_charge_off_work);
@@ -7378,7 +7339,6 @@ static int battery_chg_probe(struct platform_device *pdev)
 	}
 
 #ifdef OPLUS_FEATURE_CHG_BASIC
-/* Jianchao.Shi@BSP.CHG.Basic, 2020/05/20, sjc Add for charging*/
 	oplus_usbtemp_iio_init(oplus_chip);
 	oplus_chg_parse_custom_dt(oplus_chip);
 	oplus_chg_parse_charger_dt(oplus_chip);
@@ -7411,14 +7371,12 @@ static int battery_chg_probe(struct platform_device *pdev)
 	device_init_wakeup(bcdev->dev, true);
 	schedule_work(&bcdev->usb_type_work);
 #ifdef OPLUS_FEATURE_CHG_BASIC
-/* Jianchao.Shi@BSP.CHG.Basic, 2018/01/30, sjc Add for using gpio as CC detect */
 	if (oplus_ccdetect_check_is_gpio(oplus_chip) == true) {
 		oplus_ccdetect_irq_register(oplus_chip);
 	}
 #endif
 
 #ifdef OPLUS_FEATURE_CHG_BASIC
-/* Jianchao.Shi@BSP.CHG.Basic, 2020/05/20, sjc Add for charging*/
 	oplus_adsp_voocphy_set_match_temp();
 	oplus_dwc3_config_usbphy_pfunc(&oplus_is_pd_svooc);
 	oplus_adsp_voocphy_enable(true);
@@ -7429,7 +7387,6 @@ static int battery_chg_probe(struct platform_device *pdev)
 	pr_info("battery_chg_probe end...\n");
 #endif
 
-/*Nick.Hu@BSP.CHG.Basic, 2021/05/24, Add for wireless charge*/
 #ifdef OPLUS_FEATURE_CHG_BASIC
 	rc = oplus_chg_usb_init_mod(bcdev);
 	if (rc < 0)
@@ -7460,7 +7417,6 @@ static int battery_chg_probe(struct platform_device *pdev)
 #endif
 	return 0;
 
-/*Nick.Hu@BSP.CHG.Basic, 2021/05/24, Add for wireless charge*/
 #ifdef OPLUS_FEATURE_CHG_BASIC
 ic_reg_err:
 	oplus_chg_mod_unregister(bcdev->usb_ocm);
@@ -7479,14 +7435,12 @@ static int battery_chg_remove(struct platform_device *pdev)
 	int rc;
 
 #ifdef OPLUS_FEATURE_CHG_BASIC
-/*Nick.Hu@BSP.CHG.Basic, 2021/05/24, Add for wireless charge*/
 	probe_done = true;
 	devm_oplus_chg_ic_unregister(bcdev->dev, bcdev->ic_dev);
 	oplus_chg_mod_unregister(bcdev->usb_ocm);
 #endif
 	device_init_wakeup(bcdev->dev, false);
 #ifdef OPLUS_FEATURE_CHG_BASIC
-/* Jianchao.Shi@BSP.CHG.Basic, 2020/05/20, sjc Add for charging*/
 	oplus_chg_configfs_exit();
 #endif
 	debugfs_remove_recursive(bcdev->debugfs_dir);
@@ -7501,7 +7455,6 @@ static int battery_chg_remove(struct platform_device *pdev)
 }
 
 #ifdef OPLUS_FEATURE_CHG_BASIC
-/* Jianchao.Shi@BSP.CHG.Basic, 2020/05/20, sjc Add for charging*/
 
 static void battery_chg_shutdown(struct platform_device *pdev)
 {
@@ -7546,13 +7499,11 @@ static struct platform_driver battery_chg_driver = {
 	.probe = battery_chg_probe,
 	.remove = battery_chg_remove,
 #ifdef OPLUS_FEATURE_CHG_BASIC
-/* Jianchao.Shi@BSP.CHG.Basic, 2020/05/20, sjc Add for charging*/
 	.shutdown = battery_chg_shutdown,
 #endif
 };
 
 #ifdef OPLUS_FEATURE_CHG_BASIC
-/* Jianchao.Shi@BSP.CHG.Basic, 2020/05/20, sjc Modify for charging*/
 static int __init sm8350_chg_init(void)
 {
 	int ret;

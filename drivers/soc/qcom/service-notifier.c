@@ -273,7 +273,6 @@ static int send_notif_listener_msg_req(struct service_notif_info *service_notif,
 	}
 
 #ifdef OPLUS_BUG_STABILITY
-	//Yongzhi.Zhang@MULTIMEDIA.AUDIODRIVER.Platform.1068440, 2021/02/23, modify for qmi timeout issue for audio_pd
 	if (service_notif && (!strcmp(service_notif->service_path, "msm/adsp/audio_pd"))) {
 		pr_info("change timeout to %d ms for %s\n",
 			(SERVER_TIMEOUT+2500), service_notif->service_path);

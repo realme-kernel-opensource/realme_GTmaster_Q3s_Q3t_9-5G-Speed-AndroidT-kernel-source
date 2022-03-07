@@ -25,7 +25,6 @@
 extern struct proc_dir_entry *oppo_info;
 ProjectInfoCDTType_oldcdt *format = NULL;
 
-/*Bin.Li@BSP.Bootloader.Bootflows, 2019/05/09, Add for diff manifest*/
 static const char* nfc_feature = "nfc_feature";
 static const char* feature_src = "/vendor/etc/nfc/com.oppo.nfc_feature.xml";
 
@@ -38,7 +37,6 @@ static ProjectInfoCDTType_oldcdt projectInfo = {
 	.isConfidential         = 1,
 };
 
-/*Bin.Li@BSP.Bootloader.Bootflows, 2019/05/09, Add for diff manifest*/
 static int __init update_feature(void)
 {
 	mm_segment_t fs;
@@ -137,7 +135,6 @@ unsigned int get_project_oldcdt(void)
 		return 0;
 }
 
-/* xiang.fei@PSW.MM.AudioDriver.Machine, 2018/05/28, Add for kernel driver */
 EXPORT_SYMBOL(get_project_oldcdt);
 
 unsigned int is_project_oldcdt(int project )

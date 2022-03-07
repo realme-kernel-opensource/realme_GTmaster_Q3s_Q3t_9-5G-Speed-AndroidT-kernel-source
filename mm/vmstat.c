@@ -1142,7 +1142,6 @@ const char * const vmstat_text[] = {
 #endif
 	"nr_free_cma",
 #ifdef OPLUS_FEATURE_HEALTHINFO
-/*Huacai.Zhou@PSW.BSP.Kernel.MM, 2018-09-25, add ion cached account*/
 #ifdef CONFIG_OPLUS_HEALTHINFO
         "nr_ioncache_pages",
 #endif

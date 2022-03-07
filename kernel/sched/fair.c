@@ -35,7 +35,6 @@
 #endif /* defined(OPLUS_FEATURE_SCHED_ASSIST) && defined(CONFIG_OPLUS_FEATURE_SCHED_ASSIST) */
 
 #ifdef OPLUS_FEATURE_HEALTHINFO
-// wenbin.liu@PSW.BSP.MM, 2018/05/02
 // Add for get cpu load
 #ifdef CONFIG_OPLUS_HEALTHINFO
 #include <soc/oplus/healthinfo.h>
@@ -966,7 +965,6 @@ update_stats_wait_end(struct cfs_rq *cfs_rq, struct sched_entity *se)
 		}
 		trace_sched_stat_wait(p, delta);
 #ifdef OPLUS_FEATURE_HEALTHINFO
-// wenbin.liu@PSW.BSP.MM, 2018/05/26
 // Add for get sched latency stat
 #ifdef CONFIG_OPLUS_HEALTHINFO
 		ohm_schedstats_record(OHM_SCHED_SCHEDLATENCY, p, (delta >> 20));
@@ -1042,14 +1040,12 @@ update_stats_enqueue_sleeper(struct cfs_rq *cfs_rq, struct sched_entity *se)
 				trace_sched_stat_iowait(tsk, delta);
 #ifdef OPLUS_FEATURE_HEALTHINFO
 #ifdef CONFIG_OPLUS_HEALTHINFO
-// wenbin.liu@PSW.BSP.MM, 2018/05/09
 // Add for get iowait
 				ohm_schedstats_record(OHM_SCHED_IOWAIT, tsk, (delta >> 20));
 #endif
 #endif /* OPLUS_FEATURE_HEALTHINFO */
 			}
 #ifdef OPLUS_FEATURE_HEALTHINFO
-// Jiheng,Xie@TECH.BSP.Performance, 2019/05/18,add for get dstate statictics
 #ifdef CONFIG_OPLUS_HEALTHINFO
 			if(!tsk->in_iowait) {
 				 ohm_schedstats_record(OHM_SCHED_DSTATE, tsk, (delta >> 20));

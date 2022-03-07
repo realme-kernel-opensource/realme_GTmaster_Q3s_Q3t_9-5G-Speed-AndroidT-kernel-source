@@ -111,7 +111,6 @@ obj-$(CONFIG_OPLUS_FEATURE_ZRAM_OPT) += zram_opt/
 obj-$(CONFIG_PROCESS_RECLAIM_ENHANCE) += process_reclaim/
 obj-$(CONFIG_VIRTUAL_RESERVE_MEMORY) += reserve_area.o
 #ifdef OPLUS_FEATURE_HEALTHINFO
-#/* Jiheng.Xie@TECH.BSP.Kernel, 2019-12-11, add for slub debug*/
 obj-$(CONFIG_OPLUS_HEALTHINFO) += healthinfo/
 #endif /* OPLUS_FEATURE_HEALTHINFO */
 obj-$(CONFIG_DUMP_TASKS_MEM) += task_mem/

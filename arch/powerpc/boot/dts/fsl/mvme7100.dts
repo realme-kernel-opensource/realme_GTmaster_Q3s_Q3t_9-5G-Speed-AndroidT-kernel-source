@@ -107,7 +107,6 @@
 			interrupts = <11 1 0 0>;
 		};
 
-		serial@5,2000 {
 			device_type = "serial";
 			compatible = "ns16550";
 			reg = <5 0x2000 0x100>;

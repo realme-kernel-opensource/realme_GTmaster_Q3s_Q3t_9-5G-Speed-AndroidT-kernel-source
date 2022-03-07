@@ -29,6 +29,5 @@ obj-y			+= test/
 ccflags-$(CONFIG_DEBUG_DRIVER) := -DDEBUG
 
 #ifdef OPLUS_FEATURE_TP_BASIC
-#Qicai.Gu@Bsp.Group.Tp,2020-07-24,Add interface to get proper fw for android R gki
 obj-$(CONFIG_OPLUS_FW_UPDATE)	+=  kernelFwUpdate/
 #endif /*OPLUS_FEATURE_TP_BASIC*/

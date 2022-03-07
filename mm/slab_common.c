@@ -1453,8 +1453,6 @@ static void print_slabinfo_header(struct seq_file *m)
 	seq_puts(m, " : cpustat <allochit> <allocmiss> <freehit> <freemiss>");
 #endif
 #if defined OPLUS_FEATURE_HEALTHINFO && defined CONFIG_OPLUS_HEALTHINFO
-/* Kui.Zhang@PSW.BSP.Kernel.Performance, 2018-11-12, if SLAB_STAT_DEBUG is
- * is enabled, /proc/slabinfo is created for getting more slab details. */
 	seq_puts(m, " <reclaim>");
 
 #endif /* OPLUS_FEATURE_HEALTHINFO */
@@ -1514,8 +1512,6 @@ static void cache_show(struct kmem_cache *s, struct seq_file *m)
 	seq_printf(m, " : tunables %4u %4u %4u",
 		   sinfo.limit, sinfo.batchcount, sinfo.shared);
 #if (!defined OPLUS_FEATURE_HEALTHINFO) || (!defined CONFIG_OPLUS_HEALTHINFO)
-	/* Kui.Zhang@PSW.BSP.Kernel.Performance, 2018-11-12, if SLAB_STAT_DEBUG is
-	 * is enabled, /proc/slabinfo is created for getting more slab details. */
 	seq_printf(m, " : slabdata %6lu %6lu %6lu",
 		   sinfo.active_slabs, sinfo.num_slabs, sinfo.shared_avail);
 #else /* OPLUS_FEATURE_HEALTHINFO */

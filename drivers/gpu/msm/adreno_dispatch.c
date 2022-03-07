@@ -2169,7 +2169,6 @@ static int dispatcher_do_fault(struct adreno_device *adreno_dev)
 			ADRENO_REG_CP_RB_BASE_HI, &base);
 
 	#if IS_ENABLED(CONFIG_DRM_MSM)
-	// MeiDongting@MULTIMEIDA.FEATURE.GPU.MINIDUMP, 2020/04/06, add for oplus gpu mini dump
 	device->snapshotfault = fault;
 	#endif
 

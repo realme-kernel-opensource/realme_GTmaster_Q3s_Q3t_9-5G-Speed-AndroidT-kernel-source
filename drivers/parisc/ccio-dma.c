@@ -15,7 +15,6 @@
 **  the I/O MMU - basically what x86 does.
 **
 **  Philipp Rumpf has a "Real Mode" driver for PCX-W machines at:
-**      CVSROOT=:pserver:anonymous@198.186.203.37:/cvsroot/linux-parisc
 **      cvs -z3 co linux/arch/parisc/kernel/dma-rm.c
 **
 **  I've rewritten his code to work under TPG's tree. See ccio-rm-dma.c.

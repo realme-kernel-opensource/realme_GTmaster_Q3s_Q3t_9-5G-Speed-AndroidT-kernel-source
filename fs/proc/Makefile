@@ -37,6 +37,5 @@ proc-$(CONFIG_PROC_PAGE_MONITOR)	+= page.o
 obj-$(CONFIG_OPLUS_CTP)	+= task_cpustats/
 #endif /* OPLUS_FEATURE_TASK_CPUSTATS */
 #ifdef OPLUS_FEATURE_HEALTHINFO
-#Huacai.Zhou@PSW.BSP.kernel.Peformance, 2018/06/18, add foreground process opt support
 obj-$(CONFIG_OPLUS_HEALTHINFO)	+= healthinfo/
 #endif /* OPLUS_FEATURE_HEALTHINFO */

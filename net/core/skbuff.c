@@ -88,7 +88,6 @@ int sysctl_max_skb_frags __read_mostly = MAX_SKB_FRAGS;
 EXPORT_SYMBOL(sysctl_max_skb_frags);
 
 #if IS_ENABLED(CONFIG_OPLUS_FEATURE_WIFI_LIMMITBGSPEED)
-//HuangJunyuan@CONNECTIVITY.WIFI.INTERNET, 2018/06/26, Add for limit speed function
 static struct kmem_cache *skbuff_cb_store_cache __read_mostly;
 
 /* Control buffer save/restore for IMQ devices */
@@ -708,7 +707,6 @@ void skb_release_head_state(struct sk_buff *skb)
 		skb->destructor(skb);
 	}
 #if IS_ENABLED(CONFIG_OPLUS_FEATURE_WIFI_LIMMITBGSPEED)
-//HuangJunyuan@CONNECTIVITY.WIFI.INTERNET, 2018/06/26, Add for limit speed function
 	/*
 	 * This should not happen. When it does, avoid memleak by restoring
 	 * the chain of cb-backups.
@@ -1018,7 +1016,6 @@ static void __copy_skb_header(struct sk_buff *new, const struct sk_buff *old)
 	__nf_copy(new, old, false);
 
 #if IS_ENABLED(CONFIG_OPLUS_FEATURE_WIFI_LIMMITBGSPEED)
-//HuangJunyuan@CONNECTIVITY.WIFI.INTERNET, 2018/06/26, Add for limit speed function
 	new->cb_next = NULL;
 	/*skb_copy_stored_cb(new, old);*/
 #endif /* CONFIG_OPLUS_FEATURE_WIFI_LIMMITBGSPEED */
@@ -4355,7 +4352,6 @@ void __init skb_init(void)
 						NULL);
 	skb_extensions_init();
 #if IS_ENABLED(CONFIG_OPLUS_FEATURE_WIFI_LIMMITBGSPEED)
-//HuangJunyuan@CONNECTIVITY.WIFI.INTERNET, 2018/06/26, Add for limit speed function
 	skbuff_cb_store_cache = kmem_cache_create("skbuff_cb_store_cache",
 						  sizeof(struct skb_cb_table),
 						  0,

@@ -673,7 +673,6 @@ err:
 }
 
 #if IS_ENABLED(CONFIG_DRM_MSM)
-// MeiDongting@MULTIMEIDA.FEATURE.GPU.MINIDUMP, 2020/04/06, add for oplus gpu mini dump
 
 /************************************************
 adreno.h
@@ -910,7 +909,6 @@ void kgsl_device_snapshot(struct kgsl_device *device,
 			gmu_fault ? "GMU" : "GPU", &pa, snapshot->size);
 
 	#if IS_ENABLED(CONFIG_DRM_MSM)
-	// MeiDongting@MULTIMEIDA.FEATURE.GPU.MINIDUMP, 2020/04/06, add for oplus gpu mini dump
 	if(context!= NULL){
 		dev_err(device->dev, "falut=%s, pid=%d, processname=%s\n",
 			kgsl_get_reason(device->snapshotfault, gmu_fault), context->proc_priv->pid, context->proc_priv->comm);
@@ -1001,7 +999,6 @@ static int snapshot_release(struct kgsl_device *device,
 }
 
 #if IS_ENABLED(CONFIG_DRM_MSM)
-// MeiDongting@MULTIMEIDA.FEATURE.GPU.MINIDUMP, 2020/04/06, add for oplus gpu mini dump
 static bool snapshot_ontrol_on = 0;
 
 static ssize_t snapshot_control_show(struct kgsl_device *device, char *buf)
@@ -1048,7 +1045,6 @@ static ssize_t snapshot_show(struct file *filep, struct kobject *kobj,
 	int ret = 0;
 
 	#if IS_ENABLED(CONFIG_DRM_MSM)
-	// MeiDongting@MULTIMEIDA.FEATURE.GPU.MINIDUMP, 2020/04/06, add for oppo gpu mini dump
 	if (snapshot_ontrol_on) {
 		dev_err(device->dev, "snapshot: snapshot_ontrol_on is true, skip snapshot\n");
 		return 0;
@@ -1274,7 +1270,6 @@ static SNAPSHOT_ATTR(skip_ib_capture, 0644, skip_ib_capture_show,
 		skip_ib_capture_store);
 
 #if IS_ENABLED(CONFIG_DRM_MSM)
-// MeiDongting@MULTIMEIDA.FEATURE.GPU.MINIDUMP, 2020/04/06, add for oppo gpu mini dump
 static SNAPSHOT_ATTR(snapshot_hashid, 0666, snapshot_hashid_show, NULL);
 static SNAPSHOT_ATTR(snapshot_control, 0666, snapshot_control_show, snapshot_control_store);
 #endif
@@ -1375,7 +1370,6 @@ void kgsl_device_snapshot_probe(struct kgsl_device *device, u32 size)
 	device->panic_nb.priority = 1;
 
 	#if IS_ENABLED(CONFIG_DRM_MSM)
-	// MeiDongting@MULTIMEIDA.FEATURE.GPU.MINIDUMP, 2020/04/06, add for oppo gpu mini dump
 	device->snapshot_control = 0;
 	#endif
 
@@ -1393,7 +1387,6 @@ void kgsl_device_snapshot_probe(struct kgsl_device *device, u32 size)
 	WARN_ON(sysfs_create_bin_file(&device->snapshot_kobj, &snapshot_attr));
 	WARN_ON(sysfs_create_files(&device->snapshot_kobj, snapshot_attrs));
 	#if IS_ENABLED(CONFIG_DRM_MSM)
-	// MeiDongting@MULTIMEIDA.FEATURE.GPU.MINIDUMP, 2020/04/06, add for oppo gpu mini dump
 	WARN_ON(sysfs_create_file(&device->snapshot_kobj, &attr_snapshot_hashid.attr));
 
 	WARN_ON(sysfs_create_file(&device->snapshot_kobj, &attr_snapshot_control.attr));
@@ -1431,7 +1424,6 @@ void kgsl_device_snapshot_close(struct kgsl_device *device)
 	kobject_put(&device->snapshot_kobj);
 
 	#if IS_ENABLED(CONFIG_DRM_MSM)
-	// MeiDongting@MULTIMEIDA.FEATURE.GPU.MINIDUMP, 2020/04/06, add for oppo gpu mini dump
 	device->snapshot_control = 0;
 	#endif
 }

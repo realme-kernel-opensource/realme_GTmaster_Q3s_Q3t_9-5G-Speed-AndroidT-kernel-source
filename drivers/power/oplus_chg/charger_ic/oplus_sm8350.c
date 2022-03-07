@@ -1690,7 +1690,6 @@ static int battery_chg_ship_mode(struct notifier_block *nb, unsigned long code,
 /**********************************************************************
  * battery charge ops *
  **********************************************************************/
-/* Jianchao.Shi@BSP.CHG.Basic, 2020/05/20, sjc Add for charging*/
 static void dump_regs(void)
 {
 	if(!probe_done)
@@ -3238,7 +3237,6 @@ static const struct dev_pm_ops battery_chg_pm_ops = {
 	.suspend	= battery_chg_pm_suspend,
 };
 
-/* Jianchao.Shi@BSP.CHG.Basic, 2020/05/20, sjc Add for charging*/
 struct oplus_chg_operations  battery_chg_ops = {
 	.dump_registers = dump_regs,
 	.kick_wdt = smbchg_kick_wdt,

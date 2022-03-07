@@ -506,7 +506,6 @@ struct charger_manager {
 };
 
 #ifdef OPLUS_FEATURE_CHG_BASIC
-/* Jianchao.Shi@BSP.CHG.Basic, 2018/11/09, sjc Add for charging */
 
 struct mtk_pmic {
 	struct charger_manager* oplus_info;

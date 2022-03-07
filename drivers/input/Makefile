@@ -35,7 +35,6 @@ obj-$(CONFIG_OPLUS_SECURE)  += oplus_secure_drivers/
 #endif /* OPLUS_FEATURE_FINGERPRINT */
 
 #ifdef OPLUS_FEATURE_FINGERPRINT
-#Bangxiong.Wu@BSP.Fingerprint.Basic, 2019/04/17, Add for fingerprint driver
 obj-$(CONFIG_OPPO_FINGERPRINT)  += oplus_fp_drivers/
 #endif /* OPLUS_FEATURE_FINGERPRINT */
 

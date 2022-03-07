@@ -688,7 +688,6 @@ gen_headers_out_arm64 = [
     "scsi/scsi_netlink.h",
     "scsi/scsi_netlink_fc.h",
 //#ifdef OPLUS_FEATURE_UFSPLUS
-//tianwen@BSP.Storage.ufs, 2020/09/08, modify for ufs plus
     "scsi/ufs/ioctl.h",
 //#endif /* OPLUS_FEATURE_UFSPLUS */
     "sound/asequencer.h",
@@ -1012,7 +1011,6 @@ gen_headers_out_arm64 = [
     "camera/media/cam_sync.h",
     "camera/media/cam_tfe.h",
 //ifdef VENDOR_EDIT
-//lixin@Camera.Drv, 2020/05/25, modify for camera kernel decoupling
     "camera/oplus/media/oplus_cam_sensor.h",
     "camera/oplus/media/oplus_cam_defs.h",
 //endif

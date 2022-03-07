@@ -48,7 +48,6 @@ struct ion_buffer {
 	struct sg_table *sg_table;
 	struct list_head attachments;
 #if defined(OPLUS_FEATURE_MEMLEAK_DETECT) && defined(CONFIG_DUMP_TASKS_MEM)
-	/* Peifeng.Li@BSP.Kernel.MM, 2020-05-20 ion buffer allocator */
 	struct task_struct *tsk;
 #endif
 };

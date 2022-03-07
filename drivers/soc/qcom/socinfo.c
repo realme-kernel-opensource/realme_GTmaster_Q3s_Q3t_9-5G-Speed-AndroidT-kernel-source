@@ -15,7 +15,6 @@
 #include <linux/types.h>
 #include <soc/qcom/socinfo.h>
 #ifdef VENDOR_EDIT
-/*zhangchangan@BSP.Kernel.Driver, 2020/05/09, Add for fake cpu id*/
 #include <soc/oplus/system/oppo_project.h>
 #endif /* VENDOR_EDIT */
 /*
@@ -625,7 +624,6 @@ struct soc_id {
 };
 
 #ifdef VENDOR_EDIT
-/*zhangchangan@BSP.Kernel.Driver, 2020/05/09, Add for fake cpu id*/
 static char *fake_soc_id_name = "SM8150";
 static char *real_soc_id_name = "SDM778G";
 #endif

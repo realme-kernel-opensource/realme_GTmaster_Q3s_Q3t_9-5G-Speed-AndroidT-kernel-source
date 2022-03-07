@@ -109,7 +109,6 @@ int charger_abnormal_log = 0;
 int tbatt_pwroff_enable = 1;
 extern bool oplus_is_power_off_charging(struct oplus_warp_chip *chip);
 
-/* wenbin.liu@SW.Bsp.Driver, 2016/03/01  Add for log tag*/
 #define charger_xlog_printk(num, fmt, ...) \
 		do { \
 			if (enable_charger_log >= (int)num) { \
@@ -5053,7 +5052,6 @@ static bool oplus_chg_check_vbatt_is_good(struct oplus_chg_chip *chip)
 static bool oplus_chg_check_time_is_good(struct oplus_chg_chip *chip)
 {
 #ifdef SELL_MODE
-	/* Qiao.Hu@BSP.BaseDrv.CHG.Basic, 2017/10/26, delete over_time for sell_mode */
 	chip->chging_over_time = false;
 	printk("oplus_chg_check_time_is_good_sell_mode\n");
 	return true;
@@ -5548,7 +5546,6 @@ void oplus_chg_variables_reset(struct oplus_chg_chip *chip, bool in)
 #endif
 #endif
 #ifndef SELL_MODE
-	/* Qiao.Hu@BSP.BaseDrv.CHG.Basic, 2017/12/12, delete for sell_mode */
 	if(chip->mmi_fastchg == 0){
 		chip->mmi_chg = 0;
 	} else {
@@ -7128,7 +7125,6 @@ static void battery_update(struct oplus_chg_chip *chip)
 
 #else /* CONFIG_OPLUS_CHG_GKI_SUPPORT */
 #ifdef OPLUS_CHG_OP_DEF
-//YangFangbiao@BSP,2021/1/2,modify for reduce battery event update and delay update for High temperature warning
 	if (pre_charger_exist != chip->charger_exist || (chip->temperature > 450)) {
 #else
 	if (pre_charger_exist != chip->charger_exist || !chip->fg_bcl_poll) {
@@ -7781,7 +7777,6 @@ static void oplus_chg_kpoc_power_off_check(struct oplus_chg_chip *chip)
 
 static void oplus_chg_print_log(struct oplus_chg_chip *chip)
 {
-	/* wenbin.liu@SW.Bsp.Driver, 2016/02/29  Add for log tag*/
 	if(chip->vbatt_num == 1){
 		charger_xlog_printk(CHG_LOG_CRTI,
 			" CHGR[ %d / %d / %d / %d / %d ], "

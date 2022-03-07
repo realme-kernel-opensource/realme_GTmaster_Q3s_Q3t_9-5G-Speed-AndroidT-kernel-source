@@ -722,8 +722,6 @@ static int stm8s_driver_probe(struct i2c_client *client,
 	chip->warp_fw_check = false;
 	mutex_init(&chip->pinctrl_mutex);
 
-/* wenbin.liu@BSP.CHG.Warp, 2016/10/20 
-**    Modify for warp batt 4.40   */
 	oplus_warp_fw_type_dt(chip);
 	if (chip->batt_type_4400mv) {
 		chip->firmware_data = Stm8s_firmware_data_4400mv;

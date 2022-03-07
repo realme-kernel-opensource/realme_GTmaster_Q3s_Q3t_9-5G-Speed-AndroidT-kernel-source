@@ -522,7 +522,6 @@ static int project_read_func(struct seq_file *s, void *v)
 
     switch(Ptr2UINT32(p)) {
     case PROJECT_VERSION:
-        //chenguanhua@BSP.bootloader.bootflow, 2020/09/30, modify for compatible of hexadecimal project model
         if (get_project() > 0x20000) {
             seq_printf(s, "%X", get_project());
         } else {

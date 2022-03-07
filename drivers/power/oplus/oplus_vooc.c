@@ -1148,7 +1148,6 @@ static void oplus_vooc_fastchg_func(struct work_struct *work)
 			chip->allowed_current_max = -EINVAL;
 		}
 	} else if (data == VOOC_NOTIFY_FAST_ABSENT) {
-	/* Zhangkun@BSP.CHG.Basic, 2020/08/17, Add for svooc detect and detach */
 		chip->detach_unexpectly = true;
 		chip->fastchg_started = false;
 		chip->fastchg_to_normal = false;
@@ -1231,7 +1230,6 @@ static void oplus_vooc_fastchg_func(struct work_struct *work)
 		ret_info = 0x2;
 	} else if (data == VOOC_NOTIFY_ALLOW_READING_IIC) {
 		if(chip->fastchg_allow) {
-	/* Zhangkun@BSP.CHG.Basic, 2020/08/17, Add for svooc detect and detach */
 			chip->detach_unexpectly = false;
 			chip->fastchg_ing = true;
 			chip->allow_reading = true;
@@ -1958,7 +1956,6 @@ void oplus_vooc_init(struct oplus_vooc_chip *chip)
 {
 	int ret = 0;
 
-	/* Zhangkun@BSP.CHG.Basic, 2020/08/17, Add for svooc detect and detach */
 	chip->detach_unexpectly = false;
 	chip->allow_reading = true;
 	chip->fastchg_started = false;
@@ -2692,7 +2689,6 @@ void oplus_vooc_reset_temp_range(struct oplus_vooc_chip *chip)
 }
 
 
-	/* Zhangkun@BSP.CHG.Basic, 2020/08/17, Add for svooc detect and detach */
 bool oplus_vooc_get_detach_unexpectly(void)
 {
 	if (!g_vooc_chip) {

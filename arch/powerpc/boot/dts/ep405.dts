@@ -163,7 +163,6 @@
 			clock-frequency = <0>; /* Filled in by zImage */
 
 			/* NVRAM and RTC */
-			nvrtc@4,200000 {
 				compatible = "ds1742";
 				reg = <0x00000004 0x00200000 0x00000000>; /* size fixed up by zImage */
 			};

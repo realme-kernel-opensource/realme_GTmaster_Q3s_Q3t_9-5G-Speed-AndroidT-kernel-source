@@ -283,14 +283,12 @@ config RIONET_RX_SIZE
 	depends on RIONET
 	default "128"
 
-#HuangJunyuan@CONNECTIVITY.WIFI.INTERNET, 2018/06/26, Add for limit speed function
 config OPLUS_FEATURE_WIFI_LIMMITBGSPEED
 	bool "Add for limit speed function"
 	help
 	  Add for limit speed function.
 
 #ifdef OPLUS_FEATURE_WIFI_LIMMITBGSPEED
-#HuangJunyuan@CONNECTIVITY.WIFI.INTERNET, 2018/06/26, Add for limit speed function
 config IMQ
 	tristate "IMQ (intermediate queueing device) support"
 	depends on NETDEVICES && NETFILTER

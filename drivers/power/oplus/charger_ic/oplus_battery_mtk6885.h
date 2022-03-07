@@ -484,14 +484,12 @@ struct charger_manager {
 	struct adapter_device *pd_adapter;
 
 #ifdef OPLUS_FEATURE_CHG_BASIC
-/* LiYue@BSP.CHG.Basic, 2019/09/24, Add for charging */
 	struct iio_channel	*charger_id_chan;
 	struct iio_channel      *usb_temp_v_l_chan;
 	struct iio_channel      *usb_temp_v_r_chan;
 #endif
 
 #ifdef OPLUS_FEATURE_CHG_BASIC
-	/* YanGang@BSP.CHG.Basic, 2019/12/30, Add for ccdetect */
 		int ccdetect_gpio;
 		int ccdetect_irq;
 		struct pinctrl_state *ccdetect_active;
@@ -599,7 +597,6 @@ struct charger_manager {
 };
 
 #ifdef OPLUS_FEATURE_CHG_BASIC
-/* Jianchao.Shi@BSP.CHG.Basic, 2018/11/09, sjc Add for charging */
 
 struct mtk_pmic {
 	struct charger_manager* oplus_info;

@@ -549,7 +549,6 @@ static void smbchg_set_chargerid_switch_val(
 	
 	if(chip->pmic_spmi.not_support_1200ma && !value && !is_usb_present(chip)) {
 	/* BugID 879716 : Solve some situatuion ChargerID is not 0 mV when usb is not present */
-	// wenbin.liu@BSP.CHG.Basic, 2016/11/14
 		chip->chargerid_volt = 0;
 		chip->chargerid_volt_got = false;
 	}
@@ -1515,7 +1514,6 @@ static int smbchg_get_charge_enable(struct oplus_chg_chip *chip)
 }
 
 
-int qpnp_fg_set_charge_enble(bool enable)	// wenbin.liu@SW.Bsp.Driver, 2016/08/15  Add for qpnp_fg charge
 {	
 	if(!the_chip)
 		return -EINVAL;
@@ -8559,7 +8557,6 @@ static void rerun_hvdcp_det_if_necessary(struct oplus_chg_chip *chip)
 	int rc;
 
 #ifdef VENDOR_EDIT
-// wenbin.liu@BSP.CHG.Basic, 2016/12/06
 // Add for dead battery  charging if sometimes jump into kernel may lead APSD abnormal status
 	if(chip->pmic_spmi.hvdcp_not_supported)
 		return;
@@ -8887,7 +8884,6 @@ static int smbchg_probe(struct spmi_device *spmi)
 		return -EPROBE_DEFER;
 	}
 
-	// wenbin.liu@SW.Bsp.Driver, 2016/08/16  Add for check gauge probe finished
 	if(oplus_gauge_check_chip_is_null()) {
 		chg_err("gauge chip null, will do after bettery init.\n");
 		return -EPROBE_DEFER;

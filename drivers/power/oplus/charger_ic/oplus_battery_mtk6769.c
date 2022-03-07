@@ -46,7 +46,6 @@
 #include <tcpm.h>
 #include <mtk_gauge_time_service.h>
 
-/* Qiao.Hu@EXP.BSP.CHG.basic, 2017/07/20, Add for charger */
 #include <soc/oplus/device_info.h>
 #include <soc/oplus/system/oplus_project.h>
 #include <linux/gpio.h>
@@ -64,13 +63,10 @@ extern unsigned int is_project(int project);
 extern void musb_ctrl_host(bool on_off);
 extern int charger_ic_flag;
 
-/* Qiao.Hu@EXP.BSP.BaseDrv.CHG.Basic, 2017/08/15, Add for charger full status */
 extern bool oplus_chg_check_chip_is_null(void);
-/* Qiao.Hu@EXP.BSP.BaseDrv.CHG.Basic, 2017/08/15, Add for charger full status */
 extern bool oplus_chg_check_chip_is_null(void);
 
 /************ kpoc_charger *******************/
-//huangtongfeng@BSP.CHG.Basic, 2017/12/14, add for kpoc charging param.
 extern int oplus_chg_get_ui_soc(void);
 extern int oplus_chg_get_notify_flag(void);
 extern int oplus_chg_show_vooc_logo_ornot(void);
@@ -204,7 +200,6 @@ int oplus_battery_meter_get_battery_voltage(void)
 	return 4000;
 }
 
-/* Qiao.Hu@BSP.BaseDrv.CHG.Basic, 2018/01/11, mtk patch for distinguish fast charging and normal charging*/
 bool is_vooc_project(void)
 {
 	return false;
@@ -217,7 +212,6 @@ int oplus_which_charger_ic(void)
     return charger_ic_flag;
 }
 
-/*Yong.Liu@BSP.CHG.Basic, 2020/10/15,,distinguish charge ic vendor*/
 int get_charger_ic_det(struct oplus_chg_chip *chip)
 {
 	int count = 0;
@@ -529,7 +523,6 @@ void charger_log_flash(const char *fmt, ...)
 void _wake_up_charger(struct charger_manager *info)
 {
 #if defined(CONFIG_OPLUS_CHARGER_MTK6769)
-/* Jianchao.Shi@BSP.CHG.Basic, 2019/06/10, sjc Modify for charging */
 	return;
 #else
 	unsigned long flags;
@@ -711,7 +704,6 @@ int charger_manager_enable_charging(struct charger_consumer *consumer,
 	int ret = 0;
 
 #if defined(OPLUS_FEATURE_CHG_BASIC) && defined(CONFIG_OPLUS_CHARGER_MT6370_TYPEC)
-/* Jianchao.Shi@BSP.CHG.Basic, 2019/06/10, sjc Modify for charging */
 	return -EBUSY;
 #endif
 #ifdef CONFIG_OPLUS_CHARGER_MTK6769
@@ -731,7 +723,6 @@ int charger_manager_set_input_current_limit(struct charger_consumer *consumer,
 	struct charger_manager *info = consumer->cm;
 
 #if defined(OPLUS_FEATURE_CHG_BASIC) && defined(CONFIG_OPLUS_CHARGER_MT6370_TYPEC)
-/* Jianchao.Shi@BSP.CHG.Basic, 2019/06/10, sjc Modify for charging */
 	return -EBUSY;
 #endif
 #ifdef CONFIG_OPLUS_CHARGER_MTK6769
@@ -774,7 +765,6 @@ int charger_manager_set_charging_current_limit(
 	struct charger_manager *info = consumer->cm;
 
 #if defined(OPLUS_FEATURE_CHG_BASIC) && defined(CONFIG_OPLUS_CHARGER_MT6370_TYPEC)
-/* Jianchao.Shi@BSP.CHG.Basic, 2019/06/10, sjc Modify for charging */
 	return -EBUSY;
 #endif
 #ifdef CONFIG_OPLUS_CHARGER_MTK6769
@@ -808,7 +798,6 @@ int charger_manager_get_charger_temperature(struct charger_consumer *consumer,
 	struct charger_manager *info = consumer->cm;
 
 #if defined(OPLUS_FEATURE_CHG_BASIC) && defined(CONFIG_OPLUS_CHARGER_MT6370_TYPEC)
-/* Jianchao.Shi@BSP.CHG.Basic, 2019/06/10, sjc Modify for charging */
 	return -EBUSY;
 #endif
 #ifdef CONFIG_OPLUS_CHARGER_MTK6769
@@ -1301,7 +1290,6 @@ bool oplus_pmic_check_chip_is_null(void)
 }
 
 //====================================================================//
-/* Jianchao.Shi@BSP.CHG.Basic, 2019/07/25, sjc Add for usbtemp */
 static bool oplus_usbtemp_check_is_gpio(struct oplus_chg_chip *chip)
 {
 	if (!chip) {
@@ -1763,7 +1751,6 @@ check_again:
 			last_usb_temp_r = chip->usb_temp_r;
 			last_usb_temp_l = chip->usb_temp_l;
 			msleep(delay);
-			//Sidong.Zhao@WT.CHG,2020/7/16, modify for aging test
 			wait_event_interruptible(oplus_usbtemp_wq,
 				(oplus_chg_get_vbus_status(chip) == true || oplus_chg_get_otg_online() == true)
 				&& (chip->unwakelock_chg == false));
@@ -1989,7 +1976,6 @@ int charger_get_vbus(void)
 
 /* internal algorithm common function end */
 
-/* Jianchao.Shi@BSP.CHG.Basic, 2019/06/10, sjc Modify for charging */
 /* sw jeita */
 void do_sw_jeita_state_machine(struct charger_manager *info)
 {

@@ -215,12 +215,10 @@ struct oplus_warp_chip {
 	int adapter_update_report;
 	int dpdm_switch_mode;
 	bool support_warp_by_normal_charger_path;
-/* wenbin.liu@BSP.CHG.Warp, 2016/10/20*/
 /* Add for warp batt 4.40*/
 	bool batt_type_4400mv;
 	bool warp_fw_check;
 	int warp_fw_type;
-//PengNan@BSP.CHG.Warp, 2018/02/28, add for warp fw update.
 	int fw_update_flag;
 	struct manufacture_info manufacture_info;
 	bool warp_fw_update_newmethod;
@@ -276,7 +274,6 @@ struct oplus_warp_chip {
 	int warp_strategy_change_count;
 	int *warp_current_lvl;
 	int warp_current_lvl_cnt;
-/* Zhangkun@BSP.CHG.Basic, 2020/08/17, Add for swarp detect and detach */
 	int detach_unexpectly;
 	bool disable_real_fast_chg;
 	bool reset_adapter;
@@ -385,7 +382,6 @@ int oplus_warp_get_fast_chg_type(void);
 int oplus_warp_get_reply_bits(void);
 void oplus_warp_set_disable_adapter_output(bool disable);
 void oplus_warp_set_warp_max_current_limit(int current_level);
-/* Zhangkun@BSP.CHG.Basic, 2020/08/17, Add for swarp detect and detach */
 bool oplus_warp_get_detach_unexpectly(void);
 void oplus_warp_set_detach_unexpectly(bool val);
 void oplus_warp_set_disable_real_fast_chg(bool val);

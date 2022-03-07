@@ -543,7 +543,6 @@ void set_normalized_timespec64(struct timespec64 *ts, time64_t sec, s64 nsec)
 EXPORT_SYMBOL(set_normalized_timespec64);
 
 /*#ifdef VENDOR_EDIT*/
-/*lixin@Camera.Drv, 2020/5/19, modify for ois get timestamp */
 void set_normalized_timespec(struct timespec *ts, time_t sec, s64 nsec)
 {
 	while (nsec >= NSEC_PER_SEC) {

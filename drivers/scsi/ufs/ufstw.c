@@ -40,7 +40,6 @@
 
 static int ufstw_create_sysfs(struct ufsf_feature *ufsf, struct ufstw_lu *tw);
 
-/* huangjianan@TECH.Storage.UFS, 2019/12/09, Add for UFS+ RUS */
 static int create_wbfn_enable(void);
 static void remove_wbfn_enable(void);
 
@@ -722,7 +721,6 @@ void ufstw_init(struct ufsf_feature *ufsf)
 	}
 
 	ufstw_set_state(ufsf, TW_PRESENT);
-	/* huangjianan@TECH.Storage.UFS, 2019/12/09, Add for UFS+ RUS */
 	create_wbfn_enable();
 	/* Jinghua.Yu@BSP.Storage.UFS 2020/7/2, add for dynamoic tw*/
 	create_wbfn_dynamic_tw_enable();
@@ -758,7 +756,6 @@ void ufstw_remove(struct ufsf_feature *ufsf)
 
 	ufstw_set_state(ufsf, TW_FAILED);
 
-	/* huangjianan@TECH.Storage.UFS, 2019/12/09, Add for UFS+ RUS */
 	remove_wbfn_enable();
 
 	/* Jinghua.Yu@BSP.Storage.UFS 2020/7/2, add for dynamoic tw*/
@@ -1067,7 +1064,6 @@ kobj_del:
 	return -EINVAL;
 }
 
-/* huangjianan@TECH.Storage.UFS, 2019/12/09, Add for UFS+ RUS */
 static inline void wbfn_enable_ctrl(struct ufstw_lu *tw, long val)
 {
 

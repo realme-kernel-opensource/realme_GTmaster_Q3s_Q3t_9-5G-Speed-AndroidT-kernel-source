@@ -137,7 +137,6 @@ struct ramoops_platform_data {
 	u32		flags;
 	struct persistent_ram_ecc_info ecc_info;
 #if IS_ENABLED(CONFIG_OPLUS_FEATURE_DUMP_DEVICE_INFO)
-//martin.li@system.core,2020/11/25 add enable pstore to get KMSG and device_info
 	unsigned long	 device_info_size;
 	unsigned long	 dump_size;
 	unsigned long	 rsv01_size;
@@ -149,7 +148,6 @@ struct ramoops_platform_data {
 };
 
 #if IS_ENABLED(CONFIG_OPLUS_FEATURE_DUMP_DEVICE_INFO)
-//martin.li@system.core,2020/11/25 add enable pstore to get KMSG and device_info
 struct ramoops_context {
 	struct persistent_ram_zone **dprzs;	/* Oops dump zones */
 	struct persistent_ram_zone *cprz;	/* Console zone */

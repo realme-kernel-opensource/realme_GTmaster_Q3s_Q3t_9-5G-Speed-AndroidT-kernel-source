@@ -506,7 +506,6 @@ GCC_PLUGINS_CFLAGS :=
 CLANG_FLAGS :=
 
 # ifdef VENDOR_EDIT
-# jiangyg@OnlineRd.PM, 2013/10/15, add enviroment variant
 KBUILD_CFLAGS +=   -DVENDOR_EDIT
 KBUILD_CPPFLAGS += -DVENDOR_EDIT
 CFLAGS_KERNEL +=   -DVENDOR_EDIT
@@ -514,7 +513,6 @@ CFLAGS_MODULE +=   -DVENDOR_EDIT
 # endif
 
 # ifdef OPLUS_BUG_STABILITY
-# liping-m@PSW.MM.Display.LCD, 2020/07/30, add temp OPLUS_BUG_STABILITY
 KBUILD_CFLAGS +=   -DOPLUS_BUG_STABILITY
 KBUILD_CPPFLAGS += -DOPLUS_BUG_STABILITY
 CFLAGS_KERNEL +=   -DOPLUS_BUG_STABILITY
@@ -523,7 +521,6 @@ CFLAGS_MODULE +=   -DOPLUS_BUG_STABILITY
 
 
 #ifdef OPLUS_FEATURE_BUILD
-#Sunliang@TECH.SysTech.Build.BaseConfig, 2020/03/18, oplus customzation for flags or other variabls
 -include OplusKernelEnvConfig.mk
 #endif // OPLUS_FEATURE_BUILD
 
@@ -534,7 +531,6 @@ endif
 export OPLUS_F2FS_DEBUG
 
 #ifdef OPLUS_BUG_STABILITY
-#Wen.Luo@Bsp.Kernel.Stability, 2018/12/05, Add for Debug Config, slub/kmemleak/kasan config
 ifeq ($(AGING_DEBUG_MASK),1)
 #Agingtest enable rtb
 OPLUS_AGING_TEST := true

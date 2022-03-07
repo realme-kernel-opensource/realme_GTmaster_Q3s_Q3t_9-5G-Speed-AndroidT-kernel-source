@@ -5,7 +5,6 @@
 **
 ** Version: 1.0
 ** Date : 2020/11/03
-** Author: #Kun.Zhou@ANDROID.RESCONTROL, 2020/11/03, add for hans freeze manager
 **
 ** ------------------ Revision History:------------------------
 ** <author>      <data>      <version >       <desc>
@@ -21,7 +20,6 @@ void hans_check_binder(struct binder_transaction_data *tr, struct binder_proc *p
 	int i = 0;
 	int j = 0;
 
-	/*Kun.Zhou@ANDROID.RESCONTROL, 2019/09/23, add for hans freeze manager*/
 	if (check_point == true) {
 		if (!(tr->flags & TF_ONE_WAY) /*report sync binder call*/
 			&& target_proc
@@ -40,7 +38,6 @@ void hans_check_binder(struct binder_transaction_data *tr, struct binder_proc *p
 	#endif
 	}
 
-	/*Kun.Zhou@ANDROID.RESCONTROL, 2019/09/23, add for hans freeze manager*/
 	if (check_point == false) {
 		if ((tr->flags & TF_ONE_WAY) /*report async binder call*/
 			&& target_proc
@@ -68,7 +65,6 @@ void hans_check_binder(struct binder_transaction_data *tr, struct binder_proc *p
 	}
 }
 
-//#Kun.Zhou@ANDROID.RESCONTROL, 2019/09/23, add for hans freeze manager
 static void hans_check_uid_proc_status(struct binder_proc *proc, enum message_type type)
 {
 	struct rb_node *n = NULL;

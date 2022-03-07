@@ -32,18 +32,15 @@ obj-$(CONFIG_ARCH_ZX)		+= zte/
 obj-$(CONFIG_OPLUS_SYSTEM_KERNEL)	+= oplus/system/
 #obj-y				+= oplus/device_info/
 #ifdef OPLUS_FEATURE_SENSOR_SMEM
-#ChenYajie@BSP.SENSOR, 2020/06/16, Add for sensor info
 obj-y						+= oplus/sensor/
 #endif
 #endif /* VENDOR_EDIT */
 
 #ifdef OPLUS_FEATURE_POWERINFO_STANDBY
-#Yunqing.Zeng@BSP.Power.Basic, 2020/09/10, add for feature powerinfo standby.
 obj-$(CONFIG_OPLUS_WAKELOCK_PROFILER) += oplus/oplus_wakelock/
 #endif /* OPLUS_FEATURE_POWERINFO_STANDBY */
 
 #ifdef OPLUS_FEATURE_TP_BASIC
-#Qicai.gu@BSP.TP.Init, 2020/08/05, Add for device_info for GKI.
 obj-$(CONFIG_OPLUS_DEVICE_IFNO)  +=  oplus/device_info/
 #endif /* OPLUS_FEATURE_TP_BASIC */
 
@@ -52,7 +49,6 @@ obj-$(CONFIG_HORAE_THERMAL_SHELL) += oplus/thermal/
 #endif /* OPLUS_FEATURE_THERMAL_HORAE */
 
 #ifdef OPLUS_FEATURE_HOUSTON
-#ted.lin@OPTIMIZATION, 2021/01/06, add for houston service
 obj-$(CONFIG_OPLUS_FEATURE_HOUSTON) += oplus/houston/
 #endif
 
@@ -61,7 +57,6 @@ obj-$(CONFIG_OPLUS_FEATURE_HOUSTON) += oplus/houston/
 obj-y += oplus/misc/
 #endif /* OPLUS_FEATURE_ESIM */
 #ifdef OPLUS_FEATURE_HEALTHINFO
-#//wenbin.liu@PSW.Kernel.MM, 2018/05/23, Add for Healthinfo monitor
 obj-$(CONFIG_OPLUS_HEALTHINFO)    +=  oplus/healthinfo/
 #endif /* OPLUS_FEATURE_HEALTHINFO */
 #ifdef OPLUS_FEATURE_MEMLEAK_DETECT

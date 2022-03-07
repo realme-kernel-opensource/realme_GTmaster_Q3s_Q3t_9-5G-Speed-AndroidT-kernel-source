@@ -33,7 +33,6 @@
 #endif
 
 #ifdef OPLUS_FEATURE_MM_FEEDBACK
-/* Zhao.Pan@MULTIMEDIA.AUDIODRIVER.HEADSETDET, 2021/03/08, Add for audio feedback */
 #include <soc/oplus/system/oplus_mm_kevent_fb.h>
 #endif
 
@@ -687,7 +686,6 @@ static int pil_shutdown_trusted(struct pil_desc *pil)
 	int rc;
 	unsigned long pfn_start, pfn_end, pfn;
 	#if defined(OPLUS_FEATURE_MODEM_MINIDUMP) && defined(CONFIG_OPLUS_FEATURE_MODEM_MINIDUMP)
-	//Wentiam.Mai@PSW.NW.EM.1389836, 2019/04/27
 	//Add for skip mini dump encryption
 	int i = 0;
 	struct md_ss_toc *toc = NULL;
@@ -711,7 +709,6 @@ static int pil_shutdown_trusted(struct pil_desc *pil)
 		goto err_clks;
 
 	#if defined(OPLUS_FEATURE_MODEM_MINIDUMP) && defined(CONFIG_OPLUS_FEATURE_MODEM_MINIDUMP)
-	//Wentiam.Mai@PSW.NW.EM.1389836, 2019/04/27
 	//Add for skip mini dump encryption
 	//disable for TZ don't encryption
 	if ( (pil->minidump_id ==3) || (pil->minidump_id == 4) ) {  //only check for modem/wlan . currently 3 is modem, 4 is wlan
@@ -737,7 +734,6 @@ static int pil_shutdown_trusted(struct pil_desc *pil)
 	}
 
 	#if defined(OPLUS_FEATURE_MODEM_MINIDUMP) && defined(CONFIG_OPLUS_FEATURE_MODEM_MINIDUMP)
-	//Wentiam.Mai@PSW.NW.EM.1389836, 2019/04/27
 	//Add for skip mini dump encryption
 	//disable for TZ don't encryption
 	//set back for miindump flow
@@ -805,7 +801,6 @@ static struct pil_reset_ops pil_ops_trusted = {
 };
 
 #if defined(OPLUS_FEATURE_MODEM_MINIDUMP) && defined(CONFIG_OPLUS_FEATURE_MODEM_MINIDUMP)
-//Wentiam.Mai@PSW.NW.EM.1248599, 2018/01/25
 //Add for customized subsystem ramdump to skip generate dump cause by SAU
 bool SKIP_GENERATE_RAMDUMP = false;
 extern void mdmreason_set(char * buf);
@@ -831,7 +826,6 @@ static void log_failure_reason(const struct pil_tz_data *d)
 	if (!smem_reason[0]) {
 		pr_err("%s SFR: (unknown, empty string found).\n", name);
 		#if defined(OPLUS_FEATURE_MODEM_MINIDUMP) && defined(CONFIG_OPLUS_FEATURE_MODEM_MINIDUMP)
-		//Liu.Wei@NETWORK.RF.10384, 2020/03/27, Add for report modem crash uevent
 		if (!strncmp(name, "modem", 5) || !strncmp(name, "adsp", 4)) {
 			subsystem_schedule_crash_uevent_work(d->dev, name, 0);
 		}
@@ -849,7 +843,6 @@ static void log_failure_reason(const struct pil_tz_data *d)
 #endif
 
 	#ifdef OPLUS_FEATURE_MM_FEEDBACK
-	/* Zhao.Pan@MULTIMEDIA.AUDIODRIVER.HEADSETDET, 2021/03/08, Add for audio feedback */
 	if (strncmp(name, "adsp", strlen("adsp")) == 0) {
 		mm_fb_audio_kevent_named(OPLUS_AUDIO_EVENTID_ADSP_CRASH, \
 				MM_FB_KEY_RATELIMIT_5MIN, "FieldData@@%s$$detailData@@audio$$module@@adsp", reason);
@@ -857,7 +850,6 @@ static void log_failure_reason(const struct pil_tz_data *d)
 	#endif
 
 #if defined(OPLUS_FEATURE_MODEM_MINIDUMP) && defined(CONFIG_OPLUS_FEATURE_MODEM_MINIDUMP)
-//Wentiam.Mai@PSW.NW.EM.1248599, 2018/01/25
 //Add for customized subsystem ramdump to skip generate dump cause by SAU
 	if (!strncmp(name, "modem", 5)) {
 		mdmreason_set(reason);
@@ -871,13 +863,11 @@ static void log_failure_reason(const struct pil_tz_data *d)
 		}
 
 		#if defined(OPLUS_FEATURE_MODEM_MINIDUMP) && defined(CONFIG_OPLUS_FEATURE_MODEM_MINIDUMP)
-		/* Liu.Wei@NETWORK.RF.10384, 2020/03/27, Add for report modem crash uevent */
 		pr_err("[crash_log]: %s to schedule crash work1!\n", name);
 		subsystem_schedule_crash_uevent_work(d->dev, name, reason);
 		#endif /* OPLUS_FEATURE_MODEM_MINIDUMP */
 	}
 
-	/* Liu.Wei@NETWORK.RF.10384, 2020/03/27, Add for report adsp crash uevent */
 	if (!strncmp(name, "adsp", 4)) {
 		pr_err("[crash_log]: %s to schedule crash work2!\n", name);
 		subsystem_schedule_crash_uevent_work(d->dev, name, reason);

@@ -274,7 +274,6 @@ trace:
 }
 
 #if IS_ENABLED(CONFIG_OPLUS_FEATURE_WIFI_LIMMITBGSPEED)
-//HuangJunyuan@CONNECTIVITY.WIFI.INTERNET, 2018/06/26, Add for limit speed function
 struct sk_buff *qdisc_dequeue_skb(struct Qdisc *q, bool *validate)
 {
 	int packets;

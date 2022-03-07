@@ -58,7 +58,6 @@ enum pon_restart_reason {
 	PON_RESTART_REASON_DMVERITY_ENFORCE	= 0x05,
 	PON_RESTART_REASON_KEYS_CLEAR		= 0x06,
 #ifdef VENDOR_EDIT
-/*zhangchangan@BSP.Bootloader.Bootflow, 2020/05/12, Add for oppo boot mode*/
 	PON_RESTART_REASON_SILENCE			= 0x21,
 	PON_RESTART_REASON_SAU				= 0x22,
 	PON_RESTART_REASON_RF				= 0x23,

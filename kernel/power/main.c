@@ -17,7 +17,6 @@
 #include <linux/syscalls.h>
 #include <linux/pm_runtime.h>
 #if defined(OPLUS_FEATURE_POWERINFO_STANDBY) && defined(CONFIG_OPLUS_WAKELOCK_PROFILER)
-//Nanwei.Deng@BSP.Power.Basic, 2020/07/27, add for wakelock profiler
 #include <linux/rtc.h>
 #endif
 #include "power.h"
@@ -609,7 +608,6 @@ static ssize_t state_store(struct kobject *kobj, struct kobj_attribute *attr,
 	suspend_state_t state;
 	int error;
 	#if defined(OPLUS_FEATURE_POWERINFO_STANDBY_DEBUG) && defined(CONFIG_OPLUS_POWERINFO_STANDBY_DEBUG)
-	//Nanwei.Deng@BSP.Power.Basic, 2020/07/27, add for wakelock profiler
 	pr_info("PM: enter state_store, buf=%s.\n", buf);
 	#endif
 	error = pm_autosleep_lock();
@@ -670,7 +668,6 @@ power_attr(state);
  */
 
 #if defined(OPLUS_FEATURE_POWERINFO_STANDBY) && defined(CONFIG_OPLUS_WAKELOCK_PROFILER)
-//Nanwei.Deng@BSP.Power.Basic, 2020/07/27, add for wakelock profiler
 static void pm_wakeup_count_marker(char *annotation)
 {
 	struct timespec ts;
@@ -714,7 +711,6 @@ static ssize_t wakeup_count_store(struct kobject *kobj,
 	unsigned int val;
 	int error;
 	#if defined(OPLUS_FEATURE_POWERINFO_STANDBY) && defined(CONFIG_OPLUS_WAKELOCK_PROFILER)
-	//Nanwei.Deng@BSP.Power.Basic, 2020/07/27, add for wakelock profiler
 	pm_wakeup_count_marker("store");
 	#endif /* OPLUS_FEATURE_POWERINFO_STANDBY */
 	error = pm_autosleep_lock();
@@ -886,7 +882,6 @@ power_attr(pm_freeze_timeout);
 #endif	/* CONFIG_FREEZER*/
 
 #if IS_ENABLED(CONFIG_OPLUS_BUG_STABILITY_EFFECTON_QGKI)
-/* fanhui@PhoneSW.BSP, 2016/05/16, interface to read PMIC reg PON_REASON and POFF_REASON */
 char pon_reason[128];
 static ssize_t pon_reason_show(struct kobject *kobj,
 			struct kobj_attribute *attr, char *buf)
@@ -948,7 +943,6 @@ static struct attribute * g[] = {
 	&pm_freeze_timeout_attr.attr,
 #endif
 #if IS_ENABLED(CONFIG_OPLUS_BUG_STABILITY_EFFECTON_QGKI)
-/* fanhui@PhoneSW.BSP, 2016/05/16, interface to read PMIC reg PON_REASON and POFF_REASON */
 	&pon_reason_attr.attr,
 	&poff_reason_attr.attr,
 #endif /*OPLUS_BUG_STABILITY_EFFECTON_QGKI*/
